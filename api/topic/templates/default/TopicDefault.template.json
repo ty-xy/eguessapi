@@ -1,0 +1,10 @@
+{
+  "default": {
+    "attributes": {
+      "question": {
+        "required": true
+      }
+    },
+    "displayedAttribute": "question"
+  }
+}
