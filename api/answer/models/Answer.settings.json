@@ -1,0 +1,54 @@
+{
+  "identity": "answer",
+  "connection": "eguessapi",
+  "defaultTemplate": "default",
+  "displayedAttribute": "",
+  "schema": true,
+  "attributes": {
+    "body": {
+      "type": "text"
+    },
+    "clickCount": {
+      "type": "integer"
+    },
+    "award": {
+      "type": "float"
+    },
+    "placeTop": {
+      "type": "integer"
+    },
+    "upVotes": {
+      "type": "integer"
+    },
+    "downVotes": {
+      "type": "integer"
+    },
+    "lang": {
+      "type": "string",
+      "required": true
+    },
+    "template": {
+      "type": "string",
+      "required": true
+    },
+    "id_ref": {
+      "type": "int"
+    },
+    "createdBy": {
+      "model": "user"
+    },
+    "auditedBy": {
+      "model": "user"
+    },
+    "question": {
+      "model": "question"
+    },
+    "comments": {
+      "collection": "comment",
+      "via": "answer"
+    }
+  },
+  "autoCreatedAt": true,
+  "autoUpdatedAt": true,
+  "migrate": "alter"
+}
