@@ -1,0 +1,67 @@
+{
+  "identity": "topic",
+  "connection": "parana",
+  "defaultTemplate": "default",
+  "displayedAttribute": "",
+  "schema": true,
+  "attributes": {
+    "title": {
+      "type": "text"
+    },
+    "status": {
+      "type": "integer"
+    },
+    "readNum": {
+      "type": "integer"
+    },
+    "messageNum": {
+      "type": "integer"
+    },
+    "award": {
+      "type": "integer"
+    },
+    "lang": {
+      "type": "string",
+      "required": true
+    },
+    "template": {
+      "type": "string",
+      "required": true
+    },
+    "id_ref": {
+      "type": "int"
+    },
+    "userId": {
+      "model": "user"
+    },
+    "answers": {
+      "collection": "message",
+      "via": "topicId"
+    }
+  },
+  "autoCreatedAt": true,
+  "autoUpdatedAt": true,
+  "migrate": "alter",
+  "templates": {
+    "default": {
+      "attributes": {
+        "title": {
+          "type": "text"
+        },
+        "status": {
+          "type": "integer"
+        },
+        "readNum": {
+          "type": "integer"
+        },
+        "messageNum": {
+          "type": "integer"
+        },
+        "award": {
+          "type": "integer"
+        }
+      },
+      "displayedAttribute": "id"
+    }
+  }
+}

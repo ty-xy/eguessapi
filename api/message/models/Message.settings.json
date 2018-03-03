@@ -1,0 +1,105 @@
+{
+  "identity": "message",
+  "connection": "parana",
+  "defaultTemplate": "default",
+  "displayedAttribute": "",
+  "schema": true,
+  "attributes": {
+    "nickName": {
+      "type": "string"
+    },
+    "avatarUrl": {
+      "type": "string"
+    },
+    "messageId": {
+      "type": "string"
+    },
+    "comment": {
+      "type": "string"
+    },
+    "likeNum": {
+      "type": "integer"
+    },
+    "iscollect": {
+      "type": "boolean"
+    },
+    "city": {
+      "type": "string"
+    },
+    "country": {
+      "type": "string"
+    },
+    "gender": {
+      "type": "string"
+    },
+    "language": {
+      "type": "string"
+    },
+    "province": {
+      "type": "string"
+    },
+    "messageNum": {
+      "type": "integer"
+    },
+    "lang": {
+      "type": "string",
+      "required": true
+    },
+    "template": {
+      "type": "string",
+      "required": true
+    },
+    "id_ref": {
+      "type": "int"
+    },
+    "topicId": {
+      "model": "topic"
+    }
+  },
+  "autoCreatedAt": true,
+  "autoUpdatedAt": true,
+  "migrate": "alter",
+  "templates": {
+    "default": {
+      "attributes": {
+        "nickName": {
+          "type": "string"
+        },
+        "avatarUrl": {
+          "type": "string"
+        },
+        "messageId": {
+          "type": "string"
+        },
+        "comment": {
+          "type": "string"
+        },
+        "likeNum": {
+          "type": "integer"
+        },
+        "iscollect": {
+          "type": "boolean"
+        },
+        "city": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "gender": {
+          "type": "string"
+        },
+        "language": {
+          "type": "string"
+        },
+        "province": {
+          "type": "string"
+        },
+        "messageNum": {
+          "type": "integer"
+        }
+      },
+      "displayedAttribute": "id"
+    }
+  }
+}
