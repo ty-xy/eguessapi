@@ -27,7 +27,8 @@
       "gender": {},
       "language": {},
       "province": {},
-      "messageNum": {}
+      "messageNum": {},
+      "downVotes": {}
     },
     "displayedAttribute": "id"
   }
