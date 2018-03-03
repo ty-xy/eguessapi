@@ -1,11 +1,26 @@
 {
   "default": {
     "attributes": {
-      "nickName": {},
-      "avatarUrl": {},
-      "messageId": {},
+      "nickName": {
+        "maxLength": 12,
+        "minLength": 3,
+        "required": true
+      },
+      "avatarUrl": {
+        "maxLength": 256,
+        "minLength": 8,
+        "required": true
+      },
+      "messageId": {
+        "maxLength": 256,
+        "minLength": 6
+      },
+      "comment": {
+        "required": true,
+        "maxLength": 256,
+        "minLength": 3
+      },
       "likeNum": {},
-      "comment": {},
       "iscollect": {},
       "city": {},
       "country": {},
@@ -15,6 +30,6 @@
       "messageNum": {},
       "downVotes": {}
     },
-    "displayedAttribute": "nickname"
+    "displayedAttribute": "id"
   }
 }

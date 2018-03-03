@@ -2,21 +2,27 @@
   "default": {
     "attributes": {
       "title": {
-        "minLength": 8,
+        "maxLength": 256,
+        "minLength": 6,
         "required": true
       },
       "status": {
-        "max": 8,
+        "required": true,
+        "max": 6
+      },
+      "readNum": {
         "required": true
       },
-      "readNum": {},
-      "messageNum": {},
-      "award": {
+      "messageNum": {
         "required": true
+      },
+      "award": {
+        "required": true,
+        "max": 8
       },
       "downVotes": {},
       "upVotes": {}
     },
-    "displayedAttribute": "title"
+    "displayedAttribute": "id"
   }
 }

@@ -69,10 +69,6 @@
     "filesCreated": {
       "collection": "upload",
       "via": "createdBy"
-    },
-    "messages": {
-      "collection": "message",
-      "via": "contributors"
     }
   },
   "autoCreatedAt": true,

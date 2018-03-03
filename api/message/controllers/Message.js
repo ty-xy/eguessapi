@@ -16,6 +16,7 @@ module.exports = {
 
   find: function * () {
     this.model = model;
+    console.log('====entry====');
     try {
       let entry = yield strapi.hooks.blueprints.find(this);
       this.body = entry;

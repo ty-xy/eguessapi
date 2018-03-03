@@ -26,10 +26,6 @@
     "upVotes": {
       "type": "integer"
     },
-    "answers": {
-      "collection": "message",
-      "via": "answers"
-    },
     "lang": {
       "type": "string",
       "required": true
@@ -40,9 +36,44 @@
     },
     "id_ref": {
       "type": "int"
+    },
+    "userInfo": {
+      "model": "user"
+    },
+    "answers": {
+      "collection": "message",
+      "via": "topicInfo"
     }
   },
   "autoCreatedAt": true,
   "autoUpdatedAt": true,
-  "migrate": "alter"
+  "migrate": "alter",
+  "templates": {
+    "default": {
+      "attributes": {
+        "title": {
+          "type": "text"
+        },
+        "status": {
+          "type": "integer"
+        },
+        "readNum": {
+          "type": "integer"
+        },
+        "messageNum": {
+          "type": "integer"
+        },
+        "award": {
+          "type": "integer"
+        },
+        "downVotes": {
+          "type": "integer"
+        },
+        "upVotes": {
+          "type": "integer"
+        }
+      },
+      "displayedAttribute": "id"
+    }
+  }
 }
