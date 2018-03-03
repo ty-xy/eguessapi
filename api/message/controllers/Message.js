@@ -1,21 +1,22 @@
 'use strict';
 
-const model = 'question';
+const model = 'message';
 
 /**
- * A set of functions called "actions" for `Question`
+ * A set of functions called "actions" for `Message`
  */
 
 module.exports = {
 
   /**
-   * Get Question entries.
+   * Get Message entries.
    *
    * @return {Object|Array}
    */
 
   find: function * () {
     this.model = model;
+    console.log('====entry====');
     try {
       let entry = yield strapi.hooks.blueprints.find(this);
       this.body = entry;
@@ -25,7 +26,7 @@ module.exports = {
   },
 
   /**
-   * Get a specific Question.
+   * Get a specific Message.
    *
    * @return {Object|Array}
    */
@@ -41,7 +42,7 @@ module.exports = {
   },
 
   /**
-   * Create a Question entry.
+   * Create a Message entry.
    *
    * @return {Object}
    */
@@ -57,7 +58,7 @@ module.exports = {
   },
 
   /**
-   * Update a Question entry.
+   * Update a Message entry.
    *
    * @return {Object}
    */
@@ -73,7 +74,7 @@ module.exports = {
   },
 
   /**
-   * Destroy a Question entry.
+   * Destroy a Message entry.
    *
    * @return {Object}
    */
@@ -89,7 +90,7 @@ module.exports = {
   },
 
   /**
-   * Add an entry to a specific Question.
+   * Add an entry to a specific Message.
    *
    * @return {Object}
    */
@@ -105,7 +106,7 @@ module.exports = {
   },
 
   /**
-   * Remove a specific entry from a specific Question.
+   * Remove a specific entry from a specific Message.
    *
    * @return {Object}
    */

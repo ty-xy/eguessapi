@@ -69,11 +69,6 @@
     "filesCreated": {
       "collection": "upload",
       "via": "createdBy"
-    },
-    "topics": {
-      "collection": "topic",
-      "via": "contributors"
-    
     }
   },
   "autoCreatedAt": true,

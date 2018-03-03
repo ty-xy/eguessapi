@@ -14,11 +14,11 @@ const anchor = require('anchor');
 // Local dependencies.
 const WLValidationError = require('../../../node_modules/waterline/lib/waterline/error/WLValidationError');
 
-// Settings for the Answer model.
-const settings = require('./Answer.settings.json');
+// Settings for the Message model.
+const settings = require('./Message.settings.json');
 
 /**
- * Export the Answer model
+ * Export the Message model
  */
 
 module.exports = {
