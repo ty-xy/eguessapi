@@ -4,7 +4,7 @@
             "disk": "sails-disk",
             "mongo": "sails-mongo"
         },
-        "defaultConnection": "parana",
+        "defaultConnection": "default",
         "connections": {
             "default": {
                 "adapter": "disk",
@@ -18,13 +18,13 @@
                 "fileName": "permanent.db",
                 "migrate": "alter"
             },
-            "parana": {
+            "eguessapi": {
                 "adapter": "mongo",
                 "host": "localhost",
                 "port": 27017,
                 "user": "",
                 "password": "",
-                "database": "parana"
+                "database": "eguessapi"
             }
         }
     }

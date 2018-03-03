@@ -1,0 +1,13 @@
+{
+  "default": {
+    "attributes": {
+      "body": {
+        "minLength": 2,
+        "required": true
+      },
+      "upVotes": {},
+      "downVotes": {}
+    },
+    "displayedAttribute": "body"
+  }
+}

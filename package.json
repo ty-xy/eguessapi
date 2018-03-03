@@ -1,5 +1,5 @@
 {
-    "name": "parana",
+    "name": "eguessapi",
     "private": true,
     "version": "0.1.0",
     "description": "A Strapi application.",
@@ -20,7 +20,6 @@
         "waterline": "~0.10.28"
     },
     "devDependencies": {
-        "nodemon": "^1.17.1",
         "strapi-generate": "~1.6.3",
         "strapi-generate-api": "~1.6.3",
         "strapi-generate-email": "~1.6.3",
@@ -30,16 +29,16 @@
     },
     "main": "./server.js",
     "scripts": {
-        "start": "strapi start"
+        "start": "node server.js"
     },
     "author": {
-        "name": "toringo",
+        "name": "ivy",
         "email": "",
         "url": ""
     },
     "maintainers": [
         {
-            "name": "toringo",
+            "name": "ivy",
             "email": "",
             "url": ""
         }

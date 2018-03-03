@@ -1,6 +1,6 @@
 {
     "identity": "message",
-    "connection": "parana",
+    "connection": "eguessapi",
     "defaultTemplate": "default",
     "displayedAttribute": "",
     "schema": true,
