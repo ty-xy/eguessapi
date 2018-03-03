@@ -1,8 +1,22 @@
 {
   "default": {
     "attributes": {
-      "name": {}
+      "title": {
+        "minLength": 8,
+        "required": true
+      },
+      "status": {
+        "max": 8,
+        "required": true
+      },
+      "readNum": {},
+      "messageNum": {},
+      "award": {
+        "required": true
+      },
+      "downVotes": {},
+      "upVotes": {}
     },
-    "displayedAttribute": "name"
+    "displayedAttribute": "title"
   }
 }

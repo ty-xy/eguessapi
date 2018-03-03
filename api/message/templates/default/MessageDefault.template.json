@@ -1,0 +1,20 @@
+{
+  "default": {
+    "attributes": {
+      "nickName": {},
+      "avatarUrl": {},
+      "messageId": {},
+      "likeNum": {},
+      "comment": {},
+      "iscollect": {},
+      "city": {},
+      "country": {},
+      "gender": {},
+      "language": {},
+      "province": {},
+      "messageNum": {},
+      "downVotes": {}
+    },
+    "displayedAttribute": "nickname"
+  }
+}

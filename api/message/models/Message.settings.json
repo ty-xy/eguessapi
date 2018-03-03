@@ -1,0 +1,75 @@
+{
+  "identity": "message",
+  "connection": "eguessapi",
+  "defaultTemplate": "default",
+  "displayedAttribute": "",
+  "schema": true,
+  "attributes": {
+    "nickName": {
+      "type": "string"
+    },
+    "avatarUrl": {
+      "type": "string"
+    },
+    "messageId": {
+      "type": "string"
+    },
+    "likeNum": {
+      "type": "integer"
+    },
+    "comment": {
+      "type": "string"
+    },
+    "iscollect": {
+      "type": "boolean"
+    },
+    "city": {
+      "type": "string"
+    },
+    "country": {
+      "type": "string"
+    },
+    "gender": {
+      "type": "string"
+    },
+    "language": {
+      "type": "string"
+    },
+    "province": {
+      "type": "string"
+    },
+    "messageNum": {
+      "type": "string"
+    },
+    "downVotes": {
+      "type": "integer"
+    },
+    "lang": {
+      "type": "string",
+      "required": true
+    },
+    "template": {
+      "type": "string",
+      "required": true
+    },
+    "id_ref": {
+      "type": "int"
+    },
+    "createdBy": {
+      "model": "user"
+    },
+    "updatedBy": {
+      "model": "user"
+    },
+    "contributors": {
+      "collection": "user",
+      "via": "messages"
+    },
+    "answers": {
+      "model": "topic"
+    }
+  },
+  "autoCreatedAt": true,
+  "autoUpdatedAt": true,
+  "migrate": "alter"
+}

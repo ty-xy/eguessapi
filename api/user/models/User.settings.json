@@ -70,10 +70,9 @@
       "collection": "upload",
       "via": "createdBy"
     },
-    "topics": {
-      "collection": "topic",
+    "messages": {
+      "collection": "message",
       "via": "contributors"
-    
     }
   },
   "autoCreatedAt": true,

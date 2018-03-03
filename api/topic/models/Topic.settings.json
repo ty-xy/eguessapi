@@ -5,31 +5,44 @@
   "displayedAttribute": "",
   "schema": true,
   "attributes": {
-  "name": {
-    "type": "string"
+    "title": {
+      "type": "text"
+    },
+    "status": {
+      "type": "integer"
+    },
+    "readNum": {
+      "type": "integer"
+    },
+    "messageNum": {
+      "type": "integer"
+    },
+    "award": {
+      "type": "integer"
+    },
+    "downVotes": {
+      "type": "integer"
+    },
+    "upVotes": {
+      "type": "integer"
+    },
+    "answers": {
+      "collection": "message",
+      "via": "answers"
+    },
+    "lang": {
+      "type": "string",
+      "required": true
+    },
+    "template": {
+      "type": "string",
+      "required": true
+    },
+    "id_ref": {
+      "type": "int"
+    }
   },
-  "lang": {
-    "type": "string",
-    "required": true
-  },
-  "template": {
-    "type": "string",
-    "required": true
-  },
-  "id_ref": {
-    "type": "int"
-  },
-  "createdBy": {
-    "model": "user"
-  },
-  "updatedBy": {
-    "model": "user"
-  },
-  "contributors": {
-    "collection": "user",
-    "via": "topics"
-  }
-},
   "autoCreatedAt": true,
-  "autoUpdatedAt": true
+  "autoUpdatedAt": true,
+  "migrate": "alter"
 }
