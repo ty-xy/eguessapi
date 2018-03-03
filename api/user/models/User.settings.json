@@ -1,6 +1,6 @@
 {
   "identity": "user",
-  "connection": "default",
+  "connection": "eguessapi",
   "schema": true,
   "limit": 20,
   "defaultTemplate": "default",
@@ -10,6 +10,30 @@
       "type": "string",
       "minLength": 3,
       "unique": true
+    },
+    "openid": {
+      "type": "string"
+    },
+    "avatarUrl": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "country": {
+      "type": "string"
+    },
+    "gender": {
+      "type": "integer"
+    },
+    "language": {
+      "type": "string"
+    },
+    "province": {
+      "type": "string"
+    },
+    "nickName": {
+      "type": "string"
     },
     "email": {
       "type": "email",
@@ -43,8 +67,13 @@
       "dominant": true
     },
     "filesCreated": {
-      "collection": "comment",
+      "collection": "upload",
       "via": "createdBy"
+    },
+    "topics": {
+      "collection": "topic",
+      "via": "contributors"
+    
     }
   },
   "autoCreatedAt": true,
