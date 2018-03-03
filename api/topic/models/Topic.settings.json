@@ -1,6 +1,6 @@
 {
   "identity": "topic",
-  "connection": "eguess",
+  "connection": "eguessapi",
   "defaultTemplate": "default",
   "displayedAttribute": "",
   "schema": true,
