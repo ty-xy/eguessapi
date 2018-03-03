@@ -1,0 +1,35 @@
+{
+  "identity": "topic",
+  "connection": "eguess",
+  "defaultTemplate": "default",
+  "displayedAttribute": "",
+  "schema": true,
+  "attributes": {
+  "name": {
+    "type": "string"
+  },
+  "lang": {
+    "type": "string",
+    "required": true
+  },
+  "template": {
+    "type": "string",
+    "required": true
+  },
+  "id_ref": {
+    "type": "int"
+  },
+  "createdBy": {
+    "model": "user"
+  },
+  "updatedBy": {
+    "model": "user"
+  },
+  "contributors": {
+    "collection": "user",
+    "via": "topics"
+  }
+},
+  "autoCreatedAt": true,
+  "autoUpdatedAt": true
+}
