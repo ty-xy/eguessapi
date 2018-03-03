@@ -1,26 +1,28 @@
 {
-    "default": {
-        "attributes": {
-            "title": {
-                "maxLength": 256,
-                "minLength": 6,
-                "required": true
-            },
-            "status": {
-                "required": true,
-                "max": 6
-            },
-            "readNum": {
-                "required": true
-            },
-            "messageNum": {
-                "required": true
-            },
-            "award": {
-                "required": true,
-                "max": 8
-            }
-        },
-        "displayedAttribute": "id"
-    }
+  "default": {
+    "attributes": {
+      "title": {
+        "maxLength": 256,
+        "minLength": 6,
+        "required": true
+      },
+      "status": {
+        "required": true,
+        "max": 6
+      },
+      "readNum": {
+        "required": true
+      },
+      "messageNum": {
+        "required": true
+      },
+      "award": {
+        "required": true,
+        "max": 8
+      },
+      "downVotes": {},
+      "upVotes": {}
+    },
+    "displayedAttribute": "id"
+  }
 }
