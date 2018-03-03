@@ -1,5 +1,5 @@
 {
-  "name": "eguess",
+  "name": "eguessapi",
   "private": true,
   "version": "0.1.0",
   "description": "A Strapi application.",
@@ -32,13 +32,13 @@
     "start": "node server.js"
   },
   "author": {
-    "name": "taoyan",
+    "name": "ivy",
     "email": "",
     "url": ""
   },
   "maintainers": [
     {
-      "name": "taoyan",
+      "name": "ivy",
       "email": "",
       "url": ""
     }

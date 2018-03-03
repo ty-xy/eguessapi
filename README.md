@@ -1,3 +1,3 @@
-# eguess
+# eguessapi
 
-A quick description of eguess.
+A quick description of eguessapi.

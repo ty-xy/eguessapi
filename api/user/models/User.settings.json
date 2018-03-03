@@ -1,6 +1,6 @@
 {
   "identity": "user",
-  "connection": "eguess",
+  "connection": "eguessapi",
   "schema": true,
   "limit": 20,
   "defaultTemplate": "default",
@@ -73,6 +73,7 @@
     "topics": {
       "collection": "topic",
       "via": "contributors"
+    
     }
   },
   "autoCreatedAt": true,

@@ -18,13 +18,13 @@
         "fileName": "permanent.db",
         "migrate": "safe"
       },
-      "eguess": {
+      "eguessapi": {
         "adapter": "mongo",
         "host": "localhost",
         "port": 27017,
         "user": "",
         "password": "",
-        "database": "eguess"
+        "database": "eguessapi"
       }
     }
   }

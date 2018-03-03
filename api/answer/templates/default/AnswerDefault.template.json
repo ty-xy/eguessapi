@@ -1,0 +1,17 @@
+{
+  "default": {
+    "attributes": {
+      "body": {
+        "required": true,
+        "minLength": 2,
+        "maxLength": 5120
+      },
+      "clickCount": {},
+      "award": {},
+      "placeTop": {},
+      "upVotes": {},
+      "downVotes": {}
+    },
+    "displayedAttribute": "body"
+  }
+}

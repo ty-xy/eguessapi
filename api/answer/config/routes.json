@@ -1,0 +1,57 @@
+{
+  "routes": {
+    "GET /answer": {
+      "controller": "Answer",
+      "action": "find",
+      "policies": [
+        "isAuthorized"
+      ]
+    },
+    "GET /answer/:id": {
+      "controller": "Answer",
+      "action": "findOne",
+      "policies": [
+        "isAuthorized"
+      ]
+    },
+    "POST /answer": {
+      "controller": "Answer",
+      "action": "create",
+      "policies": [
+        "isAuthorized",
+        "addDataCreate"
+      ]
+    },
+    "PUT /answer/:id": {
+      "controller": "Answer",
+      "action": "update",
+      "policies": [
+        "isAuthorized",
+        "addDataUpdate"
+      ]
+    },
+    "DELETE /answer/:id": {
+      "controller": "Answer",
+      "action": "destroy",
+      "policies": [
+        "isAuthorized"
+      ]
+    },
+    "POST /answer/:parentId/:relation": {
+      "controller": "Answer",
+      "action": "add",
+      "policies": [
+        "isAuthorized",
+        "addDataCreate"
+      ]
+    },
+    "DELETE /answer/:parentId/:relation/:id": {
+      "controller": "Answer",
+      "action": "remove",
+      "policies": [
+        "isAuthorized",
+        "addDataUpdate"
+      ]
+    }
+  }
+}
