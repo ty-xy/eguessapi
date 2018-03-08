@@ -3,33 +3,27 @@
     "attributes": {
       "nickName": {
         "maxLength": 12,
-        "minLength": 3,
-        "required": true
+        "minLength": 3
       },
       "avatarUrl": {
         "maxLength": 256,
-        "minLength": 8,
-        "required": true
+        "minLength": 8
       },
-      "messageId": {
-        "maxLength": 256,
-        "minLength": 6
-      },
+      "messageId": {},
       "comment": {
-        "required": true,
         "maxLength": 256,
         "minLength": 3
       },
-      "likeNum": {},
-      "iscollect": {},
       "city": {},
       "country": {},
       "gender": {},
       "language": {},
       "province": {},
       "messageNum": {},
-      "downVotes": {}
+      "downVotes": {},
+      "likeArr": {},
+      "bookMarks": {}
     },
-    "displayedAttribute": "id"
+    "displayedAttribute": "likearr"
   }
 }

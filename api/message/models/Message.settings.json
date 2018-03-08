@@ -17,12 +17,6 @@
     "comment": {
       "type": "string"
     },
-    "likeNum": {
-      "type": "integer"
-    },
-    "iscollect": {
-      "type": "boolean"
-    },
     "city": {
       "type": "string"
     },
@@ -44,6 +38,15 @@
     "downVotes": {
       "type": "integer"
     },
+    "likeArr": {
+      "type": "array"
+    },
+    "bookMarks": {
+      "type": "array"
+    },
+    "topicInfo": {
+      "model": "topic"
+    },
     "lang": {
       "type": "string",
       "required": true
@@ -54,9 +57,6 @@
     },
     "id_ref": {
       "type": "int"
-    },
-    "topicInfo": {
-      "model": "topic"
     }
   },
   "autoCreatedAt": true,
@@ -76,12 +76,6 @@
         },
         "comment": {
           "type": "string"
-        },
-        "likeNum": {
-          "type": "integer"
-        },
-        "iscollect": {
-          "type": "boolean"
         },
         "city": {
           "type": "string"
@@ -103,9 +97,15 @@
         },
         "downVotes": {
           "type": "integer"
+        },
+        "likeArr": {
+          "type": "array"
+        },
+        "bookMarks": {
+          "type": "array"
         }
       },
-      "displayedAttribute": "id"
+      "displayedAttribute": "isbookmark"
     }
   }
 }
