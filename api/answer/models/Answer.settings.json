@@ -1,0 +1,35 @@
+{
+  "identity": "answer",
+  "connection": "eguessapi",
+  "defaultTemplate": "default",
+  "displayedAttribute": "",
+  "schema": true,
+  "attributes": {
+  "body": {
+    "type": "string"
+  },
+  "lang": {
+    "type": "string",
+    "required": true
+  },
+  "template": {
+    "type": "string",
+    "required": true
+  },
+  "id_ref": {
+    "type": "int"
+  },
+  "createdBy": {
+    "model": "user"
+  },
+  "updatedBy": {
+    "model": "user"
+  },
+  "contributors": {
+    "collection": "user",
+    "via": "answers"
+  }
+},
+  "autoCreatedAt": true,
+  "autoUpdatedAt": true
+}

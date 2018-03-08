@@ -1,15 +1,15 @@
 'use strict';
 
-const model = 'topic';
+const model = 'wxuserinfo';
 
 /**
- * A set of functions called "actions" for `Topic`
+ * A set of functions called "actions" for `Wxuserinfo`
  */
 
 module.exports = {
 
   /**
-   * Get Topic entries.
+   * Get Wxuserinfo entries.
    *
    * @return {Object|Array}
    */
@@ -17,39 +17,15 @@ module.exports = {
   find: function * () {
     this.model = model;
     try {
-        let query = this.req._parsedUrl.query;
-        query = query && query.split('&');
-        let page = 1;
-        let size = 5;
-        if (query) {
-            page = query[0].slice(5);
-            size = query[1].slice(5);
-        }
-        let entry = yield strapi.hooks.blueprints.find(this);
-        let going = [];
-        let end = [];
-        for (let i = 0; i < entry.length; i++) {
-            if (entry[i].status === 1) {
-                going.push(entry[i]);
-            } else {
-                end.push(entry[i]);
-            }
-        }
-        going = going.sort(function(x, y) {
-            return x.updatedAt < y.updatedAt;
-        });
-        end = end.sort(function(x, y) {
-            return x.updatedAt < y.updatedAt;
-        });
-        const resData = going.concat(end);
-        this.body = resData.slice(0, page * size);
+      let entry = yield strapi.hooks.blueprints.find(this);
+      this.body = entry;
     } catch (err) {
       this.body = err;
     }
   },
 
   /**
-   * Get a specific Topic.
+   * Get a specific Wxuserinfo.
    *
    * @return {Object|Array}
    */
@@ -65,7 +41,7 @@ module.exports = {
   },
 
   /**
-   * Create a Topic entry.
+   * Create a Wxuserinfo entry.
    *
    * @return {Object}
    */
@@ -81,7 +57,7 @@ module.exports = {
   },
 
   /**
-   * Update a Topic entry.
+   * Update a Wxuserinfo entry.
    *
    * @return {Object}
    */
@@ -97,7 +73,7 @@ module.exports = {
   },
 
   /**
-   * Destroy a Topic entry.
+   * Destroy a Wxuserinfo entry.
    *
    * @return {Object}
    */
@@ -113,7 +89,7 @@ module.exports = {
   },
 
   /**
-   * Add an entry to a specific Topic.
+   * Add an entry to a specific Wxuserinfo.
    *
    * @return {Object}
    */
@@ -129,7 +105,7 @@ module.exports = {
   },
 
   /**
-   * Remove a specific entry from a specific Topic.
+   * Remove a specific entry from a specific Wxuserinfo.
    *
    * @return {Object}
    */

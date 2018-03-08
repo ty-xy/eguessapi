@@ -1,0 +1,35 @@
+{
+  "identity": "wxuserinfo",
+  "connection": "eguessapi",
+  "defaultTemplate": "default",
+  "displayedAttribute": "",
+  "schema": true,
+  "attributes": {
+  "nickName": {
+    "type": "string"
+  },
+  "lang": {
+    "type": "string",
+    "required": true
+  },
+  "template": {
+    "type": "string",
+    "required": true
+  },
+  "id_ref": {
+    "type": "int"
+  },
+  "createdBy": {
+    "model": "user"
+  },
+  "updatedBy": {
+    "model": "user"
+  },
+  "contributors": {
+    "collection": "user",
+    "via": "wxuserinfos"
+  }
+},
+  "autoCreatedAt": true,
+  "autoUpdatedAt": true
+}

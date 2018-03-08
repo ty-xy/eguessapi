@@ -29,7 +29,8 @@
     },
     "main": "./server.js",
     "scripts": {
-        "start": "node server.js"
+        "start": "node server.js",
+        "dev": "nodemon strapi start"
     },
     "author": {
         "name": "ivy",
