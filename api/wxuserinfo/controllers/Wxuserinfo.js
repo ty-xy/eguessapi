@@ -1,15 +1,15 @@
 'use strict';
 
-const model = 'user';
+const model = 'wxuserinfo';
 
 /**
- * A set of functions called "actions" for `user`
+ * A set of functions called "actions" for `Wxuserinfo`
  */
 
 module.exports = {
 
   /**
-   * Get user entries.
+   * Get Wxuserinfo entries.
    *
    * @return {Object|Array}
    */
@@ -17,8 +17,7 @@ module.exports = {
   find: function * () {
     this.model = model;
     try {
-      const entry = yield strapi.hooks.blueprints.find(this);
-      console.log(this)
+      let entry = yield strapi.hooks.blueprints.find(this);
       this.body = entry;
     } catch (err) {
       this.body = err;
@@ -26,9 +25,7 @@ module.exports = {
   },
 
   /**
-   * 
-   * 
-   * Get a specific user.
+   * Get a specific Wxuserinfo.
    *
    * @return {Object|Array}
    */
@@ -36,7 +33,7 @@ module.exports = {
   findOne: function * () {
     this.model = model;
     try {
-      const entry = yield strapi.hooks.blueprints.findOne(this);
+      let entry = yield strapi.hooks.blueprints.findOne(this);
       this.body = entry;
     } catch (err) {
       this.body = err;
@@ -44,7 +41,7 @@ module.exports = {
   },
 
   /**
-   * Create a user entry.
+   * Create a Wxuserinfo entry.
    *
    * @return {Object}
    */
@@ -52,7 +49,7 @@ module.exports = {
   create: function * () {
     this.model = model;
     try {
-      const entry = yield strapi.hooks.blueprints.create(this);
+      let entry = yield strapi.hooks.blueprints.create(this);
       this.body = entry;
     } catch (err) {
       this.body = err;
@@ -60,7 +57,7 @@ module.exports = {
   },
 
   /**
-   * Update a user entry.
+   * Update a Wxuserinfo entry.
    *
    * @return {Object}
    */
@@ -68,7 +65,7 @@ module.exports = {
   update: function * () {
     this.model = model;
     try {
-      const entry = yield strapi.hooks.blueprints.update(this);
+      let entry = yield strapi.hooks.blueprints.update(this);
       this.body = entry;
     } catch (err) {
       this.body = err;
@@ -76,7 +73,7 @@ module.exports = {
   },
 
   /**
-   * Destroy a user entry.
+   * Destroy a Wxuserinfo entry.
    *
    * @return {Object}
    */
@@ -84,7 +81,7 @@ module.exports = {
   destroy: function * () {
     this.model = model;
     try {
-      const entry = yield strapi.hooks.blueprints.destroy(this);
+      let entry = yield strapi.hooks.blueprints.destroy(this);
       this.body = entry;
     } catch (err) {
       this.body = err;
@@ -92,7 +89,7 @@ module.exports = {
   },
 
   /**
-   * Add an entry to a specific user.
+   * Add an entry to a specific Wxuserinfo.
    *
    * @return {Object}
    */
@@ -100,7 +97,7 @@ module.exports = {
   add: function * () {
     this.model = model;
     try {
-      const entry = yield strapi.hooks.blueprints.add(this);
+      let entry = yield strapi.hooks.blueprints.add(this);
       this.body = entry;
     } catch (err) {
       this.body = err;
@@ -108,7 +105,7 @@ module.exports = {
   },
 
   /**
-   * Remove a specific entry from a specific user.
+   * Remove a specific entry from a specific Wxuserinfo.
    *
    * @return {Object}
    */
@@ -116,7 +113,7 @@ module.exports = {
   remove: function * () {
     this.model = model;
     try {
-      const entry = yield strapi.hooks.blueprints.remove(this);
+      let entry = yield strapi.hooks.blueprints.remove(this);
       this.body = entry;
     } catch (err) {
       this.body = err;

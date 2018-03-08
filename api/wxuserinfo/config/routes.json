@@ -1,0 +1,57 @@
+{
+  "routes": {
+    "GET /wxuserinfo": {
+      "controller": "Wxuserinfo",
+      "action": "find",
+      "policies": [
+        "isAuthorized"
+      ]
+    },
+    "GET /wxuserinfo/:id": {
+      "controller": "Wxuserinfo",
+      "action": "findOne",
+      "policies": [
+        "isAuthorized"
+      ]
+    },
+    "POST /wxuserinfo": {
+      "controller": "Wxuserinfo",
+      "action": "create",
+      "policies": [
+        "isAuthorized",
+        "addDataCreate"
+      ]
+    },
+    "PUT /wxuserinfo/:id": {
+      "controller": "Wxuserinfo",
+      "action": "update",
+      "policies": [
+        "isAuthorized",
+        "addDataUpdate"
+      ]
+    },
+    "DELETE /wxuserinfo/:id": {
+      "controller": "Wxuserinfo",
+      "action": "destroy",
+      "policies": [
+        "isAuthorized"
+      ]
+    },
+    "POST /wxuserinfo/:parentId/:relation": {
+      "controller": "Wxuserinfo",
+      "action": "add",
+      "policies": [
+        "isAuthorized",
+        "addDataCreate"
+      ]
+    },
+    "DELETE /wxuserinfo/:parentId/:relation/:id": {
+      "controller": "Wxuserinfo",
+      "action": "remove",
+      "policies": [
+        "isAuthorized",
+        "addDataUpdate"
+      ]
+    }
+  }
+}
