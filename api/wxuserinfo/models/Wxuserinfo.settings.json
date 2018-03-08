@@ -1,55 +1,55 @@
 {
-  "identity": "wxuserinfo",
-  "connection": "eguessapi",
-  "defaultTemplate": "default",
-  "displayedAttribute": "",
-  "schema": true,
-  "attributes": {
-    "nickName": {
-      "type": "string"
+    "identity": "wxuserinfo",
+    "connection": "eguessapi",
+    "defaultTemplate": "default",
+    "displayedAttribute": "",
+    "schema": true,
+    "attributes": {
+        "nickName": {
+            "type": "string"
+        },
+        "openid": {
+            "type": "string"
+        },
+        "city": {
+            "type": "string"
+        },
+        "country": {
+            "type": "string"
+        },
+        "gender": {
+            "type": "integer"
+        },
+        "province": {
+            "type": "string"
+        },
+        "language": {
+            "type": "string"
+        },
+        "lang": {
+            "type": "string",
+            "required": true
+        },
+        "template": {
+            "type": "string",
+            "required": true
+        },
+        "id_ref": {
+            "type": "int"
+        },
+        "wxUser": {
+            "model": "user",
+            "via": "wxUserInfo"
+        },
+        "updatedBy": {
+            "model": "user"
+        },
+        "contributors": {
+            "collection": "user",
+            "via": "wxuserinfos"
+        }
     },
-    "openid": {
-      "type": "string"
-    },
-    "city": {
-      "type": "string"
-    },
-    "country": {
-      "type": "string"
-    },
-    "gender": {
-      "type": "integer"
-    },
-    "province": {
-      "type": "string"
-    },
-    "language": {
-      "type": "string"
-    },
-    "lang": {
-      "type": "string",
-      "required": true
-    },
-    "template": {
-      "type": "string",
-      "required": true
-    },
-    "id_ref": {
-      "type": "int"
-    },
-    "wxUser": {
-      "model": "user",
-      "via": "wxUserInfo"
-    },
-    "updatedBy": {
-      "model": "user"
-    },
-    "contributors": {
-      "collection": "user",
-      "via": "wxuserinfos"
-    }
-  },
-  "autoCreatedAt": true,
-  "autoUpdatedAt": true,
-  "migrate": "alter"
+    "autoCreatedAt": true,
+    "autoUpdatedAt": true,
+    "migrate": "alter"
 }
