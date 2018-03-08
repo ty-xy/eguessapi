@@ -35,6 +35,9 @@
     "nickName": {
       "type": "string"
     },
+    "topicId": {
+      "type": "array"
+    },
     "email": {
       "type": "email",
       "minLength": 6,
@@ -69,6 +72,13 @@
     "filesCreated": {
       "collection": "upload",
       "via": "createdBy"
+    },
+    "comment": {
+      "type": "array"
+    },
+    "topic": {
+      "collection": "topic",
+      "via": "topicuser"
     }
   },
   "autoCreatedAt": true,
