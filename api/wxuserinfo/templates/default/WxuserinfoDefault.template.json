@@ -1,8 +1,16 @@
 {
-  "default": {
-    "attributes": {
-      "nickName": {}
-    },
-    "displayedAttribute": "id"
-  }
+    "default": {
+        "attributes": {
+            "nickName": {},
+            "openid": {
+                "required": true
+            },
+            "city": {},
+            "country": {},
+            "gender": {},
+            "province": {},
+            "language": {}
+        },
+        "displayedAttribute": "nickname"
+    }
 }

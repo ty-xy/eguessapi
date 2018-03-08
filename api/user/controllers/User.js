@@ -18,6 +18,7 @@ module.exports = {
     this.model = model;
     try {
       const entry = yield strapi.hooks.blueprints.find(this);
+      console.log(this)
       this.body = entry;
     } catch (err) {
       this.body = err;
@@ -25,6 +26,8 @@ module.exports = {
   },
 
   /**
+   * 
+   * 
    * Get a specific user.
    *
    * @return {Object|Array}

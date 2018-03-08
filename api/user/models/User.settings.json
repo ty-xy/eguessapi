@@ -35,6 +35,9 @@
         "nickName": {
             "type": "string"
         },
+        "topicId": {
+            "type": "array"
+        },
         "email": {
             "type": "email",
             "minLength": 6,
@@ -70,20 +73,20 @@
             "collection": "upload",
             "via": "createdBy"
         },
-        "answers": {
-            "collection": "answer",
-            "via": "contributors"
-        },
-        "wxuserinfos": {
-            "collection": "wxuserinfo",
-            "via": "contributors"
-        },
         "comment": {
             "type": "array"
         },
         "topic": {
             "collection": "topic",
             "via": "topicuser"
+        },
+        "wxUserInfo": {
+            "model": "wxuserinfo",
+            "via": "wxUser"
+        },
+        "wxuserinfos": {
+            "collection": "wxuserinfo",
+            "via": "contributors"
         }
     },
     "autoCreatedAt": true,
