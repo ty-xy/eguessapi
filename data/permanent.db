@@ -19,7 +19,7 @@
         "contributorsAuthorized": false,
         "id": 1,
         "createdAt": "2018-03-01T18:03:21.015Z",
-        "updatedAt": "2018-03-06T08:41:28.705Z"
+        "updatedAt": "2018-03-07T09:11:05.989Z"
       },
       {
         "name": "GET /admin/routes",
@@ -33,7 +33,7 @@
         "contributorsAuthorized": false,
         "id": 2,
         "createdAt": "2018-03-01T18:03:21.015Z",
-        "updatedAt": "2018-03-06T08:41:28.706Z"
+        "updatedAt": "2018-03-07T09:11:05.993Z"
       },
       {
         "name": "PUT /admin/routes",
@@ -47,7 +47,7 @@
         "contributorsAuthorized": false,
         "id": 3,
         "createdAt": "2018-03-01T18:03:21.016Z",
-        "updatedAt": "2018-03-06T08:41:28.706Z"
+        "updatedAt": "2018-03-07T09:11:05.995Z"
       },
       {
         "name": "GET /admin/explorer/:model",
@@ -61,7 +61,7 @@
         "contributorsAuthorized": false,
         "id": 4,
         "createdAt": "2018-03-01T18:03:21.016Z",
-        "updatedAt": "2018-03-06T08:41:28.707Z"
+        "updatedAt": "2018-03-07T09:11:05.997Z"
       },
       {
         "name": "GET /admin/explorer/:model/count",
@@ -75,7 +75,7 @@
         "contributorsAuthorized": false,
         "id": 5,
         "createdAt": "2018-03-01T18:03:21.016Z",
-        "updatedAt": "2018-03-06T08:41:28.708Z"
+        "updatedAt": "2018-03-07T09:11:05.999Z"
       },
       {
         "name": "GET /admin/explorer/:model/:id",
@@ -89,7 +89,7 @@
         "contributorsAuthorized": false,
         "id": 6,
         "createdAt": "2018-03-01T18:03:21.017Z",
-        "updatedAt": "2018-03-06T08:41:28.709Z"
+        "updatedAt": "2018-03-07T09:11:06.001Z"
       },
       {
         "name": "POST /admin/explorer/:model",
@@ -104,7 +104,7 @@
         "contributorsAuthorized": false,
         "id": 7,
         "createdAt": "2018-03-01T18:03:21.017Z",
-        "updatedAt": "2018-03-06T08:41:28.710Z"
+        "updatedAt": "2018-03-07T09:11:06.002Z"
       },
       {
         "name": "PUT /admin/explorer/:model/:id",
@@ -119,7 +119,7 @@
         "contributorsAuthorized": false,
         "id": 8,
         "createdAt": "2018-03-01T18:03:21.017Z",
-        "updatedAt": "2018-03-06T08:41:28.710Z"
+        "updatedAt": "2018-03-07T09:11:06.003Z"
       },
       {
         "name": "DELETE /admin/explorer/:model/:id",
@@ -133,7 +133,7 @@
         "contributorsAuthorized": false,
         "id": 9,
         "createdAt": "2018-03-01T18:03:21.017Z",
-        "updatedAt": "2018-03-06T08:41:28.711Z"
+        "updatedAt": "2018-03-07T09:11:06.004Z"
       },
       {
         "name": "POST /email",
@@ -147,7 +147,7 @@
         "contributorsAuthorized": true,
         "id": 10,
         "createdAt": "2018-03-01T18:03:21.018Z",
-        "updatedAt": "2018-03-06T08:41:28.711Z"
+        "updatedAt": "2018-03-07T09:11:06.005Z"
       },
       {
         "name": "POST /upload",
@@ -162,7 +162,7 @@
         "contributorsAuthorized": true,
         "id": 11,
         "createdAt": "2018-03-01T18:03:21.018Z",
-        "updatedAt": "2018-03-06T08:41:28.720Z"
+        "updatedAt": "2018-03-07T09:11:06.016Z"
       },
       {
         "name": "GET /user",
@@ -176,7 +176,7 @@
         "contributorsAuthorized": false,
         "id": 12,
         "createdAt": "2018-03-01T18:03:21.018Z",
-        "updatedAt": "2018-03-06T08:41:28.721Z"
+        "updatedAt": "2018-03-07T09:11:06.017Z"
       },
       {
         "name": "GET /user/:id",
@@ -190,7 +190,7 @@
         "contributorsAuthorized": true,
         "id": 13,
         "createdAt": "2018-03-01T18:03:21.018Z",
-        "updatedAt": "2018-03-06T08:41:28.722Z"
+        "updatedAt": "2018-03-07T09:11:06.017Z"
       },
       {
         "name": "POST /user",
@@ -206,7 +206,7 @@
         "contributorsAuthorized": false,
         "id": 14,
         "createdAt": "2018-03-01T18:03:21.019Z",
-        "updatedAt": "2018-03-06T08:41:28.723Z"
+        "updatedAt": "2018-03-07T09:11:06.018Z"
       },
       {
         "name": "PUT /user/:id",
@@ -222,7 +222,7 @@
         "contributorsAuthorized": true,
         "id": 15,
         "createdAt": "2018-03-01T18:03:21.019Z",
-        "updatedAt": "2018-03-06T08:41:28.723Z"
+        "updatedAt": "2018-03-07T09:11:06.019Z"
       },
       {
         "name": "DELETE /user/:id",
@@ -236,7 +236,7 @@
         "contributorsAuthorized": true,
         "id": 16,
         "createdAt": "2018-03-01T18:03:21.019Z",
-        "updatedAt": "2018-03-06T08:41:28.724Z"
+        "updatedAt": "2018-03-07T09:11:06.020Z"
       },
       {
         "name": "POST /user/:parentId/:relation",
@@ -247,12 +247,12 @@
         ],
         "controller": "User",
         "action": "add",
-        "isPublic": false,
+        "isPublic": true,
         "registeredAuthorized": false,
         "contributorsAuthorized": false,
         "id": 17,
         "createdAt": "2018-03-01T18:03:21.020Z",
-        "updatedAt": "2018-03-06T08:41:28.724Z"
+        "updatedAt": "2018-03-07T09:11:06.020Z"
       },
       {
         "name": "DELETE /user/:parentId/:relation/:id",
@@ -263,12 +263,12 @@
         ],
         "controller": "User",
         "action": "remove",
-        "isPublic": false,
+        "isPublic": true,
         "registeredAuthorized": false,
         "contributorsAuthorized": false,
         "id": 18,
         "createdAt": "2018-03-01T18:03:21.020Z",
-        "updatedAt": "2018-03-06T08:41:28.725Z"
+        "updatedAt": "2018-03-07T09:11:06.021Z"
       },
       {
         "name": "POST /auth/logout",
@@ -280,7 +280,7 @@
         "contributorsAuthorized": false,
         "id": 19,
         "createdAt": "2018-03-01T18:03:21.020Z",
-        "updatedAt": "2018-03-06T08:41:28.725Z"
+        "updatedAt": "2018-03-07T09:11:06.022Z"
       },
       {
         "name": "POST /auth/forgot-password",
@@ -292,7 +292,7 @@
         "contributorsAuthorized": false,
         "id": 20,
         "createdAt": "2018-03-01T18:03:21.021Z",
-        "updatedAt": "2018-03-06T08:41:28.726Z"
+        "updatedAt": "2018-03-07T09:11:06.022Z"
       },
       {
         "name": "POST /auth/change-password",
@@ -304,7 +304,7 @@
         "contributorsAuthorized": false,
         "id": 21,
         "createdAt": "2018-03-01T18:03:21.021Z",
-        "updatedAt": "2018-03-06T08:41:28.726Z"
+        "updatedAt": "2018-03-07T09:11:06.023Z"
       },
       {
         "name": "POST /auth/local",
@@ -316,7 +316,7 @@
         "contributorsAuthorized": false,
         "id": 22,
         "createdAt": "2018-03-01T18:03:21.021Z",
-        "updatedAt": "2018-03-06T08:41:28.727Z"
+        "updatedAt": "2018-03-07T09:11:06.025Z"
       },
       {
         "name": "POST /auth/local/register",
@@ -328,7 +328,7 @@
         "contributorsAuthorized": false,
         "id": 23,
         "createdAt": "2018-03-01T18:03:21.022Z",
-        "updatedAt": "2018-03-06T08:41:28.728Z"
+        "updatedAt": "2018-03-07T09:11:06.025Z"
       },
       {
         "name": "GET /auth/:provider/callback",
@@ -340,7 +340,7 @@
         "contributorsAuthorized": false,
         "id": 24,
         "createdAt": "2018-03-01T18:03:21.022Z",
-        "updatedAt": "2018-03-06T08:41:28.730Z"
+        "updatedAt": "2018-03-07T09:11:06.026Z"
       },
       {
         "name": "GET /message",
@@ -354,7 +354,7 @@
         "contributorsAuthorized": true,
         "id": 39,
         "createdAt": "2018-03-03T06:50:45.271Z",
-        "updatedAt": "2018-03-06T08:41:28.712Z"
+        "updatedAt": "2018-03-07T09:11:06.006Z"
       },
       {
         "name": "GET /message/:id",
@@ -368,7 +368,7 @@
         "contributorsAuthorized": true,
         "id": 40,
         "createdAt": "2018-03-03T06:50:45.271Z",
-        "updatedAt": "2018-03-06T08:41:28.712Z"
+        "updatedAt": "2018-03-07T09:11:06.007Z"
       },
       {
         "name": "POST /message",
@@ -383,7 +383,7 @@
         "contributorsAuthorized": true,
         "id": 41,
         "createdAt": "2018-03-03T06:50:45.272Z",
-        "updatedAt": "2018-03-06T08:41:28.713Z"
+        "updatedAt": "2018-03-07T09:11:06.007Z"
       },
       {
         "name": "PUT /message/:id",
@@ -398,7 +398,7 @@
         "contributorsAuthorized": true,
         "id": 42,
         "createdAt": "2018-03-03T06:50:45.272Z",
-        "updatedAt": "2018-03-06T08:41:28.713Z"
+        "updatedAt": "2018-03-07T09:11:06.008Z"
       },
       {
         "name": "DELETE /message/:id",
@@ -412,7 +412,7 @@
         "contributorsAuthorized": true,
         "id": 43,
         "createdAt": "2018-03-03T06:50:45.273Z",
-        "updatedAt": "2018-03-06T08:41:28.714Z"
+        "updatedAt": "2018-03-07T09:11:06.008Z"
       },
       {
         "name": "POST /message/:parentId/:relation",
@@ -427,7 +427,7 @@
         "contributorsAuthorized": true,
         "id": 44,
         "createdAt": "2018-03-03T06:50:45.273Z",
-        "updatedAt": "2018-03-06T08:41:28.715Z"
+        "updatedAt": "2018-03-07T09:11:06.009Z"
       },
       {
         "name": "DELETE /message/:parentId/:relation/:id",
@@ -442,7 +442,7 @@
         "contributorsAuthorized": true,
         "id": 45,
         "createdAt": "2018-03-03T06:50:45.273Z",
-        "updatedAt": "2018-03-06T08:41:28.715Z"
+        "updatedAt": "2018-03-07T09:11:06.010Z"
       },
       {
         "name": "GET /topic",
@@ -456,7 +456,7 @@
         "contributorsAuthorized": true,
         "id": 53,
         "createdAt": "2018-03-03T06:50:45.278Z",
-        "updatedAt": "2018-03-06T08:41:28.716Z"
+        "updatedAt": "2018-03-07T09:11:06.011Z"
       },
       {
         "name": "GET /topic/:id",
@@ -470,7 +470,7 @@
         "contributorsAuthorized": true,
         "id": 54,
         "createdAt": "2018-03-03T06:50:45.278Z",
-        "updatedAt": "2018-03-06T08:41:28.717Z"
+        "updatedAt": "2018-03-07T09:11:06.011Z"
       },
       {
         "name": "POST /topic",
@@ -485,7 +485,7 @@
         "contributorsAuthorized": true,
         "id": 55,
         "createdAt": "2018-03-03T06:50:45.279Z",
-        "updatedAt": "2018-03-06T08:41:28.717Z"
+        "updatedAt": "2018-03-07T09:11:06.012Z"
       },
       {
         "name": "PUT /topic/:id",
@@ -500,7 +500,7 @@
         "contributorsAuthorized": true,
         "id": 56,
         "createdAt": "2018-03-03T06:50:45.280Z",
-        "updatedAt": "2018-03-06T08:41:28.718Z"
+        "updatedAt": "2018-03-07T09:11:06.013Z"
       },
       {
         "name": "DELETE /topic/:id",
@@ -514,7 +514,7 @@
         "contributorsAuthorized": true,
         "id": 57,
         "createdAt": "2018-03-03T06:50:45.282Z",
-        "updatedAt": "2018-03-06T08:41:28.718Z"
+        "updatedAt": "2018-03-07T09:11:06.014Z"
       },
       {
         "name": "POST /topic/:parentId/:relation",
@@ -529,7 +529,7 @@
         "contributorsAuthorized": true,
         "id": 58,
         "createdAt": "2018-03-03T06:50:45.282Z",
-        "updatedAt": "2018-03-06T08:41:28.719Z"
+        "updatedAt": "2018-03-07T09:11:06.014Z"
       },
       {
         "name": "DELETE /topic/:parentId/:relation/:id",
@@ -544,7 +544,7 @@
         "contributorsAuthorized": true,
         "id": 59,
         "createdAt": "2018-03-03T06:50:45.283Z",
-        "updatedAt": "2018-03-06T08:41:28.719Z"
+        "updatedAt": "2018-03-07T09:11:06.015Z"
       }
     ],
     "role_routes__route_roles": [
@@ -591,7 +591,7 @@
       {
         "role_routes": 1,
         "route_roles": 9,
-        "id": 215
+        "id": 59
       },
       {
         "role_routes": 1,
@@ -631,7 +631,7 @@
       {
         "role_routes": 1,
         "route_roles": 45,
-        "id": 223
+        "id": 81
       },
       {
         "role_routes": 1,

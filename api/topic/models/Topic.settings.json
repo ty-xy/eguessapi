@@ -43,6 +43,9 @@
     "answers": {
       "collection": "message",
       "via": "topicInfo"
+    },
+    "topicuser": {
+      "model": "user"
     }
   },
   "autoCreatedAt": true,
