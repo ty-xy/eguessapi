@@ -8,6 +8,9 @@
     "body": {
       "type": "string"
     },
+    "topcid": {
+      "type": "string"
+    },
     "lang": {
       "type": "string",
       "required": true
@@ -22,9 +25,6 @@
     "user": {
       "model": "user"
     },
-    "topic": {
-      "model": "topic"
-    },
     "comment": {
       "collection": "comment",
       "via": "answer"
@@ -32,6 +32,9 @@
     "like": {
       "collection": "like",
       "via": "answer"
+    },
+    "topic": {
+      "model": "topic"
     }
   },
   "autoCreatedAt": true,
@@ -41,6 +44,9 @@
     "default": {
       "attributes": {
         "body": {
+          "type": "string"
+        },
+        "topcid": {
           "type": "string"
         }
       },

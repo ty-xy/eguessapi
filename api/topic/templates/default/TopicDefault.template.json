@@ -10,14 +10,9 @@
         "required": true,
         "max": 6
       },
-      "readNum": {
-        "required": true
-      },
-      "messageNum": {
-        "required": true
-      },
+      "readNum": {},
+      "messageNum": {},
       "award": {
-        "required": true,
         "max": 8
       },
       "downVotes": {},

@@ -25,11 +25,27 @@
     "id_ref": {
       "type": "int"
     },
-    "topic": {
-      "model": "topic"
+    "user": {
+      "model": "user"
     }
   },
   "autoCreatedAt": true,
   "autoUpdatedAt": true,
-  "migrate": "alter"
+  "migrate": "alter",
+  "templates": {
+    "default": {
+      "attributes": {
+        "userid": {
+          "type": "string"
+        },
+        "targetid": {
+          "type": "string"
+        },
+        "catagory": {
+          "type": "integer"
+        }
+      },
+      "displayedAttribute": "userid"
+    }
+  }
 }

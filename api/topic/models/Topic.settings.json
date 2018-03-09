@@ -26,6 +26,9 @@
     "upVotes": {
       "type": "integer"
     },
+    "user": {
+      "model": "user"
+    },
     "lang": {
       "type": "string",
       "required": true
@@ -37,15 +40,8 @@
     "id_ref": {
       "type": "int"
     },
-    "user": {
-      "model": "user"
-    },
     "answer": {
       "collection": "answer",
-      "via": "topic"
-    },
-    "collections": {
-      "collection": "collection",
       "via": "topic"
     }
   },

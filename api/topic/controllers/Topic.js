@@ -26,23 +26,7 @@ module.exports = {
             size = query[1].slice(5);
         }
         let entry = yield strapi.hooks.blueprints.find(this);
-        let going = [];
-        let end = [];
-        for (let i = 0; i < entry.length; i++) {
-            if (entry[i].status === 1) {
-                going.push(entry[i]);
-            } else {
-                end.push(entry[i]);
-            }
-        }
-        going = going.sort(function(x, y) {
-            return x.updatedAt < y.updatedAt;
-        });
-        end = end.sort(function(x, y) {
-            return x.updatedAt < y.updatedAt;
-        });
-        const resData = going.concat(end);
-        this.body = resData.slice(0, page * size);
+        this.body = entry.slice(0, page * size);
     } catch (err) {
       this.body = err;
     }

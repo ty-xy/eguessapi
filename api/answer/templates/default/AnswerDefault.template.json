@@ -1,7 +1,8 @@
 {
   "default": {
     "attributes": {
-      "body": {}
+      "body": {},
+      "topcid": {}
     },
     "displayedAttribute": "body"
   }
