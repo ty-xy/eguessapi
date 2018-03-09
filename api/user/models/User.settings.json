@@ -1,112 +1,108 @@
 {
-    "identity": "user",
-    "connection": "eguessapi",
-    "schema": true,
-    "limit": 20,
-    "defaultTemplate": "default",
-    "displayedAttribute": "username",
-    "attributes": {
+  "identity": "user",
+  "connection": "eguessapi",
+  "schema": true,
+  "limit": 20,
+  "defaultTemplate": "default",
+  "displayedAttribute": "username",
+  "attributes": {
+    "username": {
+      "type": "string",
+      "minLength": 3,
+      "unique": true
+    },
+    "openid": {
+      "type": "string"
+    },
+    "avatarUrl": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "country": {
+      "type": "string"
+    },
+    "gender": {
+      "type": "integer"
+    },
+    "language": {
+      "type": "string"
+    },
+    "province": {
+      "type": "string"
+    },
+    "nickName": {
+      "type": "string"
+    },
+    "topicId": {
+      "type": "array"
+    },
+    "email": {
+      "type": "email",
+      "minLength": 6,
+      "unique": true
+    },
+    "lang": {
+      "type": "string",
+      "required": true
+    },
+    "template": {
+      "type": "string",
+      "required": true
+    },
+    "id_ref": {
+      "type": "int"
+    },
+    "provider": {
+      "type": "string"
+    },
+    "password": {
+      "type": "string",
+      "minLength": 6
+    },
+    "resetPasswordToken": {
+      "type": "string"
+    },
+    "roles": {
+      "collection": "role",
+      "via": "users",
+      "dominant": true
+    },
+    "filesCreated": {
+      "collection": "upload",
+      "via": "createdBy"
+    },
+    "comment": {
+      "type": "array"
+    },
+    "wxUserInfo": {
+      "model": "wxuserinfo",
+      "via": "wxUser"
+    },
+    "wxuserinfos": {
+      "collection": "wxuserinfo",
+      "via": "contributors"
+    }
+  },
+  "autoCreatedAt": true,
+  "autoUpdatedAt": true,
+  "migrate": "alter",
+  "templates": {
+    "default": {
+      "attributes": {
         "username": {
-            "type": "string",
-            "minLength": 3,
-            "unique": true
-        },
-        "openid": {
-            "type": "string"
-        },
-        "avatarUrl": {
-            "type": "string"
-        },
-        "city": {
-            "type": "string"
-        },
-        "country": {
-            "type": "string"
-        },
-        "gender": {
-            "type": "integer"
-        },
-        "language": {
-            "type": "string"
-        },
-        "province": {
-            "type": "string"
-        },
-        "nickName": {
-            "type": "string"
-        },
-        "topicId": {
-            "type": "array"
+          "type": "string",
+          "minLength": 3,
+          "unique": true
         },
         "email": {
-            "type": "email",
-            "minLength": 6,
-            "unique": true
-        },
-        "lang": {
-            "type": "string",
-            "required": true
-        },
-        "template": {
-            "type": "string",
-            "required": true
-        },
-        "id_ref": {
-            "type": "int"
-        },
-        "provider": {
-            "type": "string"
-        },
-        "password": {
-            "type": "string",
-            "minLength": 6
-        },
-        "resetPasswordToken": {
-            "type": "string"
-        },
-        "roles": {
-            "collection": "role",
-            "via": "users",
-            "dominant": true
-        },
-        "filesCreated": {
-            "collection": "upload",
-            "via": "createdBy"
-        },
-        "comment": {
-            "type": "array"
-        },
-        "topic": {
-            "collection": "topic",
-            "via": "topicuser"
-        },
-        "wxUserInfo": {
-            "model": "wxuserinfo",
-            "via": "wxUser"
-        },
-        "wxuserinfos": {
-            "collection": "wxuserinfo",
-            "via": "contributors"
+          "type": "email",
+          "minLength": 6,
+          "unique": true
         }
-    },
-    "autoCreatedAt": true,
-    "autoUpdatedAt": true,
-    "migrate": "alter",
-    "templates": {
-        "default": {
-            "attributes": {
-                "username": {
-                    "type": "string",
-                    "minLength": 3,
-                    "unique": true
-                },
-                "email": {
-                    "type": "email",
-                    "minLength": 6,
-                    "unique": true
-                }
-            },
-            "displayedAttribute": "username"
-        }
+      },
+      "displayedAttribute": "username"
     }
+  }
 }

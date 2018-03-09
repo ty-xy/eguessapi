@@ -1,0 +1,9 @@
+{
+  "default": {
+    "attributes": {
+      "userid": {},
+      "answerid": {}
+    },
+    "displayedAttribute": "answerid"
+  }
+}

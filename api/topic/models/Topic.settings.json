@@ -37,15 +37,16 @@
     "id_ref": {
       "type": "int"
     },
-    "userInfo": {
+    "user": {
       "model": "user"
     },
-    "answers": {
-      "collection": "message",
-      "via": "topicInfo"
+    "answer": {
+      "collection": "answer",
+      "via": "topic"
     },
-    "topicuser": {
-      "model": "user"
+    "collections": {
+      "collection": "collection",
+      "via": "topic"
     }
   },
   "autoCreatedAt": true,

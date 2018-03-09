@@ -1,11 +1,14 @@
 {
-  "identity": "answer",
+  "identity": "like",
   "connection": "eguessapi",
   "defaultTemplate": "default",
   "displayedAttribute": "",
   "schema": true,
   "attributes": {
-    "body": {
+    "userid": {
+      "type": "string"
+    },
+    "answerid": {
       "type": "string"
     },
     "lang": {
@@ -22,16 +25,8 @@
     "user": {
       "model": "user"
     },
-    "topic": {
-      "model": "topic"
-    },
-    "comment": {
-      "collection": "comment",
-      "via": "answer"
-    },
-    "like": {
-      "collection": "like",
-      "via": "answer"
+    "answer": {
+      "model": "answer"
     }
   },
   "autoCreatedAt": true,
@@ -40,11 +35,14 @@
   "templates": {
     "default": {
       "attributes": {
-        "body": {
+        "userid": {
+          "type": "string"
+        },
+        "answerid": {
           "type": "string"
         }
       },
-      "displayedAttribute": "body"
+      "displayedAttribute": "answerid"
     }
   }
 }

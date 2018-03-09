@@ -44,9 +44,6 @@
     "bookMarks": {
       "type": "array"
     },
-    "topicInfo": {
-      "model": "topic"
-    },
     "lang": {
       "type": "string",
       "required": true
@@ -105,7 +102,7 @@
           "type": "array"
         }
       },
-      "displayedAttribute": "isbookmark"
+      "displayedAttribute": "likearr"
     }
   }
 }

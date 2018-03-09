@@ -1,0 +1,42 @@
+{
+    "identity": "comment",
+    "connection": "eguessapi",
+    "defaultTemplate": "default",
+    "displayedAttribute": "",
+    "schema": true,
+    "attributes": {
+        "body": {
+            "type": "string"
+        },
+        "lang": {
+            "type": "string",
+            "required": true
+        },
+        "template": {
+            "type": "string",
+            "required": true
+        },
+        "id_ref": {
+            "type": "int"
+        },
+        "user": {
+            "model": "user"
+        },
+        "answer": {
+            "model": "answer"
+        }
+    },
+    "autoCreatedAt": true,
+    "autoUpdatedAt": true,
+    "migrate": "alter",
+    "templates": {
+        "default": {
+            "attributes": {
+                "body": {
+                    "type": "string"
+                }
+            },
+            "displayedAttribute": "body"
+        }
+    }
+}

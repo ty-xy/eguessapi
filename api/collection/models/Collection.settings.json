@@ -1,12 +1,18 @@
 {
-  "identity": "answer",
+  "identity": "collection",
   "connection": "eguessapi",
   "defaultTemplate": "default",
   "displayedAttribute": "",
   "schema": true,
   "attributes": {
-    "body": {
+    "userid": {
       "type": "string"
+    },
+    "targetid": {
+      "type": "string"
+    },
+    "catagory": {
+      "type": "integer"
     },
     "lang": {
       "type": "string",
@@ -19,32 +25,11 @@
     "id_ref": {
       "type": "int"
     },
-    "user": {
-      "model": "user"
-    },
     "topic": {
       "model": "topic"
-    },
-    "comment": {
-      "collection": "comment",
-      "via": "answer"
-    },
-    "like": {
-      "collection": "like",
-      "via": "answer"
     }
   },
   "autoCreatedAt": true,
   "autoUpdatedAt": true,
-  "migrate": "alter",
-  "templates": {
-    "default": {
-      "attributes": {
-        "body": {
-          "type": "string"
-        }
-      },
-      "displayedAttribute": "body"
-    }
-  }
+  "migrate": "alter"
 }

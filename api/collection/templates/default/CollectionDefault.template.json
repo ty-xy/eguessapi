@@ -1,0 +1,12 @@
+{
+  "default": {
+    "attributes": {
+      "userid": {
+        "required": true
+      },
+      "targetid": {},
+      "catagory": {}
+    },
+    "displayedAttribute": "userid"
+  }
+}

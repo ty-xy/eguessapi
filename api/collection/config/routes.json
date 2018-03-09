@@ -1,0 +1,57 @@
+{
+  "routes": {
+    "GET /collection": {
+      "controller": "Collection",
+      "action": "find",
+      "policies": [
+        "isAuthorized"
+      ]
+    },
+    "GET /collection/:id": {
+      "controller": "Collection",
+      "action": "findOne",
+      "policies": [
+        "isAuthorized"
+      ]
+    },
+    "POST /collection": {
+      "controller": "Collection",
+      "action": "create",
+      "policies": [
+        "isAuthorized",
+        "addDataCreate"
+      ]
+    },
+    "PUT /collection/:id": {
+      "controller": "Collection",
+      "action": "update",
+      "policies": [
+        "isAuthorized",
+        "addDataUpdate"
+      ]
+    },
+    "DELETE /collection/:id": {
+      "controller": "Collection",
+      "action": "destroy",
+      "policies": [
+        "isAuthorized"
+      ]
+    },
+    "POST /collection/:parentId/:relation": {
+      "controller": "Collection",
+      "action": "add",
+      "policies": [
+        "isAuthorized",
+        "addDataCreate"
+      ]
+    },
+    "DELETE /collection/:parentId/:relation/:id": {
+      "controller": "Collection",
+      "action": "remove",
+      "policies": [
+        "isAuthorized",
+        "addDataUpdate"
+      ]
+    }
+  }
+}
