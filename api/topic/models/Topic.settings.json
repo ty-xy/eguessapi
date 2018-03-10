@@ -26,6 +26,9 @@
     "upVotes": {
       "type": "integer"
     },
+    "user": {
+      "model": "user"
+    },
     "lang": {
       "type": "string",
       "required": true
@@ -37,15 +40,9 @@
     "id_ref": {
       "type": "int"
     },
-    "userInfo": {
-      "model": "user"
-    },
-    "answers": {
-      "collection": "message",
-      "via": "topicInfo"
-    },
-    "topicuser": {
-      "model": "user"
+    "toAnswer": {
+      "collection": "answer",
+      "via": "topic"
     }
   },
   "autoCreatedAt": true,

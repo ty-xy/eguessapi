@@ -5,31 +5,42 @@
   "displayedAttribute": "",
   "schema": true,
   "attributes": {
-  "body": {
-    "type": "string"
+    "body": {
+      "type": "string"
+    },
+    "lang": {
+      "type": "string",
+      "required": true
+    },
+    "template": {
+      "type": "string",
+      "required": true
+    },
+    "id_ref": {
+      "type": "int"
+    },
+    "createdBy": {
+      "model": "user"
+    },
+    "topic": {
+      "model": "topic"
+    },
+    "upVotes": {
+      "collection": "user",
+      "via": "toAnswer"
+    }
   },
-  "lang": {
-    "type": "string",
-    "required": true
-  },
-  "template": {
-    "type": "string",
-    "required": true
-  },
-  "id_ref": {
-    "type": "int"
-  },
-  "createdBy": {
-    "model": "user"
-  },
-  "updatedBy": {
-    "model": "user"
-  },
-  "contributors": {
-    "collection": "user",
-    "via": "answers"
-  }
-},
   "autoCreatedAt": true,
-  "autoUpdatedAt": true
+  "autoUpdatedAt": true,
+  "migrate": "alter",
+  "templates": {
+    "default": {
+      "attributes": {
+        "body": {
+          "type": "string"
+        }
+      },
+      "displayedAttribute": "body"
+    }
+  }
 }
