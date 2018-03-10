@@ -16,15 +16,9 @@ module.exports = {
 
   find: function * () {
     this.model = model;
-    let query = this.req._parsedUrl.query;
-    query = query && query.split('=');
     try {
-      const entry = yield strapi.hooks.blueprints.find(this);
-      let entry_res = [];
-      if (query) {
-        entry_res = entry.filter((item) => (item.topcid === query[1]))
-      }
-      this.body = entry_res;
+      let entry = yield strapi.hooks.blueprints.find(this);
+      this.body = entry;
     } catch (err) {
       this.body = err;
     }

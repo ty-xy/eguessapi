@@ -40,7 +40,7 @@
     "id_ref": {
       "type": "int"
     },
-    "answer": {
+    "toAnswer": {
       "collection": "answer",
       "via": "topic"
     }

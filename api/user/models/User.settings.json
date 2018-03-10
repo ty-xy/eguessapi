@@ -69,10 +69,6 @@
       "via": "users",
       "dominant": true
     },
-    "filesCreated": {
-      "collection": "upload",
-      "via": "createdBy"
-    },
     "comment": {
       "type": "array"
     },
@@ -83,6 +79,9 @@
     "wxuserinfos": {
       "collection": "wxuserinfo",
       "via": "contributors"
+    },
+    "toAnswer": {
+      "model": "answer"
     }
   },
   "autoCreatedAt": true,

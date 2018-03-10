@@ -8,9 +8,6 @@
     "body": {
       "type": "string"
     },
-    "topcid": {
-      "type": "string"
-    },
     "lang": {
       "type": "string",
       "required": true
@@ -22,19 +19,15 @@
     "id_ref": {
       "type": "int"
     },
-    "user": {
+    "createdBy": {
       "model": "user"
-    },
-    "comment": {
-      "collection": "comment",
-      "via": "answer"
-    },
-    "like": {
-      "collection": "like",
-      "via": "answer"
     },
     "topic": {
       "model": "topic"
+    },
+    "upVotes": {
+      "collection": "user",
+      "via": "toAnswer"
     }
   },
   "autoCreatedAt": true,
@@ -44,9 +37,6 @@
     "default": {
       "attributes": {
         "body": {
-          "type": "string"
-        },
-        "topcid": {
           "type": "string"
         }
       },
