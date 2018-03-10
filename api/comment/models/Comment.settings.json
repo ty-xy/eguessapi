@@ -1,5 +1,5 @@
 {
-  "identity": "answer",
+  "identity": "comment",
   "connection": "eguessapi",
   "defaultTemplate": "default",
   "displayedAttribute": "",
@@ -22,20 +22,8 @@
     "createdBy": {
       "model": "user"
     },
-    "upVotes": {
-      "collection": "user",
-      "via": "toAnswer"
-    },
-    "comments": {
-      "collection": "comment",
-      "via": "answer"
-    },
-    "topic": {
-      "model": "topic"
-    },
-    "stars": {
-      "collection": "user",
-      "via": "starAnswer"
+    "answer": {
+      "model": "answer"
     }
   },
   "autoCreatedAt": true,

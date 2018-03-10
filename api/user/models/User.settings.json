@@ -80,8 +80,17 @@
       "collection": "wxuserinfo",
       "via": "contributors"
     },
+    "starTopic": {
+      "collection": "topic",
+      "via": "stars"
+    },
     "toAnswer": {
-      "model": "answer"
+      "collection": "answer",
+      "via": "upVotes"
+    },
+    "starAnswer": {
+      "collection": "answer",
+      "via": "stars"
     }
   },
   "autoCreatedAt": true,
