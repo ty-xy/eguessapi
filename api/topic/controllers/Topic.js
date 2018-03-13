@@ -1,5 +1,5 @@
 'use strict';
-
+const _find = require('../../../utils/query');
 const model = 'topic';
 
 /**
@@ -17,21 +17,26 @@ module.exports = {
   find: function * () {
     this.model = model;
     try {
-        let query = this.req._parsedUrl.query;
-        query = query && query.split('&');
-        let page = 1;
-        let size = 5;
-        if (query) {
-            page = query[0].slice(5);
-            size = query[1].slice(5);
-        }
-        let entry = yield strapi.hooks.blueprints.find(this);
-        this.body = entry.slice(0, page * size);
+        const { page, size } = this.query;
+        let entry = yield Topic.find({
+            limit: page * size,
+            sort: {
+                createdAt: 0
+            },
+            select: ['toAnswer', 'user', 'title']
+        });
+        // console.log('query', entry);
+        this.body = yield strapi.hooks.blueprints.find(this);
     } catch (err) {
       this.body = err;
     }
   },
-
+  findTopic: function * () {
+    this.query = {id: '5aa369c76b05d06032f381c5'};
+    this.model = model;
+    let enrty = yield _find(this);
+    this.body = enrty;
+  },
   /**
    * Get a specific Topic.
    *

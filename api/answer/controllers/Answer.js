@@ -17,8 +17,16 @@ module.exports = {
   find: function * () {
     this.model = model;
     try {
-      let entry = yield strapi.hooks.blueprints.find(this);
-      this.body = entry;
+    //   let entry = yield strapi.hooks.blueprints.find(this);
+      console.log('query', this.req._parsedUrl.query)
+      const { query } = this.req._parsedUrl;
+      let entry = null;
+      if (query) {
+        entry = yield Answer.find({ topic: query.split("=")[1]});
+      } else {
+        entry = yield Answer.find();
+      }
+      this.body = yield Answer.find();
     } catch (err) {
       this.body = err;
     }

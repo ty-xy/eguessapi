@@ -2,7 +2,7 @@
     "routes": {
         "GET /topic": {
             "controller": "Topic",
-            "action": "find",
+            "action": "findTopic",
             "policies": [
                 "isAuthorized"
             ]
