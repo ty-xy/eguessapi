@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "routes": {
+=======
+ "routes": {
+>>>>>>> 52038c226c061cd95bbd6f2b5f89b5598a3223f1
     "GET /answer": {
         "controller": "Answer",
         "action": "_find",
@@ -58,7 +62,12 @@
       "policies": [
         "isAuthorized",
         "addDataUpdate"
+<<<<<<< HEAD
       ]
     }
+=======
+        ]
+      }
+>>>>>>> 52038c226c061cd95bbd6f2b5f89b5598a3223f1
     }
 }
