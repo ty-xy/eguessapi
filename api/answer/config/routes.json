@@ -1,11 +1,11 @@
 {
   "routes": {
     "GET /answer": {
-      "controller": "Answer",
-      "action": "find",
-      "policies": [
-        "isAuthorized"
-      ]
+        "controller": "Answer",
+        "action": "_find",
+        "policies": [
+            "isAuthorized"
+        ]
     },
     "GET /answers":{
         "controller":"Answer",
@@ -60,5 +60,5 @@
         "addDataUpdate"
       ]
     }
-  }
+    }
 }

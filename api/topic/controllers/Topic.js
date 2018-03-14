@@ -32,8 +32,7 @@ module.exports = {
     }
   },
   findTopic: function * () {
-      console.log('this.query', this.query)
-    // this.query = {id: '5aa369c76b05d06032f381c5'};
+    this._query = {};
     this.model = model;
     let enrty = yield _find(this);
     this.body = enrty;
