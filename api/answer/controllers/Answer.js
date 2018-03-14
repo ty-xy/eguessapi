@@ -43,11 +43,7 @@ findAnswer: function * () {
             this.body = "";
         }
     }
-<<<<<<< HEAD
 }, 
-=======
- },
->>>>>>> 52038c226c061cd95bbd6f2b5f89b5598a3223f1
   _find: function * () {
     this._query = {topic: this.request.query.topicid};
     this.model = model;
