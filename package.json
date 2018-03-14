@@ -30,7 +30,7 @@
     "main": "./server.js",
     "scripts": {
         "start": "node server.js",
-        "dev": "strapi start"
+        "dev": "nodemon strapi start"
     },
     "author": {
         "name": "ivy",

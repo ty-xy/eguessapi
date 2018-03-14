@@ -348,7 +348,7 @@
           "isAuthorized"
         ],
         "controller": "Topic",
-        "action": "find",
+        "action": "findTopic",
         "isPublic": true,
         "registeredAuthorized": true,
         "contributorsAuthorized": true,
