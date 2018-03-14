@@ -1,5 +1,5 @@
 'use strict';
-
+const _find = require('../../../utils/query');
 const model = 'answer';
 
 /**
@@ -13,8 +13,8 @@ module.exports = {
    *
    * @return {Object|Array}
    */
-
-  find: function * () {
+  
+find: function * () {
     this.model = model;
     try {
     //   let entry = yield strapi.hooks.blueprints.find(this);
@@ -26,17 +26,38 @@ module.exports = {
       } else {
         entry = yield Answer.find();
       }
-      this.body = yield Answer.find();
+      this.body = yield strapi.hooks.blueprints.find(this);
     } catch (err) {
       this.body = err;
     }
   },
-
+findAnswer: function * () {
+    // console.log('this.query', this.query)
+    this.model = model;
+    let entry = yield strapi.hooks.blueprints.find(this);
+    // console.log(this)
+    console.log(entry)
+    const query = this.query;
+    let arr = []
+    if(query){
+        let answer  = entry.createdBy
+        console.log("answer.id",entry.createdBy)
+        if(answer&&answer.length>0&& answer.id === query.userid){
+            arr.push(entry.topic)
+            this.body = arr;
+        } else {
+            this.body = "";
+        }
+    }
+    
+  },
   /**
    * Get a specific Answer.
    *
    * @return {Object|Array}
    */
+  //
+ 
 
   findOne: function * () {
     this.model = model;

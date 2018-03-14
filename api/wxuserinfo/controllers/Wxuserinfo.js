@@ -20,16 +20,17 @@ module.exports = {
       const isOpen =false;
       let entry,wxId;
       let userId;  
-    console.log("32123213123",this.query,"32131231231");
+    // console.log("32123213123",this.query,"32131231231");
   
         const  query  = this.query;
         // 检查是否有openid
         if(query.openid){
             entry = yield Wxuserinfo.findOne({openid:query.openid})
-            console.log("entry",entry)
+            // console.log("entry",entry)
             if(entry === undefined){
             const updataUser={
-                username:`zg-ty@1${Math.ceil(Math.random()*10000)}3.com`,
+                username:query.nickName,
+                avatarUrl:query.avatarUrl,
                 email:`zg-ty@1${Math.ceil(Math.random()*10000)}3.com`,
                 }
             //没有openid的时候创建一个新的user表
@@ -48,7 +49,7 @@ module.exports = {
             this.body = users.id ;
         }else{
                 const users =yield Wxuserinfo.update({id:entry.id},{query})
-                console.log("users",users,users.wxUser)
+                // console.log("users",users,users.wxUser)
                  this.body = users[0].wxUser;
             }
         }
