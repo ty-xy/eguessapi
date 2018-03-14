@@ -6,7 +6,7 @@ module.exports = function _find(_ctx) {
 
       const Model = actionUtil.parseModel(_ctx);
       // Init the query.
-      let query = Model.find(_ctx.query)
+      let query = Model.find(_ctx._query)
         .where(actionUtil.parseCriteria(_ctx))
         .limit(actionUtil.parseLimit(_ctx))
         .skip(actionUtil.parseSkip(_ctx))
@@ -18,7 +18,6 @@ module.exports = function _find(_ctx) {
           _ctx.status = 500;
           reject(err);
         }
-  
         // Records found.
         resolve(matchingRecords);
       });

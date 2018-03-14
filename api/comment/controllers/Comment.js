@@ -1,4 +1,5 @@
 'use strict';
+const _find = require('../../../utils/query');
 
 const model = 'comment';
 
@@ -24,7 +25,13 @@ module.exports = {
       this.body = err;
     }
   },
-
+  _find: function * () {
+    //   console.log('_query', this.request.query.topicid)
+    this.query = {answer: this.request.query.answerid};
+    this.model = model;
+    let enrty = yield _find(this);
+    this.body = enrty;
+  },
   /**
    * Get a specific Comment.
    *
