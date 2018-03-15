@@ -1,4 +1,5 @@
 'use strict';
+const _find = require('../../../utils/query');
 const findAnswer = require('../../../utils/query');
 
 const model = 'answer';
@@ -14,8 +15,8 @@ module.exports = {
    *
    * @return {Object|Array}
    */
-
-  find: function * () {
+  
+find: function * () {
     this.model = model;
     try {
       let entry = yield strapi.hooks.blueprints.find(this);
@@ -24,31 +25,86 @@ module.exports = {
       this.body = err;
     }
   },
-  _find: function * () {
-    const { topicid, userid } = this.request.query;
-    this._query = {topic: topicid};
-    this.model = model;
-    let enrty = yield findAnswer(this);
-    // console.log('enrty', this.request.query, enrty)
-    let entryData = [];
-    for (let i = 0; i < enrty.length; i++) {
-        let res = enrty[i].upVotes.filter((item) => (item.id === userid));
-        let shoucang = enrty[i].stars.filter((item) => (item.id === userid));
-        if (res.length) {
-            enrty[i].upVote = true;
+findAnswer: function * () {
+    const query = this.query;
+    const userid =  this.request.query.userid;
+    let arr = [] 
+    if(query){
+        this._query = {createdBy:userid};
+        this.model = model;
+        this.select= ['topic'];
+        let entry = yield findAnswer(this);
+        console.log(entry)
+        if(entry){
+            entry.forEach((i)=>{
+                arr.push(i.topic)
+           })
+           this.body = arr;
+        }else {
+            this.body = ""
         }
-        if (shoucang.length) {
-            enrty[i].isStar = true;
-        }
-        entryData.push(enrty[i]);
+      
     }
-    this.body = entryData;
-  },
+
+},
+_find: function * () {
+    this.model = model;
+    let arr = [];
+    let isUser = false;
+    const userid =  this.request.query.userid;
+    if(!this.query.topicid){
+        this._query = {};
+        let entry = yield findAnswer(this);
+        if(entry){
+            (entry).forEach((i,index)=>{
+               //  console.log (i.stars.id,"i.id")
+                if(i.stars&&i.stars.length>0){
+                   i.stars.forEach((item)=>{
+                       if(item.id === userid)
+                         isUser = true
+                         arr.push(i)
+                   })
+                }
+            })
+            console.log("arr",arr)
+            if(isUser){
+                this.body = arr
+            }else{
+               this.body =""
+            }
+        }
+
+    } else {
+        const { topicid, userid } = this.request.query;
+        this._query = {topic: topicid};
+        this.model = model;
+        let enrty = yield findAnswer(this);
+        // console.log('enrty', this.request.query, enrty)
+        let entryData = [];
+        for (let i = 0; i < enrty.length; i++) {
+            let res = enrty[i].upVotes.filter((item) => (item.id === userid));
+            let shoucang = enrty[i].stars.filter((item) => (item.id === userid));
+            if (res.length) {
+                enrty[i].upVote = true;
+            }
+            if (shoucang.length) {
+                enrty[i].isStar = true;
+            }
+            entryData.push(enrty[i]);
+        }
+        this.body = entryData;
+    }
+},
+
+
+
   /**
    * Get a specific Answer.
    *
    * @return {Object|Array}
    */
+  //
+ 
 
   findOne: function * () {
     this.model = model;
