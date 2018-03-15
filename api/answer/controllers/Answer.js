@@ -52,7 +52,7 @@ _find: function * () {
     let arr = [];
     let isUser = false;
     const userid =  this.request.query.userid;
-    if(this.query.userid){
+    if(!this.query.topicid){
         this._query = {};
         let entry = yield findAnswer(this);
         if(entry){
@@ -75,10 +75,24 @@ _find: function * () {
         }
 
     } else {
-        this._query = {topic: this.request.query.topicid};
+        const { topicid, userid } = this.request.query;
+        this._query = {topic: topicid};
+        this.model = model;
         let enrty = yield findAnswer(this);
-        console.log("enrty312312", enrty)
-        this.body = enrty;
+        // console.log('enrty', this.request.query, enrty)
+        let entryData = [];
+        for (let i = 0; i < enrty.length; i++) {
+            let res = enrty[i].upVotes.filter((item) => (item.id === userid));
+            let shoucang = enrty[i].stars.filter((item) => (item.id === userid));
+            if (res.length) {
+                enrty[i].upVote = true;
+            }
+            if (shoucang.length) {
+                enrty[i].isStar = true;
+            }
+            entryData.push(enrty[i]);
+        }
+        this.body = entryData;
     }
 },
 
