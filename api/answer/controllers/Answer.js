@@ -25,10 +25,17 @@ module.exports = {
     }
   },
   _find: function * () {
-    this._query = {topic: this.request.query.topicid};
+    const { topicid, userid } = this.request.query;
+    this._query = {topic: topicid};
     this.model = model;
     let enrty = yield findAnswer(this);
-    console.log('enrty', enrty)
+    console.log('enrty', this.request.query, enrty)
+    let entryData = [];
+    for (let i = 0; i < enrty.length; i++) {
+        let res = yield Answer.find({'upVotes.$.id': userid });
+        console.log('res', res)
+        entryData.push(enrty[i]);
+    }
     this.body = enrty;
   },
   /**
