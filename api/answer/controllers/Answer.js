@@ -1,5 +1,7 @@
 'use strict';
 const _find = require('../../../utils/query');
+const findAnswer = require('../../../utils/query');
+
 const model = 'answer';
 
 /**
@@ -17,41 +19,67 @@ module.exports = {
 find: function * () {
     this.model = model;
     try {
-    //   let entry = yield strapi.hooks.blueprints.find(this);
-      console.log('query', this.req._parsedUrl.query)
-      const { query } = this.req._parsedUrl;
-      let entry = null;
-      if (query) {
-        entry = yield Answer.find({ topic: query.split("=")[1]});
-      } else {
-        entry = yield Answer.find();
-      }
-      this.body = yield strapi.hooks.blueprints.find(this);
+      let entry = yield strapi.hooks.blueprints.find(this);
+      this.body = entry;
     } catch (err) {
       this.body = err;
     }
   },
 findAnswer: function * () {
-    // console.log('this.query', this.query)
-    this.model = model;
-    let entry = yield strapi.hooks.blueprints.find(this);
-    // let entrys =  yield Answer._find(this.query)
-    // console.log(this)
-    console.log(entry,"entrys",entrys)
     const query = this.query;
-    let arr = []
+    const userid =  this.request.query.userid;
+    let arr = [] 
     if(query){
-        let answer  = entry.createdBy
-        console.log("answer.id",entry.createdBy)
-        if(answer&&answer.length>0&& answer.id === query.userid){
-            arr.push(entry.topic)
-            this.body = arr;
-        } else {
-            this.body = "";
+        this._query = {createdBy:userid};
+        this.model = model;
+        this.select= ['topic'];
+        let entry = yield findAnswer(this);
+        console.log(entry)
+        if(entry){
+            entry.forEach((i)=>{
+                arr.push(i.topic)
+           })
+           this.body = arr;
+        }else {
+            this.body = ""
         }
+      
     }
-    
-  },
+},
+_find: function * () {
+    this.model = model;
+    let arr = [];
+    let isUser = false;
+    const userid =  this.request.query.userid;
+    if(this.query.userid){
+        this._query = {};
+        let entry = yield findAnswer(this);
+        if(entry){
+            (entry).forEach((i,index)=>{
+               //  console.log (i.stars.id,"i.id")
+                if(i.stars&&i.stars.length>0){
+                   i.stars.forEach((item)=>{
+                       if(item.id === userid)
+                         isUser = true
+                         arr.push(i)
+                   })
+                }
+            })
+            console.log("arr",arr)
+            if(isUser){
+                this.body = arr
+            }else{
+               this.body =""
+            }
+        }
+
+    } else {
+        this._query = {topic: this.request.query.topicid};
+        let enrty = yield findAnswer(this);
+        console.log("enrty312312", enrty)
+        this.body = enrty;
+    }
+},
   /**
    * Get a specific Answer.
    *

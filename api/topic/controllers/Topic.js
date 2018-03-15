@@ -32,11 +32,41 @@ module.exports = {
     }
   },
   findTopic: function * () {
-      console.log('this.query', this.query)
-    // this.query = {id: '5aa369c76b05d06032f381c5'};
+    console.log(this.query,"4312412312412")
     this.model = model;
-    let enrty = yield _find(this);
-    this.body = enrty;
+    let isUser = false;
+    let arr  = [];
+    const userid =  this.request.query.userid;
+    if(this.query.userid){
+         this._query = {};
+         let entry = yield _find(this)
+         console.log(entry,"entryid")
+         if(entry){
+             (entry).forEach((i,index)=>{
+                //  console.log (i.stars.id,"i.id")
+                 if(i.stars&&i.stars.length>0){
+                    i.stars.forEach((item)=>{
+                        if(item.id === userid)
+                          isUser = true
+                          arr.push(i)
+                    })
+                 }
+             })
+             console.log("arr",arr)
+             if(isUser){
+                 this.body = arr
+             }else{
+                this.body =""
+             }
+         }
+
+        //  console.log("entrysss",entry,this._query)
+    }else {
+        this._query = {};
+        let entry = yield _find(this);
+        // console.log(entry,"entry")
+        this.body = entry; 
+    }
   },
   /**
    * Get a specific Topic.

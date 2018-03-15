@@ -35,19 +35,24 @@ module.exports = {
                 }
             //没有openid的时候创建一个新的user表
             let  users = yield User.create(updataUser)
-            const updateData = {
-                 ...query,
-                 wxUser:users.id
-            }
-                 wxId = yield Wxuserinfo.create(updateData)
-            const updataUsers ={
+
+            if(users){
+                const updateData = {
+                    ...query,
+                    wxUser:users.id
+               }
+            wxId = yield Wxuserinfo.create(updateData)
+            if(wxId){
+                const updataUsers ={
                     username:`zg-ty@1${Math.ceil(Math.random()*10000)}3.com`,
                     email:`zg-ty@1${Math.ceil(Math.random()*10000)}3.com`,
                     wxUserInfo:wxId.id,
-                     }
+                }
             let  userUpdate = yield User.update({id:users.id},{...updataUsers})
-            this.body = users.id ;
-        }else{
+                    }
+            }
+                 this.body = users.id ;
+            }else{
                 const users =yield Wxuserinfo.update({id:entry.id},{query})
                 // console.log("users",users,users.wxUser)
                  this.body = users[0].wxUser;
