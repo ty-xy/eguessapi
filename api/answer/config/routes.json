@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "routes": {
+=======
+ "routes": {
+>>>>>>> 3403bbc52cd9a3b204ec29373ebd6e733bc27310
     "GET /answer": {
         "controller": "Answer",
         "action": "_find",

@@ -45,6 +45,7 @@ findAnswer: function * () {
         }
       
     }
+
 },
 _find: function * () {
     this.model = model;
@@ -80,6 +81,9 @@ _find: function * () {
         this.body = enrty;
     }
 },
+
+
+
   /**
    * Get a specific Answer.
    *
