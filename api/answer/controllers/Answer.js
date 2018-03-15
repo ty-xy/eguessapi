@@ -35,8 +35,9 @@ findAnswer: function * () {
     // console.log('this.query', this.query)
     this.model = model;
     let entry = yield strapi.hooks.blueprints.find(this);
+    // let entrys =  yield Answer._find(this.query)
     // console.log(this)
-    console.log(entry)
+    console.log(entry,"entrys",entrys)
     const query = this.query;
     let arr = []
     if(query){
