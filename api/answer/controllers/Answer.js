@@ -29,14 +29,20 @@ module.exports = {
     this._query = {topic: topicid};
     this.model = model;
     let enrty = yield findAnswer(this);
-    console.log('enrty', this.request.query, enrty)
+    // console.log('enrty', this.request.query, enrty)
     let entryData = [];
     for (let i = 0; i < enrty.length; i++) {
-        let res = yield Answer.find({'upVotes.$.id': userid });
-        console.log('res', res)
+        let res = enrty[i].upVotes.filter((item) => (item.id === userid));
+        let shoucang = enrty[i].stars.filter((item) => (item.id === userid));
+        if (res.length) {
+            enrty[i].upVote = true;
+        }
+        if (shoucang.length) {
+            enrty[i].isStar = true;
+        }
         entryData.push(enrty[i]);
     }
-    this.body = enrty;
+    this.body = entryData;
   },
   /**
    * Get a specific Answer.
