@@ -78,7 +78,6 @@ _find: function * () {
         const { userid } = this.request.query;
         this.model = model;
         let enrty = yield findAnswer(this);
-        // console.log('enrty', this.request.query, enrty)
         let entryData = [];
         for (let i = 0; i < enrty.length; i++) {
             let res = enrty[i].upVotes.filter((item) => (item.id === userid));
@@ -140,7 +139,6 @@ _find: function * () {
   update: function * () {
     this.model = model;
     try {
-      console.log('upVote', this.request.body);
       let entry = yield strapi.hooks.blueprints.update(this);
       this.body = entry;
     } catch (err) {

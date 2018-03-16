@@ -17,7 +17,6 @@ module.exports = {
 
   find: function * () {
     this.model = model;
-    console.log('comment', this.req._parsedUrl.query)
     try {
       let entry = yield strapi.hooks.blueprints.find(this);
       this.body = entry;
@@ -26,8 +25,6 @@ module.exports = {
     }
   },
   _find: function * () {
-    //   console.log('_query', this.request.query.topicid)
-    this.query = {answer: this.request.query.answerid};
     this.model = model;
     let enrty = yield _find(this);
     this.body = enrty;
