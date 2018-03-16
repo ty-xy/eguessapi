@@ -26,7 +26,6 @@ module.exports = {
   },
   _find: function * () {
     const { topicid, userid } = this.request.query;
-    this._query = {topic: topicid};
     this.model = model;
     let enrty = yield findAnswer(this);
     // console.log('enrty', this.request.query, enrty)
@@ -85,6 +84,7 @@ module.exports = {
   update: function * () {
     this.model = model;
     try {
+      console.log('upVote', this.request.body);
       let entry = yield strapi.hooks.blueprints.update(this);
       this.body = entry;
     } catch (err) {

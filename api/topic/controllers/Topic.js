@@ -17,15 +17,6 @@ module.exports = {
   find: function * () {
     this.model = model;
     try {
-        const { page, size } = this.query;
-        let entry = yield Topic.find({
-            limit: page * size,
-            sort: {
-                createdAt: 0
-            },
-            select: ['toAnswer', 'user', 'title']
-        });
-        // console.log('query', entry);
         this.body = yield strapi.hooks.blueprints.find(this);
     } catch (err) {
       this.body = err;
