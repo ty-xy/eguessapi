@@ -108,7 +108,7 @@ _find: function * () {
     let arr = [];
     let isUser = false;
     const userid =  this.request.query.userid;
-    if(!this.query.topicid&&this.query.userid){
+    if(!this.request.query.search){
         this._query = {};
         let entry = yield findAnswer(this);
         if(entry){
@@ -130,12 +130,10 @@ _find: function * () {
             }
         }
 
-    } else if(this.query.topicid&&this.query.userid){
-        const { topicid, userid } = this.request.query;
-        this._query = {topic: topicid};
+    } else {
+        const { userid } = this.request.query;
         this.model = model;
         let enrty = yield findAnswer(this);
-        // console.log('enrty', this.request.query, enrty)
         let entryData = [];
         for (let i = 0; i < enrty.length; i++) {
             let res = enrty[i].upVotes.filter((item) => (item.id === userid));
