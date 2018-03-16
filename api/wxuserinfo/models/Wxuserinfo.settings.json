@@ -30,6 +30,9 @@
       "type": "string",
       "required": true
     },
+    "avatarUrl":{
+        "type":"string"
+    },
     "template": {
       "type": "string",
       "required": true

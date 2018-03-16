@@ -47,12 +47,68 @@ findAnswer: function * () {
     }
 
 },
+rank: function* (){
+   this.model = model;
+   this.skip  = "createdBy";
+//    let sum = 0;
+   const query = this.query.userId;
+//    console.log(query,"query")
+   this._query = {createdBy:query}
+   try {
+    let entry = yield strapi.hooks.blueprints.find(this);
+    // let entryU = yield _find(this)
+    // console.log(entryU,"entryU")
+    let list  = [];
+    (entry||[]).forEach((i)=>{
+            const shuju = {
+                   user:i.createdBy,
+                   good: i.upVotes.length
+            }
+            list.push(shuju)
+    })
+  
+    for(let i=list.length-1;i>=0;i--){
+        // console.log("ligsdfgdsf",list[list.length-1])
+        for(let j= 0;j<i;j++){
+            if(list[i].user.id===list[j].user.id){
+                list[i].good+=list[j].good
+                list.splice(j,1)
+                // console.log("1",list)
+            }
+        }
+    }
+    // if(entryU){
+    //     for(let i=0;i<entryU.length;i++){
+    //         sum += entryU[i].upVotes.length;
+    //     }
+    //     const own = {
+    //         ...entryU[0].createdBy,
+    //         good:sum
+    //     }
+    //     const listData = {
+    //         own,
+    //         list,
+    //     }
+    //     this.body = listData
+    // }else { 
+    //     const listData = {
+    //         own:"",
+    //         list:list,
+    //     }
+        this.body = list
+    // }
+   
+    
+   } catch (err) {
+    this.body = err;
+   }
+},
 _find: function * () {
     this.model = model;
     let arr = [];
     let isUser = false;
     const userid =  this.request.query.userid;
-    if(!this.query.topicid){
+    if(!this.query.topicid&&this.query.userid){
         this._query = {};
         let entry = yield findAnswer(this);
         if(entry){
@@ -66,7 +122,7 @@ _find: function * () {
                    })
                 }
             })
-            console.log("arr",arr)
+            // console.log("arr",arr)
             if(isUser){
                 this.body = arr
             }else{
@@ -74,7 +130,7 @@ _find: function * () {
             }
         }
 
-    } else {
+    } else if(this.query.topicid&&this.query.userid){
         const { topicid, userid } = this.request.query;
         this._query = {topic: topicid};
         this.model = model;
@@ -93,6 +149,8 @@ _find: function * () {
             entryData.push(enrty[i]);
         }
         this.body = entryData;
+    } else {
+        
     }
 },
 
