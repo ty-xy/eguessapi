@@ -52,7 +52,7 @@ _find: function * () {
     let arr = [];
     let isUser = false;
     const userid =  this.request.query.userid;
-    if(!this.query.topicid){
+    if(!this.request.query.search){
         this._query = {};
         let entry = yield findAnswer(this);
         if(entry){
@@ -75,8 +75,7 @@ _find: function * () {
         }
 
     } else {
-        const { topicid, userid } = this.request.query;
-        this._query = {topic: topicid};
+        const { userid } = this.request.query;
         this.model = model;
         let enrty = yield findAnswer(this);
         // console.log('enrty', this.request.query, enrty)
@@ -141,6 +140,7 @@ _find: function * () {
   update: function * () {
     this.model = model;
     try {
+      console.log('upVote', this.request.body);
       let entry = yield strapi.hooks.blueprints.update(this);
       this.body = entry;
     } catch (err) {
