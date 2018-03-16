@@ -7,6 +7,13 @@
                 "isAuthorized"
             ]
         },
+        "GET /answers": {
+            "controller": "Answer",
+            "action": "findAnswer",
+            "policies": [
+                "isAuthorized"
+            ]
+        },
         "GET /answer/:id": {
             "controller": "Answer",
             "action": "findOne",

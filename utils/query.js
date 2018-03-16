@@ -6,7 +6,7 @@ module.exports = function _find(_ctx) {
 
       const Model = actionUtil.parseModel(_ctx);
       // Init the query.
-      let query = Model.find(JSON.parse(_ctx.request.query.query || null))
+      let query = Model.find(JSON.parse(_ctx.request.query.search || null))
         .where(actionUtil.parseCriteria(_ctx))
         .limit(actionUtil.parseLimit(_ctx))
         .skip(actionUtil.parseSkip(_ctx))
