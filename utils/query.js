@@ -11,7 +11,6 @@ module.exports = function _find(_ctx) {
         .limit(actionUtil.parseLimit(_ctx))
         .skip(actionUtil.parseSkip(_ctx))
         .sort(actionUtil.parseSort(_ctx));
-  
       query = actionUtil.populateEach(query, _ctx, Model);
       query.exec(function found(err, matchingRecords) {
         if (err) {
