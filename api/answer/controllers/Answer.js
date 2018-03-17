@@ -81,8 +81,7 @@ _find: function * () {
     let arr = [];
     let isUser = false;
     const userid =  this.request.query.userid;
-    if(!this.request.query.search){
-        const that = this
+    if(!this.request.query.search && userid){
         this._query = {};
         let entry = yield findAnswer(this);
         if(entry){
@@ -103,8 +102,7 @@ _find: function * () {
                that.body =""
             }
         }
-
-    } else {
+    } else if (this.request.query.search && this.request.query.userid) {
         const { userid } = this.request.query;
         this.model = model;
         let enrty = yield findAnswer(this);
@@ -121,7 +119,10 @@ _find: function * () {
             entryData.push(enrty[i]);
         }
         this.body = entryData;
-    } 
+    } else {
+        let entry = yield strapi.hooks.blueprints.find(this);
+        this.body = entry;
+    }
 },
 
 
@@ -221,6 +222,33 @@ _find: function * () {
       this.body = entry;
     } catch (err) {
       this.body = err;
+    }
+  },
+    // 好友排行榜
+  answerRank: function * () {
+    this.model = model;
+    try {
+        let entry = yield strapi.hooks.blueprints.find(this);
+        let createdBys = [];
+        let _obj = {};
+        for (let i = 0; i < entry.length; i++) {
+            if (entry[i].createdBy) {
+                if (!_obj[entry[i].createdBy.id]) {
+                    entry[i].createdBy.upVotes = entry[i].upVotes.length;
+                    _obj[entry[i].createdBy.id] = entry[i].createdBy;
+                } else {
+                    _obj[entry[i].createdBy.id].upVotes += entry[i].upVotes.length;
+                }
+            }
+        }
+      
+        for (let item in _obj) {
+            createdBys.push(_obj[item]);
+        }
+        createdBys = createdBys.sort((x, y) => (y.upVotes - x.upVotes));
+        this.body = { createdBys, _obj };
+    } catch (err) {
+        this.body = err;
     }
   }
 };
