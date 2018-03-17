@@ -4,8 +4,8 @@
       {
         "name": "admin",
         "id": 1,
-        "createdAt": "2018-03-01T18:03:21.000Z",
-        "updatedAt": "2018-03-01T18:03:21.000Z"
+        "createdAt": "2018-03-17T07:47:51.351Z",
+        "updatedAt": "2018-03-17T07:47:51.351Z"
       }
     ],
     "route": [
@@ -19,7 +19,7 @@
         "contributorsAuthorized": false,
         "id": 1,
         "createdAt": "2018-03-01T18:03:21.015Z",
-        "updatedAt": "2018-03-17T06:22:50.315Z"
+        "updatedAt": "2018-03-17T08:18:41.089Z"
       },
       {
         "name": "GET /admin/routes",
@@ -33,7 +33,7 @@
         "contributorsAuthorized": false,
         "id": 2,
         "createdAt": "2018-03-01T18:03:21.015Z",
-        "updatedAt": "2018-03-17T06:22:50.316Z"
+        "updatedAt": "2018-03-17T08:18:41.091Z"
       },
       {
         "name": "PUT /admin/routes",
@@ -47,7 +47,7 @@
         "contributorsAuthorized": false,
         "id": 3,
         "createdAt": "2018-03-01T18:03:21.016Z",
-        "updatedAt": "2018-03-17T06:22:50.318Z"
+        "updatedAt": "2018-03-17T08:18:41.093Z"
       },
       {
         "name": "GET /admin/explorer/:model",
@@ -61,7 +61,7 @@
         "contributorsAuthorized": false,
         "id": 4,
         "createdAt": "2018-03-01T18:03:21.016Z",
-        "updatedAt": "2018-03-17T06:22:50.319Z"
+        "updatedAt": "2018-03-17T08:18:41.095Z"
       },
       {
         "name": "GET /admin/explorer/:model/count",
@@ -75,7 +75,7 @@
         "contributorsAuthorized": false,
         "id": 5,
         "createdAt": "2018-03-01T18:03:21.016Z",
-        "updatedAt": "2018-03-17T06:22:50.320Z"
+        "updatedAt": "2018-03-17T08:18:41.096Z"
       },
       {
         "name": "GET /admin/explorer/:model/:id",
@@ -89,7 +89,7 @@
         "contributorsAuthorized": false,
         "id": 6,
         "createdAt": "2018-03-01T18:03:21.017Z",
-        "updatedAt": "2018-03-17T06:22:50.321Z"
+        "updatedAt": "2018-03-17T08:18:41.097Z"
       },
       {
         "name": "POST /admin/explorer/:model",
@@ -104,7 +104,7 @@
         "contributorsAuthorized": false,
         "id": 7,
         "createdAt": "2018-03-01T18:03:21.017Z",
-        "updatedAt": "2018-03-17T06:22:50.322Z"
+        "updatedAt": "2018-03-17T08:18:41.097Z"
       },
       {
         "name": "PUT /admin/explorer/:model/:id",
@@ -119,7 +119,7 @@
         "contributorsAuthorized": false,
         "id": 8,
         "createdAt": "2018-03-01T18:03:21.017Z",
-        "updatedAt": "2018-03-17T06:22:50.323Z"
+        "updatedAt": "2018-03-17T08:18:41.099Z"
       },
       {
         "name": "DELETE /admin/explorer/:model/:id",
@@ -133,142 +133,137 @@
         "contributorsAuthorized": false,
         "id": 9,
         "createdAt": "2018-03-01T18:03:21.017Z",
-        "updatedAt": "2018-03-17T06:22:50.324Z"
+        "updatedAt": "2018-03-17T08:18:41.100Z"
       },
       {
-        "name": "POST /email",
+        "name": "GET /answer",
         "policies": [
           "isAuthorized"
         ],
-        "controller": "Email",
-        "action": "send",
-        "isPublic": false,
-        "registeredAuthorized": false,
+        "controller": "Answer",
+        "action": "_find",
+        "isPublic": true,
+        "registeredAuthorized": true,
         "contributorsAuthorized": true,
         "id": 10,
         "createdAt": "2018-03-01T18:03:21.018Z",
-        "updatedAt": "2018-03-17T06:22:50.357Z"
+        "updatedAt": "2018-03-17T08:18:41.101Z"
       },
       {
-        "name": "POST /upload",
+        "name": "GET /rank",
         "policies": [
-          "addDataCreate",
-          "authenticated"
+          "isAuthorized"
         ],
-        "controller": "Upload",
-        "action": "upload",
-        "isPublic": false,
-        "registeredAuthorized": false,
+        "controller": "Answer",
+        "action": "rank",
+        "isPublic": true,
+        "registeredAuthorized": true,
         "contributorsAuthorized": true,
         "id": 11,
         "createdAt": "2018-03-01T18:03:21.018Z",
-        "updatedAt": "2018-03-17T06:22:50.371Z"
+        "updatedAt": "2018-03-17T08:18:41.102Z"
       },
       {
-        "name": "GET /user",
+        "name": "GET /answers",
         "policies": [
           "isAuthorized"
         ],
-        "controller": "User",
-        "action": "find",
+        "controller": "Answer",
+        "action": "findAnswer",
         "isPublic": true,
-        "registeredAuthorized": false,
-        "contributorsAuthorized": false,
+        "registeredAuthorized": true,
+        "contributorsAuthorized": true,
         "id": 12,
         "createdAt": "2018-03-01T18:03:21.018Z",
-        "updatedAt": "2018-03-17T06:22:50.373Z"
+        "updatedAt": "2018-03-17T08:18:41.103Z"
       },
       {
-        "name": "GET /user/:id",
+        "name": "GET /answer/:id",
         "policies": [
           "isAuthorized"
         ],
-        "controller": "User",
+        "controller": "Answer",
         "action": "findOne",
         "isPublic": true,
-        "registeredAuthorized": false,
+        "registeredAuthorized": true,
         "contributorsAuthorized": true,
         "id": 13,
         "createdAt": "2018-03-01T18:03:21.018Z",
-        "updatedAt": "2018-03-17T06:22:50.376Z"
+        "updatedAt": "2018-03-17T08:18:41.105Z"
       },
       {
-        "name": "POST /user",
+        "name": "POST /answer",
         "policies": [
           "isAuthorized",
-          "addDataCreate",
-          "deleteRoles"
+          "addDataCreate"
         ],
-        "controller": "User",
+        "controller": "Answer",
         "action": "create",
-        "isPublic": true,
+        "isPublic": false,
         "registeredAuthorized": false,
-        "contributorsAuthorized": false,
+        "contributorsAuthorized": true,
         "id": 14,
         "createdAt": "2018-03-01T18:03:21.019Z",
-        "updatedAt": "2018-03-17T06:22:50.377Z"
+        "updatedAt": "2018-03-17T08:18:41.106Z"
       },
       {
-        "name": "PUT /user/:id",
+        "name": "PUT /answer/:id",
         "policies": [
           "isAuthorized",
-          "addDataUpdate",
-          "deleteRoles"
+          "addDataUpdate"
         ],
-        "controller": "User",
+        "controller": "Answer",
         "action": "update",
-        "isPublic": true,
-        "registeredAuthorized": true,
+        "isPublic": false,
+        "registeredAuthorized": false,
         "contributorsAuthorized": true,
         "id": 15,
         "createdAt": "2018-03-01T18:03:21.019Z",
-        "updatedAt": "2018-03-17T06:22:50.378Z"
+        "updatedAt": "2018-03-17T08:18:41.106Z"
       },
       {
-        "name": "DELETE /user/:id",
+        "name": "DELETE /answer/:id",
         "policies": [
           "isAuthorized"
         ],
-        "controller": "User",
+        "controller": "Answer",
         "action": "destroy",
-        "isPublic": true,
-        "registeredAuthorized": true,
+        "isPublic": false,
+        "registeredAuthorized": false,
         "contributorsAuthorized": true,
         "id": 16,
         "createdAt": "2018-03-01T18:03:21.019Z",
-        "updatedAt": "2018-03-17T06:22:50.379Z"
+        "updatedAt": "2018-03-17T08:18:41.107Z"
       },
       {
-        "name": "POST /user/:parentId/:relation",
+        "name": "POST /answer/:parentId/:relation",
         "policies": [
           "isAuthorized",
-          "addDataCreate",
-          "userAddOrRemoveRole"
+          "addDataCreate"
         ],
-        "controller": "User",
+        "controller": "Answer",
         "action": "add",
-        "isPublic": true,
+        "isPublic": false,
         "registeredAuthorized": false,
-        "contributorsAuthorized": false,
+        "contributorsAuthorized": true,
         "id": 17,
         "createdAt": "2018-03-01T18:03:21.020Z",
-        "updatedAt": "2018-03-17T06:22:50.380Z"
+        "updatedAt": "2018-03-17T08:18:41.108Z"
       },
       {
-        "name": "DELETE /user/:parentId/:relation/:id",
+        "name": "DELETE /answer/:parentId/:relation/:id",
         "policies": [
           "isAuthorized",
-          "addDataUpdate",
-          "userAddOrRemoveRole"
+          "addDataUpdate"
         ],
-        "controller": "User",
+        "controller": "Answer",
         "action": "remove",
-        "isPublic": true,
+        "isPublic": false,
         "registeredAuthorized": false,
-        "contributorsAuthorized": false,
+        "contributorsAuthorized": true,
         "id": 18,
         "createdAt": "2018-03-01T18:03:21.020Z",
-        "updatedAt": "2018-03-17T06:22:50.381Z"
+        "updatedAt": "2018-03-17T08:18:41.109Z"
       },
       {
         "name": "POST /auth/logout",
@@ -280,7 +275,7 @@
         "contributorsAuthorized": false,
         "id": 19,
         "createdAt": "2018-03-01T18:03:21.020Z",
-        "updatedAt": "2018-03-17T06:22:50.382Z"
+        "updatedAt": "2018-03-17T08:18:41.147Z"
       },
       {
         "name": "POST /auth/forgot-password",
@@ -292,7 +287,7 @@
         "contributorsAuthorized": false,
         "id": 20,
         "createdAt": "2018-03-01T18:03:21.021Z",
-        "updatedAt": "2018-03-17T06:22:50.384Z"
+        "updatedAt": "2018-03-17T08:18:41.148Z"
       },
       {
         "name": "POST /auth/change-password",
@@ -304,7 +299,7 @@
         "contributorsAuthorized": false,
         "id": 21,
         "createdAt": "2018-03-01T18:03:21.021Z",
-        "updatedAt": "2018-03-17T06:22:50.386Z"
+        "updatedAt": "2018-03-17T08:18:41.149Z"
       },
       {
         "name": "POST /auth/local",
@@ -316,7 +311,7 @@
         "contributorsAuthorized": false,
         "id": 22,
         "createdAt": "2018-03-01T18:03:21.021Z",
-        "updatedAt": "2018-03-17T06:22:50.386Z"
+        "updatedAt": "2018-03-17T08:18:41.150Z"
       },
       {
         "name": "POST /auth/local/register",
@@ -328,7 +323,7 @@
         "contributorsAuthorized": false,
         "id": 23,
         "createdAt": "2018-03-01T18:03:21.022Z",
-        "updatedAt": "2018-03-17T06:22:50.389Z"
+        "updatedAt": "2018-03-17T08:18:41.150Z"
       },
       {
         "name": "GET /auth/:provider/callback",
@@ -340,7 +335,7 @@
         "contributorsAuthorized": false,
         "id": 24,
         "createdAt": "2018-03-01T18:03:21.022Z",
-        "updatedAt": "2018-03-17T06:22:50.390Z"
+        "updatedAt": "2018-03-17T08:18:41.151Z"
       },
       {
         "name": "GET /topic",
@@ -354,313 +349,7 @@
         "contributorsAuthorized": true,
         "id": 53,
         "createdAt": "2018-03-03T06:50:45.278Z",
-        "updatedAt": "2018-03-17T06:22:50.358Z"
-      },
-      {
-        "name": "GET /topic/:id",
-        "policies": [
-          "isAuthorized"
-        ],
-        "controller": "Topic",
-        "action": "findOne",
-        "isPublic": true,
-        "registeredAuthorized": true,
-        "contributorsAuthorized": true,
-        "id": 54,
-        "createdAt": "2018-03-03T06:50:45.278Z",
-        "updatedAt": "2018-03-17T06:22:50.360Z"
-      },
-      {
-        "name": "POST /topic",
-        "policies": [
-          "isAuthorized",
-          "addDataCreate"
-        ],
-        "controller": "Topic",
-        "action": "create",
-        "isPublic": true,
-        "registeredAuthorized": false,
-        "contributorsAuthorized": true,
-        "id": 55,
-        "createdAt": "2018-03-03T06:50:45.279Z",
-        "updatedAt": "2018-03-17T06:22:50.361Z"
-      },
-      {
-        "name": "PUT /topic/:id",
-        "policies": [
-          "isAuthorized",
-          "addDataUpdate"
-        ],
-        "controller": "Topic",
-        "action": "update",
-        "isPublic": true,
-        "registeredAuthorized": false,
-        "contributorsAuthorized": true,
-        "id": 56,
-        "createdAt": "2018-03-03T06:50:45.280Z",
-        "updatedAt": "2018-03-17T06:22:50.362Z"
-      },
-      {
-        "name": "DELETE /topic/:id",
-        "policies": [
-          "isAuthorized"
-        ],
-        "controller": "Topic",
-        "action": "destroy",
-        "isPublic": false,
-        "registeredAuthorized": false,
-        "contributorsAuthorized": true,
-        "id": 57,
-        "createdAt": "2018-03-03T06:50:45.282Z",
-        "updatedAt": "2018-03-17T06:22:50.363Z"
-      },
-      {
-        "name": "POST /topic/:parentId/:relation",
-        "policies": [
-          "isAuthorized",
-          "addDataCreate"
-        ],
-        "controller": "Topic",
-        "action": "add",
-        "isPublic": false,
-        "registeredAuthorized": false,
-        "contributorsAuthorized": true,
-        "id": 58,
-        "createdAt": "2018-03-03T06:50:45.282Z",
-        "updatedAt": "2018-03-17T06:22:50.369Z"
-      },
-      {
-        "name": "DELETE /topic/:parentId/:relation/:id",
-        "policies": [
-          "isAuthorized",
-          "addDataUpdate"
-        ],
-        "controller": "Topic",
-        "action": "remove",
-        "isPublic": false,
-        "registeredAuthorized": false,
-        "contributorsAuthorized": true,
-        "id": 59,
-        "createdAt": "2018-03-03T06:50:45.283Z",
-        "updatedAt": "2018-03-17T06:22:50.370Z"
-      },
-      {
-        "name": "GET /wxuserinfo",
-        "policies": [
-          "isAuthorized"
-        ],
-        "controller": "Wxuserinfo",
-        "action": "find",
-        "isPublic": true,
-        "registeredAuthorized": true,
-        "contributorsAuthorized": true,
-        "id": 60,
-        "createdAt": "2018-03-08T05:45:35.332Z",
-        "updatedAt": "2018-03-17T06:22:50.392Z"
-      },
-      {
-        "name": "GET /wxuserinfo/:id",
-        "policies": [
-          "isAuthorized"
-        ],
-        "controller": "Wxuserinfo",
-        "action": "findOne",
-        "isPublic": true,
-        "registeredAuthorized": true,
-        "contributorsAuthorized": true,
-        "id": 61,
-        "createdAt": "2018-03-08T05:45:35.333Z",
-        "updatedAt": "2018-03-17T06:22:50.392Z"
-      },
-      {
-        "name": "POST /wxuserinfo",
-        "policies": [
-          "isAuthorized",
-          "addDataCreate"
-        ],
-        "controller": "Wxuserinfo",
-        "action": "create",
-        "isPublic": true,
-        "registeredAuthorized": false,
-        "contributorsAuthorized": true,
-        "id": 62,
-        "createdAt": "2018-03-08T05:45:35.333Z",
-        "updatedAt": "2018-03-17T06:22:50.394Z"
-      },
-      {
-        "name": "PUT /wxuserinfo/:id",
-        "policies": [
-          "isAuthorized",
-          "addDataUpdate"
-        ],
-        "controller": "Wxuserinfo",
-        "action": "update",
-        "isPublic": true,
-        "registeredAuthorized": false,
-        "contributorsAuthorized": true,
-        "id": 63,
-        "createdAt": "2018-03-08T05:45:35.334Z",
-        "updatedAt": "2018-03-17T06:22:50.395Z"
-      },
-      {
-        "name": "DELETE /wxuserinfo/:id",
-        "policies": [
-          "isAuthorized"
-        ],
-        "controller": "Wxuserinfo",
-        "action": "destroy",
-        "isPublic": true,
-        "registeredAuthorized": false,
-        "contributorsAuthorized": true,
-        "id": 64,
-        "createdAt": "2018-03-08T05:45:35.335Z",
-        "updatedAt": "2018-03-17T06:22:50.396Z"
-      },
-      {
-        "name": "POST /wxuserinfo/:parentId/:relation",
-        "policies": [
-          "isAuthorized",
-          "addDataCreate"
-        ],
-        "controller": "Wxuserinfo",
-        "action": "add",
-        "isPublic": false,
-        "registeredAuthorized": false,
-        "contributorsAuthorized": true,
-        "id": 65,
-        "createdAt": "2018-03-08T05:45:35.335Z",
-        "updatedAt": "2018-03-17T06:22:50.397Z"
-      },
-      {
-        "name": "DELETE /wxuserinfo/:parentId/:relation/:id",
-        "policies": [
-          "isAuthorized",
-          "addDataUpdate"
-        ],
-        "controller": "Wxuserinfo",
-        "action": "remove",
-        "isPublic": false,
-        "registeredAuthorized": false,
-        "contributorsAuthorized": true,
-        "id": 66,
-        "createdAt": "2018-03-08T05:45:35.335Z",
-        "updatedAt": "2018-03-17T06:22:50.398Z"
-      },
-      {
-        "name": "GET /answer",
-        "policies": [
-          "isAuthorized"
-        ],
-        "controller": "Answer",
-        "action": "_find",
-        "isPublic": true,
-        "registeredAuthorized": true,
-        "contributorsAuthorized": true,
-        "id": 67,
-        "createdAt": "2018-03-08T10:21:23.503Z",
-        "updatedAt": "2018-03-17T06:22:50.326Z"
-      },
-      {
-        "name": "GET /answer/:id",
-        "policies": [
-          "isAuthorized"
-        ],
-        "controller": "Answer",
-        "action": "findOne",
-        "isPublic": true,
-        "registeredAuthorized": true,
-        "contributorsAuthorized": true,
-        "id": 68,
-        "createdAt": "2018-03-08T10:21:23.504Z",
-        "updatedAt": "2018-03-17T06:22:50.332Z"
-      },
-      {
-        "name": "POST /answer",
-        "policies": [
-          "isAuthorized",
-          "addDataCreate"
-        ],
-        "controller": "Answer",
-        "action": "create",
-        "isPublic": true,
-        "registeredAuthorized": false,
-        "contributorsAuthorized": true,
-        "id": 69,
-        "createdAt": "2018-03-08T10:21:23.504Z",
-        "updatedAt": "2018-03-17T06:22:50.339Z"
-      },
-      {
-        "name": "PUT /answer/:id",
-        "policies": [
-          "isAuthorized",
-          "addDataUpdate"
-        ],
-        "controller": "Answer",
-        "action": "update",
-        "isPublic": true,
-        "registeredAuthorized": false,
-        "contributorsAuthorized": true,
-        "id": 70,
-        "createdAt": "2018-03-08T10:21:23.505Z",
-        "updatedAt": "2018-03-17T06:22:50.342Z"
-      },
-      {
-        "name": "DELETE /answer/:id",
-        "policies": [
-          "isAuthorized"
-        ],
-        "controller": "Answer",
-        "action": "destroy",
-        "isPublic": true,
-        "registeredAuthorized": false,
-        "contributorsAuthorized": true,
-        "id": 71,
-        "createdAt": "2018-03-08T10:21:23.505Z",
-        "updatedAt": "2018-03-17T06:22:50.344Z"
-      },
-      {
-        "name": "POST /answer/:parentId/:relation",
-        "policies": [
-          "isAuthorized",
-          "addDataCreate"
-        ],
-        "controller": "Answer",
-        "action": "add",
-        "isPublic": false,
-        "registeredAuthorized": false,
-        "contributorsAuthorized": true,
-        "id": 72,
-        "createdAt": "2018-03-08T10:21:23.506Z",
-        "updatedAt": "2018-03-17T06:22:50.345Z"
-      },
-      {
-        "name": "DELETE /answer/:parentId/:relation/:id",
-        "policies": [
-          "isAuthorized",
-          "addDataUpdate"
-        ],
-        "controller": "Answer",
-        "action": "remove",
-        "isPublic": false,
-        "registeredAuthorized": false,
-        "contributorsAuthorized": true,
-        "id": 73,
-        "createdAt": "2018-03-08T10:21:23.507Z",
-        "updatedAt": "2018-03-17T06:22:50.346Z"
-      },
-      {
-        "name": "GET /comment",
-        "policies": [
-          "isAuthorized"
-        ],
-        "controller": "Comment",
-        "action": "_find",
-        "isPublic": true,
-        "registeredAuthorized": true,
-        "contributorsAuthorized": true,
-        "id": 95,
-        "createdAt": "2018-03-10T06:38:31.157Z",
-        "updatedAt": "2018-03-17T06:22:50.348Z"
+        "updatedAt": "2018-03-17T08:18:41.128Z"
       },
       {
         "name": "GET /comment/:id",
@@ -672,9 +361,9 @@
         "isPublic": true,
         "registeredAuthorized": true,
         "contributorsAuthorized": true,
-        "id": 96,
-        "createdAt": "2018-03-10T06:38:31.157Z",
-        "updatedAt": "2018-03-17T06:22:50.349Z"
+        "id": 54,
+        "createdAt": "2018-03-03T06:50:45.278Z",
+        "updatedAt": "2018-03-17T08:18:41.111Z"
       },
       {
         "name": "POST /comment",
@@ -684,12 +373,12 @@
         ],
         "controller": "Comment",
         "action": "create",
-        "isPublic": true,
+        "isPublic": false,
         "registeredAuthorized": false,
         "contributorsAuthorized": true,
-        "id": 97,
-        "createdAt": "2018-03-10T06:38:31.158Z",
-        "updatedAt": "2018-03-17T06:22:50.350Z"
+        "id": 55,
+        "createdAt": "2018-03-03T06:50:45.279Z",
+        "updatedAt": "2018-03-17T08:18:41.113Z"
       },
       {
         "name": "PUT /comment/:id",
@@ -699,12 +388,12 @@
         ],
         "controller": "Comment",
         "action": "update",
-        "isPublic": true,
+        "isPublic": false,
         "registeredAuthorized": false,
         "contributorsAuthorized": true,
-        "id": 98,
-        "createdAt": "2018-03-10T06:38:31.159Z",
-        "updatedAt": "2018-03-17T06:22:50.352Z"
+        "id": 56,
+        "createdAt": "2018-03-03T06:50:45.280Z",
+        "updatedAt": "2018-03-17T08:18:41.114Z"
       },
       {
         "name": "DELETE /comment/:id",
@@ -713,12 +402,12 @@
         ],
         "controller": "Comment",
         "action": "destroy",
-        "isPublic": true,
+        "isPublic": false,
         "registeredAuthorized": false,
         "contributorsAuthorized": true,
-        "id": 99,
-        "createdAt": "2018-03-10T06:38:31.160Z",
-        "updatedAt": "2018-03-17T06:22:50.353Z"
+        "id": 57,
+        "createdAt": "2018-03-03T06:50:45.282Z",
+        "updatedAt": "2018-03-17T08:18:41.116Z"
       },
       {
         "name": "POST /comment/:parentId/:relation",
@@ -731,9 +420,9 @@
         "isPublic": false,
         "registeredAuthorized": false,
         "contributorsAuthorized": true,
-        "id": 100,
-        "createdAt": "2018-03-10T06:38:31.161Z",
-        "updatedAt": "2018-03-17T06:22:50.354Z"
+        "id": 58,
+        "createdAt": "2018-03-03T06:50:45.282Z",
+        "updatedAt": "2018-03-17T08:18:41.117Z"
       },
       {
         "name": "DELETE /comment/:parentId/:relation/:id",
@@ -746,9 +435,434 @@
         "isPublic": false,
         "registeredAuthorized": false,
         "contributorsAuthorized": true,
+        "id": 59,
+        "createdAt": "2018-03-03T06:50:45.283Z",
+        "updatedAt": "2018-03-17T08:18:41.125Z"
+      },
+      {
+        "name": "POST /email",
+        "policies": [
+          "isAuthorized"
+        ],
+        "controller": "Email",
+        "action": "send",
+        "isPublic": false,
+        "registeredAuthorized": false,
+        "contributorsAuthorized": true,
+        "id": 26,
+        "createdAt": "2018-03-17T07:47:51.384Z",
+        "updatedAt": "2018-03-17T08:18:41.126Z"
+      },
+      {
+        "name": "GET /topic",
+        "policies": [
+          "isAuthorized"
+        ],
+        "controller": "Topic",
+        "action": "find",
+        "isPublic": true,
+        "registeredAuthorized": true,
+        "contributorsAuthorized": true,
+        "id": 60,
+        "createdAt": "2018-03-08T05:45:35.332Z",
+        "updatedAt": "2018-03-17T08:18:41.128Z"
+      },
+      {
+        "name": "GET /topic/:id",
+        "policies": [
+          "isAuthorized"
+        ],
+        "controller": "Topic",
+        "action": "findOne",
+        "isPublic": true,
+        "registeredAuthorized": true,
+        "contributorsAuthorized": true,
+        "id": 61,
+        "createdAt": "2018-03-08T05:45:35.333Z",
+        "updatedAt": "2018-03-17T08:18:41.130Z"
+      },
+      {
+        "name": "GET /topics",
+        "policies": [
+          "isAuthorized"
+        ],
+        "controller": "Topic",
+        "action": "findTopic",
+        "isPublic": true,
+        "registeredAuthorized": true,
+        "contributorsAuthorized": true,
+        "id": 29,
+        "createdAt": "2018-03-17T07:47:51.385Z",
+        "updatedAt": "2018-03-17T08:18:41.131Z"
+      },
+      {
+        "name": "POST /topic",
+        "policies": [
+          "isAuthorized",
+          "addDataCreate"
+        ],
+        "controller": "Topic",
+        "action": "create",
+        "isPublic": false,
+        "registeredAuthorized": false,
+        "contributorsAuthorized": true,
+        "id": 62,
+        "createdAt": "2018-03-08T05:45:35.333Z",
+        "updatedAt": "2018-03-17T08:18:41.132Z"
+      },
+      {
+        "name": "PUT /topic/:id",
+        "policies": [
+          "isAuthorized",
+          "addDataUpdate"
+        ],
+        "controller": "Topic",
+        "action": "update",
+        "isPublic": false,
+        "registeredAuthorized": false,
+        "contributorsAuthorized": true,
+        "id": 63,
+        "createdAt": "2018-03-08T05:45:35.334Z",
+        "updatedAt": "2018-03-17T08:18:41.133Z"
+      },
+      {
+        "name": "DELETE /topic/:id",
+        "policies": [
+          "isAuthorized"
+        ],
+        "controller": "Topic",
+        "action": "destroy",
+        "isPublic": false,
+        "registeredAuthorized": false,
+        "contributorsAuthorized": true,
+        "id": 64,
+        "createdAt": "2018-03-08T05:45:35.335Z",
+        "updatedAt": "2018-03-17T08:18:41.134Z"
+      },
+      {
+        "name": "POST /topic/:parentId/:relation",
+        "policies": [
+          "isAuthorized",
+          "addDataCreate"
+        ],
+        "controller": "Topic",
+        "action": "add",
+        "isPublic": false,
+        "registeredAuthorized": false,
+        "contributorsAuthorized": true,
+        "id": 65,
+        "createdAt": "2018-03-08T05:45:35.335Z",
+        "updatedAt": "2018-03-17T08:18:41.134Z"
+      },
+      {
+        "name": "DELETE /topic/:parentId/:relation/:id",
+        "policies": [
+          "isAuthorized",
+          "addDataUpdate"
+        ],
+        "controller": "Topic",
+        "action": "remove",
+        "isPublic": false,
+        "registeredAuthorized": false,
+        "contributorsAuthorized": true,
+        "id": 66,
+        "createdAt": "2018-03-08T05:45:35.335Z",
+        "updatedAt": "2018-03-17T08:18:41.135Z"
+      },
+      {
+        "name": "POST /upload",
+        "policies": [
+          "addDataCreate",
+          "authenticated"
+        ],
+        "controller": "Upload",
+        "action": "upload",
+        "isPublic": false,
+        "registeredAuthorized": false,
+        "contributorsAuthorized": true,
+        "id": 67,
+        "createdAt": "2018-03-08T10:21:23.503Z",
+        "updatedAt": "2018-03-17T08:18:41.136Z"
+      },
+      {
+        "name": "GET /user",
+        "policies": [
+          "isAuthorized"
+        ],
+        "controller": "User",
+        "action": "find",
+        "isPublic": false,
+        "registeredAuthorized": false,
+        "contributorsAuthorized": false,
+        "id": 36,
+        "createdAt": "2018-03-17T07:47:51.388Z",
+        "updatedAt": "2018-03-17T08:18:41.137Z"
+      },
+      {
+        "name": "GET /user/:id",
+        "policies": [
+          "isAuthorized"
+        ],
+        "controller": "User",
+        "action": "findOne",
+        "isPublic": false,
+        "registeredAuthorized": false,
+        "contributorsAuthorized": true,
+        "id": 68,
+        "createdAt": "2018-03-08T10:21:23.504Z",
+        "updatedAt": "2018-03-17T08:18:41.140Z"
+      },
+      {
+        "name": "POST /user",
+        "policies": [
+          "isAuthorized",
+          "addDataCreate",
+          "deleteRoles"
+        ],
+        "controller": "User",
+        "action": "create",
+        "isPublic": false,
+        "registeredAuthorized": false,
+        "contributorsAuthorized": true,
+        "id": 69,
+        "createdAt": "2018-03-08T10:21:23.504Z",
+        "updatedAt": "2018-03-17T08:18:41.141Z"
+      },
+      {
+        "name": "PUT /user/:id",
+        "policies": [
+          "isAuthorized",
+          "addDataUpdate",
+          "deleteRoles"
+        ],
+        "controller": "User",
+        "action": "update",
+        "isPublic": false,
+        "registeredAuthorized": true,
+        "contributorsAuthorized": true,
+        "id": 70,
+        "createdAt": "2018-03-08T10:21:23.505Z",
+        "updatedAt": "2018-03-17T08:18:41.143Z"
+      },
+      {
+        "name": "DELETE /user/:id",
+        "policies": [
+          "isAuthorized"
+        ],
+        "controller": "User",
+        "action": "destroy",
+        "isPublic": false,
+        "registeredAuthorized": true,
+        "contributorsAuthorized": true,
+        "id": 71,
+        "createdAt": "2018-03-08T10:21:23.505Z",
+        "updatedAt": "2018-03-17T08:18:41.144Z"
+      },
+      {
+        "name": "POST /user/:parentId/:relation",
+        "policies": [
+          "isAuthorized",
+          "addDataCreate",
+          "userAddOrRemoveRole"
+        ],
+        "controller": "User",
+        "action": "add",
+        "isPublic": false,
+        "registeredAuthorized": false,
+        "contributorsAuthorized": true,
+        "id": 72,
+        "createdAt": "2018-03-08T10:21:23.506Z",
+        "updatedAt": "2018-03-17T08:18:41.145Z"
+      },
+      {
+        "name": "DELETE /user/:parentId/:relation/:id",
+        "policies": [
+          "isAuthorized",
+          "addDataUpdate",
+          "userAddOrRemoveRole"
+        ],
+        "controller": "User",
+        "action": "remove",
+        "isPublic": false,
+        "registeredAuthorized": false,
+        "contributorsAuthorized": true,
+        "id": 73,
+        "createdAt": "2018-03-08T10:21:23.507Z",
+        "updatedAt": "2018-03-17T08:18:41.146Z"
+      },
+      {
+        "name": "POST /auth/logout",
+        "policies": null,
+        "controller": "Auth",
+        "action": "logout",
+        "isPublic": true,
+        "registeredAuthorized": false,
+        "contributorsAuthorized": false,
+        "id": 43,
+        "createdAt": "2018-03-17T07:47:51.391Z",
+        "updatedAt": "2018-03-17T08:18:41.147Z"
+      },
+      {
+        "name": "POST /auth/forgot-password",
+        "policies": null,
+        "controller": "Auth",
+        "action": "forgotPassword",
+        "isPublic": true,
+        "registeredAuthorized": false,
+        "contributorsAuthorized": false,
+        "id": 44,
+        "createdAt": "2018-03-17T07:47:51.392Z",
+        "updatedAt": "2018-03-17T08:18:41.148Z"
+      },
+      {
+        "name": "POST /auth/change-password",
+        "policies": null,
+        "controller": "Auth",
+        "action": "changePassword",
+        "isPublic": true,
+        "registeredAuthorized": false,
+        "contributorsAuthorized": false,
+        "id": 45,
+        "createdAt": "2018-03-17T07:47:51.392Z",
+        "updatedAt": "2018-03-17T08:18:41.149Z"
+      },
+      {
+        "name": "POST /auth/local",
+        "policies": null,
+        "controller": "Auth",
+        "action": "callback",
+        "isPublic": true,
+        "registeredAuthorized": false,
+        "contributorsAuthorized": false,
+        "id": 46,
+        "createdAt": "2018-03-17T07:47:51.392Z",
+        "updatedAt": "2018-03-17T08:18:41.150Z"
+      },
+      {
+        "name": "POST /auth/local/register",
+        "policies": null,
+        "controller": "Auth",
+        "action": "register",
+        "isPublic": true,
+        "registeredAuthorized": false,
+        "contributorsAuthorized": false,
+        "id": 47,
+        "createdAt": "2018-03-17T07:47:51.393Z",
+        "updatedAt": "2018-03-17T08:18:41.150Z"
+      },
+      {
+        "name": "GET /auth/:provider/callback",
+        "policies": null,
+        "controller": "Auth",
+        "action": "callback",
+        "isPublic": true,
+        "registeredAuthorized": false,
+        "contributorsAuthorized": false,
+        "id": 48,
+        "createdAt": "2018-03-17T07:47:51.393Z",
+        "updatedAt": "2018-03-17T08:18:41.151Z"
+      },
+      {
+        "name": "GET /wxuserinfo",
+        "policies": [
+          "isAuthorized"
+        ],
+        "controller": "Wxuserinfo",
+        "action": "find",
+        "isPublic": true,
+        "registeredAuthorized": true,
+        "contributorsAuthorized": true,
+        "id": 95,
+        "createdAt": "2018-03-10T06:38:31.157Z",
+        "updatedAt": "2018-03-17T08:18:41.152Z"
+      },
+      {
+        "name": "GET /wxuserinfo/:id",
+        "policies": [
+          "isAuthorized"
+        ],
+        "controller": "Wxuserinfo",
+        "action": "findOne",
+        "isPublic": true,
+        "registeredAuthorized": true,
+        "contributorsAuthorized": true,
+        "id": 96,
+        "createdAt": "2018-03-10T06:38:31.157Z",
+        "updatedAt": "2018-03-17T08:18:41.153Z"
+      },
+      {
+        "name": "POST /wxuserinfo",
+        "policies": [
+          "isAuthorized",
+          "addDataCreate"
+        ],
+        "controller": "Wxuserinfo",
+        "action": "create",
+        "isPublic": false,
+        "registeredAuthorized": false,
+        "contributorsAuthorized": true,
+        "id": 97,
+        "createdAt": "2018-03-10T06:38:31.158Z",
+        "updatedAt": "2018-03-17T08:18:41.154Z"
+      },
+      {
+        "name": "PUT /wxuserinfo/:id",
+        "policies": [
+          "isAuthorized",
+          "addDataUpdate"
+        ],
+        "controller": "Wxuserinfo",
+        "action": "update",
+        "isPublic": false,
+        "registeredAuthorized": false,
+        "contributorsAuthorized": true,
+        "id": 98,
+        "createdAt": "2018-03-10T06:38:31.159Z",
+        "updatedAt": "2018-03-17T08:18:41.155Z"
+      },
+      {
+        "name": "DELETE /wxuserinfo/:id",
+        "policies": [
+          "isAuthorized"
+        ],
+        "controller": "Wxuserinfo",
+        "action": "destroy",
+        "isPublic": false,
+        "registeredAuthorized": false,
+        "contributorsAuthorized": true,
+        "id": 99,
+        "createdAt": "2018-03-10T06:38:31.160Z",
+        "updatedAt": "2018-03-17T08:18:41.155Z"
+      },
+      {
+        "name": "POST /wxuserinfo/:parentId/:relation",
+        "policies": [
+          "isAuthorized",
+          "addDataCreate"
+        ],
+        "controller": "Wxuserinfo",
+        "action": "add",
+        "isPublic": false,
+        "registeredAuthorized": false,
+        "contributorsAuthorized": true,
+        "id": 100,
+        "createdAt": "2018-03-10T06:38:31.161Z",
+        "updatedAt": "2018-03-17T08:18:41.156Z"
+      },
+      {
+        "name": "DELETE /wxuserinfo/:parentId/:relation/:id",
+        "policies": [
+          "isAuthorized",
+          "addDataUpdate"
+        ],
+        "controller": "Wxuserinfo",
+        "action": "remove",
+        "isPublic": false,
+        "registeredAuthorized": false,
+        "contributorsAuthorized": true,
         "id": 101,
         "createdAt": "2018-03-10T06:38:31.163Z",
-        "updatedAt": "2018-03-17T06:22:50.356Z"
+        "updatedAt": "2018-03-17T08:18:41.157Z"
       },
       {
         "name": "GET /answers",
@@ -762,7 +876,7 @@
         "contributorsAuthorized": true,
         "id": 102,
         "createdAt": "2018-03-16T03:31:26.077Z",
-        "updatedAt": "2018-03-17T06:22:50.328Z"
+        "updatedAt": "2018-03-17T08:18:41.103Z"
       },
       {
         "name": "GET /friend",
@@ -776,7 +890,7 @@
         "contributorsAuthorized": true,
         "id": 103,
         "createdAt": "2018-03-17T02:16:08.744Z",
-        "updatedAt": "2018-03-17T06:22:50.374Z"
+        "updatedAt": "2018-03-17T08:18:41.139Z"
       },
       {
         "name": "GET /answerRank",
@@ -790,269 +904,248 @@
         "contributorsAuthorized": true,
         "id": 104,
         "createdAt": "2018-03-17T05:35:08.436Z",
-        "updatedAt": "2018-03-17T06:22:50.330Z"
+        "updatedAt": "2018-03-17T08:18:41.104Z"
+      },
+      {
+        "name": "GET /comment",
+        "policies": [
+          "isAuthorized"
+        ],
+        "controller": "Comment",
+        "action": "_find",
+        "isPublic": true,
+        "registeredAuthorized": true,
+        "contributorsAuthorized": true,
+        "id": 105,
+        "createdAt": "2018-03-17T08:17:06.575Z",
+        "updatedAt": "2018-03-17T08:18:41.110Z"
       }
     ],
     "role_routes__route_roles": [
       {
         "role_routes": 1,
-        "route_roles": 1,
-        "id": 693
-      },
-      {
-        "role_routes": 1,
-        "route_roles": 2,
-        "id": 694
-      },
-      {
-        "role_routes": 1,
-        "route_roles": 3,
-        "id": 695
-      },
-      {
-        "role_routes": 1,
-        "route_roles": 4,
-        "id": 696
-      },
-      {
-        "role_routes": 1,
-        "route_roles": 5,
-        "id": 697
-      },
-      {
-        "role_routes": 1,
-        "route_roles": 6,
-        "id": 698
-      },
-      {
-        "role_routes": 1,
-        "route_roles": 7,
-        "id": 699
-      },
-      {
-        "role_routes": 1,
-        "route_roles": 8,
-        "id": 700
-      },
-      {
-        "role_routes": 1,
-        "route_roles": 9,
-        "id": 701
-      },
-      {
-        "role_routes": 1,
-        "route_roles": 67,
-        "id": 702
-      },
-      {
-        "role_routes": 1,
-        "route_roles": 68,
-        "id": 703
-      },
-      {
-        "role_routes": 1,
-        "route_roles": 69,
-        "id": 704
-      },
-      {
-        "role_routes": 1,
-        "route_roles": 70,
-        "id": 705
-      },
-      {
-        "role_routes": 1,
-        "route_roles": 71,
-        "id": 706
-      },
-      {
-        "role_routes": 1,
-        "route_roles": 72,
-        "id": 707
-      },
-      {
-        "role_routes": 1,
-        "route_roles": 73,
-        "id": 708
-      },
-      {
-        "role_routes": 1,
-        "route_roles": 95,
-        "id": 709
-      },
-      {
-        "role_routes": 1,
-        "route_roles": 96,
-        "id": 710
-      },
-      {
-        "role_routes": 1,
-        "route_roles": 97,
-        "id": 711
-      },
-      {
-        "role_routes": 1,
-        "route_roles": 98,
-        "id": 712
-      },
-      {
-        "role_routes": 1,
-        "route_roles": 99,
-        "id": 713
-      },
-      {
-        "role_routes": 1,
-        "route_roles": 100,
-        "id": 714
-      },
-      {
-        "role_routes": 1,
-        "route_roles": 101,
-        "id": 715
-      },
-      {
-        "role_routes": 1,
         "route_roles": 10,
-        "id": 716
-      },
-      {
-        "role_routes": 1,
-        "route_roles": 53,
-        "id": 717
-      },
-      {
-        "role_routes": 1,
-        "route_roles": 54,
-        "id": 718
-      },
-      {
-        "role_routes": 1,
-        "route_roles": 55,
-        "id": 719
-      },
-      {
-        "role_routes": 1,
-        "route_roles": 56,
-        "id": 720
-      },
-      {
-        "role_routes": 1,
-        "route_roles": 57,
-        "id": 721
-      },
-      {
-        "role_routes": 1,
-        "route_roles": 58,
-        "id": 722
-      },
-      {
-        "role_routes": 1,
-        "route_roles": 59,
-        "id": 723
+        "id": 1
       },
       {
         "role_routes": 1,
         "route_roles": 11,
-        "id": 724
+        "id": 2
       },
       {
         "role_routes": 1,
         "route_roles": 12,
-        "id": 725
+        "id": 3
       },
       {
         "role_routes": 1,
         "route_roles": 13,
-        "id": 726
+        "id": 4
       },
       {
         "role_routes": 1,
         "route_roles": 14,
-        "id": 727
+        "id": 5
       },
       {
         "role_routes": 1,
         "route_roles": 15,
-        "id": 728
+        "id": 6
       },
       {
         "role_routes": 1,
         "route_roles": 16,
-        "id": 729
+        "id": 7
       },
       {
         "role_routes": 1,
         "route_roles": 17,
-        "id": 730
+        "id": 8
       },
       {
         "role_routes": 1,
         "route_roles": 18,
-        "id": 731
+        "id": 9
       },
       {
         "role_routes": 1,
         "route_roles": 19,
-        "id": 732
+        "id": 10
       },
       {
         "role_routes": 1,
         "route_roles": 20,
-        "id": 733
+        "id": 11
       },
       {
         "role_routes": 1,
         "route_roles": 21,
-        "id": 734
+        "id": 12
       },
       {
         "role_routes": 1,
         "route_roles": 22,
-        "id": 735
+        "id": 13
       },
       {
         "role_routes": 1,
         "route_roles": 23,
-        "id": 736
+        "id": 14
       },
       {
         "role_routes": 1,
         "route_roles": 24,
-        "id": 737
+        "id": 15
       },
       {
         "role_routes": 1,
-        "route_roles": 60,
-        "id": 738
+        "route_roles": 25,
+        "id": 16
       },
       {
         "role_routes": 1,
-        "route_roles": 61,
-        "id": 739
+        "route_roles": 26,
+        "id": 17
       },
       {
         "role_routes": 1,
-        "route_roles": 62,
-        "id": 740
+        "route_roles": 27,
+        "id": 18
       },
       {
         "role_routes": 1,
-        "route_roles": 63,
-        "id": 741
+        "route_roles": 28,
+        "id": 19
       },
       {
         "role_routes": 1,
-        "route_roles": 64,
-        "id": 742
+        "route_roles": 29,
+        "id": 20
       },
       {
         "role_routes": 1,
-        "route_roles": 65,
-        "id": 743
+        "route_roles": 30,
+        "id": 21
       },
       {
         "role_routes": 1,
-        "route_roles": 66,
-        "id": 744
+        "route_roles": 31,
+        "id": 22
+      },
+      {
+        "role_routes": 1,
+        "route_roles": 32,
+        "id": 23
+      },
+      {
+        "role_routes": 1,
+        "route_roles": 33,
+        "id": 24
+      },
+      {
+        "role_routes": 1,
+        "route_roles": 34,
+        "id": 25
+      },
+      {
+        "role_routes": 1,
+        "route_roles": 35,
+        "id": 26
+      },
+      {
+        "role_routes": 1,
+        "route_roles": 36,
+        "id": 27
+      },
+      {
+        "role_routes": 1,
+        "route_roles": 37,
+        "id": 28
+      },
+      {
+        "role_routes": 1,
+        "route_roles": 38,
+        "id": 29
+      },
+      {
+        "role_routes": 1,
+        "route_roles": 39,
+        "id": 30
+      },
+      {
+        "role_routes": 1,
+        "route_roles": 40,
+        "id": 31
+      },
+      {
+        "role_routes": 1,
+        "route_roles": 41,
+        "id": 32
+      },
+      {
+        "role_routes": 1,
+        "route_roles": 42,
+        "id": 33
+      },
+      {
+        "role_routes": 1,
+        "route_roles": 43,
+        "id": 34
+      },
+      {
+        "role_routes": 1,
+        "route_roles": 44,
+        "id": 35
+      },
+      {
+        "role_routes": 1,
+        "route_roles": 45,
+        "id": 36
+      },
+      {
+        "role_routes": 1,
+        "route_roles": 46,
+        "id": 37
+      },
+      {
+        "role_routes": 1,
+        "route_roles": 47,
+        "id": 38
+      },
+      {
+        "role_routes": 1,
+        "route_roles": 48,
+        "id": 39
+      },
+      {
+        "role_routes": 1,
+        "route_roles": 49,
+        "id": 40
+      },
+      {
+        "role_routes": 1,
+        "route_roles": 50,
+        "id": 41
+      },
+      {
+        "role_routes": 1,
+        "route_roles": 51,
+        "id": 42
+      },
+      {
+        "role_routes": 1,
+        "route_roles": 52,
+        "id": 43
+      },
+      {
+        "role_routes": 1,
+        "route_roles": 53,
+        "id": 44
+      },
+      {
+        "role_routes": 1,
+        "route_roles": 54,
+        "id": 45
       },
       {
         "role_routes": 1,
@@ -1068,6 +1161,11 @@
         "role_routes": 1,
         "route_roles": 104,
         "id": 747
+      },
+      {
+        "role_routes": 1,
+        "route_roles": 105,
+        "id": 748
       }
     ]
   },
@@ -1155,10 +1253,10 @@
       "id": 1
     },
     "route": {
-      "id": 104
+      "id": 105
     },
     "role_routes__route_roles": {
-      "id": 747
+      "id": 748
     }
   }
 }

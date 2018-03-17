@@ -27,25 +27,54 @@ find: function * () {
   },
 findAnswer: function * () {
     const query = this.query;
-    const userid =  this.request.query.userid;
+    // console.log("query",query)
+    // const userid =  this.request.query.userid;
     let arr = [] 
     if(query){
-        this._query = {createdBy:userid};
+        // this._query = {};
         this.model = model;
-        this.select= ['topic'];
         let entry = yield findAnswer(this);
-        console.log(entry)
+        // console.log(entry,"entryfadfafas")
         if(entry){
             entry.forEach((i)=>{
                 arr.push(i.topic)
            })
            this.body = arr;
+        //    console.log("this.body",arr)
         }else {
             this.body = ""
         }
       
     }
 
+},
+rank:  function* (){
+   this.model = model;
+   try {
+    let entry = yield strapi.hooks.blueprints.find(this);
+    let createdBys = [];
+    // let entryU = yield _find(this)
+     if(entry){
+       
+        let _obj = {};
+        for (let i = 0; i < entry.length; i++) {
+          if (!_obj[entry[i].createdBy.id]) {
+              entry[i].createdBy.upVotes = entry[i].upVotes.length;
+              _obj[entry[i].createdBy.id] = entry[i].createdBy;
+          } else {
+              _obj[entry[i].createdBy.id].upVotes += entry[i].upVotes.length;
+          }
+        }
+        for (let item in _obj) {
+          createdBys.push(_obj[item]);
+        }
+        createdBys = createdBys.sort((x, y) => (y.upVotes - x.upVotes));
+       
+    }
+    this.body = createdBys
+   } catch (err) {
+    this.body = err;
+   }
 },
 _find: function * () {
     this.model = model;
@@ -57,19 +86,20 @@ _find: function * () {
         let entry = yield findAnswer(this);
         if(entry){
             (entry).forEach((i,index)=>{
-               //  console.log (i.stars.id,"i.id")
+               
                 if(i.stars&&i.stars.length>0){
                    i.stars.forEach((item)=>{
-                       if(item.id === userid)
-                         isUser = true
-                         arr.push(i)
+                       if(item.id === userid){
+                        isUser = true
+                        arr.push(i)
+                       }
                    })
                 }
             })
             if(isUser){
-                this.body = arr
+                that.body = arr
             }else{
-               this.body =""
+               that.body =""
             }
         }
     } else if (this.request.query.search && this.request.query.userid) {

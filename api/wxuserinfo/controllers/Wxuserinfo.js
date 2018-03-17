@@ -20,7 +20,7 @@ module.exports = {
       const isOpen =false;
       let entry,wxId;
       let userId;  
-    // console.log("32123213123",this.query,"32131231231");
+    // console.log("32123213123",this.query,this.query.length,"32131231231");
   
         const  query  = this.query;
         // 检查是否有openid
@@ -52,11 +52,17 @@ module.exports = {
                     }
             }
                  this.body = users.id ;
+                 console.log(this.body,"this.body1")
             }else{
                 const users =yield Wxuserinfo.update({id:entry.id},{query})
                 // console.log("users",users,users.wxUser)
                  this.body = users[0].wxUser;
+                 console.log(this.body,"this.body2")
             }
+        }else{
+            let entry = yield strapi.hooks.blueprints.find(this);
+            this.body = entry;
+            console.log("entrydssss",entry)
         }
       
     } catch (err) {
