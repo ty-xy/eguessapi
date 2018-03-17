@@ -27,19 +27,20 @@ find: function * () {
   },
 findAnswer: function * () {
     const query = this.query;
-    const userid =  this.request.query.userid;
+    // console.log("query",query)
+    // const userid =  this.request.query.userid;
     let arr = [] 
     if(query){
-        this._query = {createdBy:userid};
+        // this._query = {};
         this.model = model;
-        this.select= ['topic'];
         let entry = yield findAnswer(this);
-        console.log(entry)
+        // console.log(entry,"entryfadfafas")
         if(entry){
             entry.forEach((i)=>{
                 arr.push(i.topic)
            })
            this.body = arr;
+        //    console.log("this.body",arr)
         }else {
             this.body = ""
         }
@@ -47,58 +48,30 @@ findAnswer: function * () {
     }
 
 },
-rank: function* (){
+rank:  function* (){
    this.model = model;
-   this.skip  = "createdBy";
-//    let sum = 0;
-   const query = this.query.userId;
-//    console.log(query,"query")
-   this._query = {createdBy:query}
    try {
     let entry = yield strapi.hooks.blueprints.find(this);
+    let createdBys = [];
     // let entryU = yield _find(this)
-    // console.log(entryU,"entryU")
-    let list  = [];
-    (entry||[]).forEach((i)=>{
-            const shuju = {
-                   user:i.createdBy,
-                   good: i.upVotes.length
-            }
-            list.push(shuju)
-    })
-  
-    for(let i=list.length-1;i>=0;i--){
-        // console.log("ligsdfgdsf",list[list.length-1])
-        for(let j= 0;j<i;j++){
-            if(list[i].user.id===list[j].user.id){
-                list[i].good+=list[j].good
-                list.splice(j,1)
-                // console.log("1",list)
-            }
+     if(entry){
+       
+        let _obj = {};
+        for (let i = 0; i < entry.length; i++) {
+          if (!_obj[entry[i].createdBy.id]) {
+              entry[i].createdBy.upVotes = entry[i].upVotes.length;
+              _obj[entry[i].createdBy.id] = entry[i].createdBy;
+          } else {
+              _obj[entry[i].createdBy.id].upVotes += entry[i].upVotes.length;
+          }
         }
+        for (let item in _obj) {
+          createdBys.push(_obj[item]);
+        }
+        createdBys = createdBys.sort((x, y) => (y.upVotes - x.upVotes));
+       
     }
-    // if(entryU){
-    //     for(let i=0;i<entryU.length;i++){
-    //         sum += entryU[i].upVotes.length;
-    //     }
-    //     const own = {
-    //         ...entryU[0].createdBy,
-    //         good:sum
-    //     }
-    //     const listData = {
-    //         own,
-    //         list,
-    //     }
-    //     this.body = listData
-    // }else { 
-    //     const listData = {
-    //         own:"",
-    //         list:list,
-    //     }
-        this.body = list
-    // }
-   
-    
+    this.body = createdBys
    } catch (err) {
     this.body = err;
    }
@@ -109,24 +82,25 @@ _find: function * () {
     let isUser = false;
     const userid =  this.request.query.userid;
     if(!this.request.query.search){
+        const that = this
         this._query = {};
         let entry = yield findAnswer(this);
         if(entry){
             (entry).forEach((i,index)=>{
-               //  console.log (i.stars.id,"i.id")
+               
                 if(i.stars&&i.stars.length>0){
                    i.stars.forEach((item)=>{
-                       if(item.id === userid)
-                         isUser = true
-                         arr.push(i)
+                       if(item.id === userid){
+                        isUser = true
+                        arr.push(i)
+                       }
                    })
                 }
             })
-            // console.log("arr",arr)
             if(isUser){
-                this.body = arr
+                that.body = arr
             }else{
-               this.body =""
+               that.body =""
             }
         }
 
@@ -147,9 +121,7 @@ _find: function * () {
             entryData.push(enrty[i]);
         }
         this.body = entryData;
-    } else {
-        
-    }
+    } 
 },
 
 
