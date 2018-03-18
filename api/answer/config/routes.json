@@ -21,6 +21,13 @@
                 "isAuthorized"
             ]
         },
+        "GET /singleRank": {
+            "controller": "Answer",
+            "action": "singleRank",
+            "policies": [
+                "isAuthorized"
+            ]
+        },
         "GET /answer/:id": {
             "controller": "Answer",
             "action": "findOne",
