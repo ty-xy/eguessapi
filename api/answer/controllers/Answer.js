@@ -199,10 +199,11 @@ _find: function * () {
         this.model = model;
         try {
             let entry = yield strapi.hooks.blueprints.find(this);
+            const { allFriendIds } = this.query;
             let createdBys = [];
             let _obj = {};
             for (let i = 0; i < entry.length; i++) {
-                if (entry[i].createdBy) {
+                if (entry[i].createdBy && (allFriendIds.indexOf(entry[i].createdBy.id) > -1)) {
                     if (!_obj[entry[i].createdBy.id]) {
                         entry[i].createdBy.upVotes = entry[i].upVotes.length;
                         _obj[entry[i].createdBy.id] = entry[i].createdBy;
