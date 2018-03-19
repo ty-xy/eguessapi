@@ -122,17 +122,25 @@ module.exports = {
       this.body = err;
     }
   },
-  friend: function * () {
-    this.model = model;
-    try {
-      const entry = yield _find(this);
-      const friends = entry[0].friends.map((item) => (item.id));
-      const beFriends = entry[0].beFriends.map((item) => (item.id));
-      const allFriends = entry[0].friends.concat(entry[0].beFriends);
-      const allFriendIds = friends.concat(beFriends);
-      this.body = { allFriendIds, allFriends };
-    } catch (err) {
-      this.body = err;
+    friend: function * () {
+        this.model = model;
+        try {
+            const entry = yield _find(this);
+            const { id } = JSON.parse(this.query.search);
+            const friends = entry[0].friends.map((item) => (item.id));
+            const beFriends = entry[0].beFriends.map((item) => (item.id));
+            const allFriends = entry[0].friends.concat(entry[0].beFriends);
+            const allIds = friends.concat(beFriends);
+            const allFriendIds = [];
+            allFriendIds.push(id);
+            for (let i = 0; i < allIds.length; i++) {
+                if (allFriendIds.indexOf(allIds[i]) === -1) {
+                    allFriendIds.push(allIds[i]);
+                }
+            }
+            this.body = { allFriendIds };
+        } catch (err) {
+            this.body = err;
+        }
     }
-  }
 };

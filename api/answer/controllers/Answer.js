@@ -243,7 +243,7 @@ _find: function * () {
                     }
                 }
             }
-        
+    
             for (let item in _obj) {
                 createdBys.push(_obj[item]);
             }
