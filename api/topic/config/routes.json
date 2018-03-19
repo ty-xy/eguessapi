@@ -14,6 +14,13 @@
                 "isAuthorized"
             ]
         },
+        "GET /topics": {
+            "controller": "Topic",
+            "action": "findTopic",
+            "policies": [
+                "isAuthorized"
+            ]
+        },
         "POST /topic": {
             "controller": "Topic",
             "action": "create",
