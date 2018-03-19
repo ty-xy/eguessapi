@@ -34,7 +34,7 @@ module.exports = {
         this.body = err;
     }
   },
-    findTopic: function * () {
+  findTopic: function * () {
         this.model = model;
         let isUser = false;
         let arr  = [];
@@ -44,12 +44,15 @@ module.exports = {
             (entry||[]).forEach((i,index)=>{
                 if(i.stars&&i.stars.length>0){
                     i.stars.forEach((item)=>{
-                        if(item.id === userid)
+                        console.log("item.id",item.id,userid)
+                        if(item.id === userid){
                             isUser = true
-                            arr.push(i)
+                            arr.push(i) 
+                        }
                     })
                 }
             })
+            console.log(arr,"arr")
             if(!isUser){
                     arr = ""
             }
