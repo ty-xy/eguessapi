@@ -1,78 +1,78 @@
 {
-  "routes": {
-    "GET /answer": {
-        "controller": "Answer",
-        "action": "_find",
-        "policies": [
-            "isAuthorized"
-        ]
-    },
-    "GET /rank": {
-        "controller": "Answer",
-        "action": "rank",
-        "policies": [
-            "isAuthorized"
-        ]
-    },
-    "GET /answers":{
-        "controller":"Answer",
-        "action":"findAnswer",
-        "policies": [
-            "isAuthorized"
-          ]
-    },
-    "GET /answerRank": {
-        "controller": "Answer",
-        "action": "answerRank",
-        "policies": [
-            "isAuthorized"
-        ]
-    },
-    "GET /answer/:id": {
-      "controller": "Answer",
-      "action": "findOne",
-      "policies": [
-        "isAuthorized"
-      ]
-    },
-    "POST /answer": {
-      "controller": "Answer",
-      "action": "create",
-      "policies": [
-        "isAuthorized",
-        "addDataCreate"
-      ]
-    },
-    "PUT /answer/:id": {
-      "controller": "Answer",
-      "action": "update",
-      "policies": [
-        "isAuthorized",
-        "addDataUpdate"
-      ]
-    },
-    "DELETE /answer/:id": {
-      "controller": "Answer",
-      "action": "destroy",
-      "policies": [
-        "isAuthorized"
-      ]
-    },
-    "POST /answer/:parentId/:relation": {
-      "controller": "Answer",
-      "action": "add",
-      "policies": [
-        "isAuthorized",
-        "addDataCreate"
-      ]
-    },
-    "DELETE /answer/:parentId/:relation/:id": {
-      "controller": "Answer",
-      "action": "remove",
-      "policies": [
-        "isAuthorized",
-        "addDataUpdate"
-      ]
-    }
+    "routes": {
+        "GET /answer": {
+            "controller": "Answer",
+            "action": "_find",
+            "policies": [
+                "isAuthorized"
+            ]
+        },
+        "GET /answers": {
+            "controller": "Answer",
+            "action": "findAnswer",
+            "policies": [
+                "isAuthorized"
+            ]
+        },
+        "GET /answerRank": {
+            "controller": "Answer",
+            "action": "answerRank",
+            "policies": [
+                "isAuthorized"
+            ]
+        },
+        "GET /singleRank": {
+            "controller": "Answer",
+            "action": "singleRank",
+            "policies": [
+                "isAuthorized"
+            ]
+        },
+        "GET /answer/:id": {
+            "controller": "Answer",
+            "action": "findOne",
+            "policies": [
+                "isAuthorized"
+            ]
+        },
+        "POST /answer": {
+            "controller": "Answer",
+            "action": "create",
+            "policies": [
+                "isAuthorized",
+                "addDataCreate"
+            ]
+        },
+        "PUT /answer/:id": {
+            "controller": "Answer",
+            "action": "update",
+            "policies": [
+                "isAuthorized",
+                "addDataUpdate"
+            ]
+        },
+        "DELETE /answer/:id": {
+            "controller": "Answer",
+            "action": "destroy",
+            "policies": [
+                "isAuthorized"
+            ]
+        },
+        "POST /answer/:parentId/:relation": {
+            "controller": "Answer",
+            "action": "add",
+            "policies": [
+                "isAuthorized",
+                "addDataCreate"
+            ]
+        },
+        "DELETE /answer/:parentId/:relation/:id": {
+            "controller": "Answer",
+            "action": "remove",
+            "policies": [
+                "isAuthorized",
+                "addDataUpdate"
+            ]
+        }
     }
 }

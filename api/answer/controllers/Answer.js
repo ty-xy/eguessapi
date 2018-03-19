@@ -225,30 +225,51 @@ _find: function * () {
     }
   },
     // 好友排行榜
-  answerRank: function * () {
-    this.model = model;
-    try {
-        let entry = yield strapi.hooks.blueprints.find(this);
-        let createdBys = [];
-        let _obj = {};
-        for (let i = 0; i < entry.length; i++) {
-            if (entry[i].createdBy) {
-                if (!_obj[entry[i].createdBy.id]) {
-                    entry[i].createdBy.upVotes = entry[i].upVotes.length;
-                    _obj[entry[i].createdBy.id] = entry[i].createdBy;
-                } else {
-                    _obj[entry[i].createdBy.id].upVotes += entry[i].upVotes.length;
+    answerRank: function * () {
+        this.model = model;
+        try {
+            let entry = yield strapi.hooks.blueprints.find(this);
+            const { allFriendIds } = this.query;
+            let createdBys = [];
+            let _obj = {};
+            for (let i = 0; i < entry.length; i++) {
+                if (entry[i].createdBy && (allFriendIds.indexOf(entry[i].createdBy.id) > -1)) {
+                    if (!_obj[entry[i].createdBy.id]) {
+                        entry[i].createdBy.upVotes = entry[i].upVotes.length;
+                        _obj[entry[i].createdBy.id] = entry[i].createdBy;
+                    } else {
+                        _obj[entry[i].createdBy.id].upVotes += entry[i].upVotes.length;
+                    }
                 }
             }
+        
+            for (let item in _obj) {
+                createdBys.push(_obj[item]);
+            }
+            createdBys = createdBys.sort((x, y) => (y.upVotes - x.upVotes));
+            this.body = { createdBys, _obj };
+        } catch (err) {
+            this.body = err;
         }
-      
-        for (let item in _obj) {
-            createdBys.push(_obj[item]);
+    },
+    // 单场排行榜
+    singleRank: function * () {
+        this.model = model;
+        const { topicid } = this.query;
+        try {
+            let data = yield strapi.hooks.blueprints.find(this);
+            let entry = [];
+            for (let i = 0; i < data.length; i++) {
+                if (data[i].topic.id === topicid) {
+                    data[i].upVoteLen = data[i].upVotes.length;
+                    data[i].upVotes = [];
+                    entry.push(data[i]);
+                }
+            }
+            entry = entry.sort((x, y) => (y.upVoteLen - x.upVoteLen));
+            this.body = entry;
+        } catch (error) {
+            this.body = error;
         }
-        createdBys = createdBys.sort((x, y) => (y.upVotes - x.upVotes));
-        this.body = { createdBys, _obj };
-    } catch (err) {
-        this.body = err;
     }
-  }
 };
