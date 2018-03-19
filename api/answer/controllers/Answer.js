@@ -79,6 +79,7 @@ rank:  function* (){
 _find: function * () {
     this.model = model;
     let arr = [];
+    const that = this;
     let isUser = false;
     const userid =  this.request.query.userid;
     if(!this.request.query.search && userid){
