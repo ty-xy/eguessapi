@@ -1,83 +1,86 @@
 {
-  "identity": "topic",
-  "connection": "eguessapi",
-  "defaultTemplate": "default",
-  "displayedAttribute": "",
-  "schema": true,
-  "attributes": {
-    "title": {
-      "type": "text"
-    },
-    "status": {
-      "type": "integer"
-    },
-    "readNum": {
-      "type": "integer"
-    },
-    "messageNum": {
-      "type": "integer"
-    },
-    "award": {
-      "type": "integer"
-    },
-    "downVotes": {
-      "type": "integer"
-    },
-    "upVotes": {
-      "type": "integer"
-    },
-    "lang": {
-      "type": "string",
-      "required": true
-    },
-    "template": {
-      "type": "string",
-      "required": true
-    },
-    "id_ref": {
-      "type": "int"
-    },
-    "user": {
-      "model": "user"
-    },
-    "stars": {
-      "collection": "user",
-      "via": "starTopic"
-    },
-    "toAnswer": {
-      "collection": "answer",
-      "via": "topic"
-    }
-  },
-  "autoCreatedAt": true,
-  "autoUpdatedAt": true,
-  "migrate": "alter",
-  "templates": {
-    "default": {
-      "attributes": {
+    "identity": "topic",
+    "connection": "eguessapi",
+    "defaultTemplate": "default",
+    "displayedAttribute": "",
+    "schema": true,
+    "attributes": {
         "title": {
-          "type": "text"
+            "type": "text"
         },
         "status": {
-          "type": "integer"
+            "type": "integer"
         },
         "readNum": {
-          "type": "integer"
+            "type": "integer"
         },
         "messageNum": {
-          "type": "integer"
+            "type": "integer"
         },
         "award": {
-          "type": "integer"
+            "type": "integer"
         },
         "downVotes": {
-          "type": "integer"
+            "type": "integer"
         },
         "upVotes": {
-          "type": "integer"
+            "type": "integer"
+        },
+        "time": {
+            "type": "date"
+        },
+        "lang": {
+            "type": "string",
+            "required": true
+        },
+        "template": {
+            "type": "string",
+            "required": true
+        },
+        "id_ref": {
+            "type": "int"
+        },
+        "user": {
+            "model": "user"
+        },
+        "stars": {
+            "collection": "user",
+            "via": "starTopic"
+        },
+        "toAnswer": {
+            "collection": "answer",
+            "via": "topic"
         }
-      },
-      "displayedAttribute": "id"
+    },
+    "autoCreatedAt": true,
+    "autoUpdatedAt": true,
+    "migrate": "alter",
+    "templates": {
+        "default": {
+            "attributes": {
+                "title": {
+                    "type": "text"
+                },
+                "status": {
+                    "type": "integer"
+                },
+                "readNum": {
+                    "type": "integer"
+                },
+                "messageNum": {
+                    "type": "integer"
+                },
+                "award": {
+                    "type": "integer"
+                },
+                "downVotes": {
+                    "type": "integer"
+                },
+                "upVotes": {
+                    "type": "integer"
+                }
+            },
+            "displayedAttribute": "id"
+        }
     }
-  }
 }
