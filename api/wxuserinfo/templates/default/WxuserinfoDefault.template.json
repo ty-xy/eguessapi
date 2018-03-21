@@ -9,7 +9,8 @@
             "country": {},
             "gender": {},
             "province": {},
-            "language": {}
+            "language": {},
+            "avatarUrl":{}
         },
         "displayedAttribute": "nickname"
     }
