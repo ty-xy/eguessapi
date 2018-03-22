@@ -21,9 +21,9 @@
             "eguessapi": {
                 "adapter": "mongo",
                 "host": "localhost",
-                "port": 27017,
-                "user": "",
-                "password": "",
+                "port": 27013,
+                "user": "eguesser",
+                "password": "dHzstsl@1",
                 "database": "eguessapi"
             }
         }
