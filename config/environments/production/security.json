@@ -1,8 +1,8 @@
 {
   "session": {
-    "key": "myApp",
+    "key": "eGuess",
     "secretKeys": [
-      "mySecretKey1"
+      "eg13-zg18"
     ],
     "maxAge": 86400000
   },
