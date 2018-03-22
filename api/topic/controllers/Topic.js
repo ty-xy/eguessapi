@@ -83,6 +83,7 @@ module.exports = {
 
   create: function * () {
     this.model = model;
+    console.log("this.query",this.query)
     try {
       let entry = yield strapi.hooks.blueprints.create(this);
       this.body = entry;
@@ -116,7 +117,9 @@ module.exports = {
   destroy: function * () {
     this.model = model;
     try {
+    //   console.log(this.query,"this.query412341234")
       let entry = yield strapi.hooks.blueprints.destroy(this);
+    //   this.body = ""
       this.body = entry;
     } catch (err) {
       this.body = err;

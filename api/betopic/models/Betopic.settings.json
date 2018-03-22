@@ -1,0 +1,41 @@
+{
+  "identity": "betopic",
+  "connection": "eguessapi",
+  "defaultTemplate": "default",
+  "displayedAttribute": "",
+  "schema": true,
+  "attributes": {
+  "title": {
+    "type": "text"
+  },
+  "classsify": {
+    "type": "string"
+  },
+  "status": {
+    "type": "integer"
+  },
+  "lang": {
+    "type": "string",
+    "required": true
+  },
+  "template": {
+    "type": "string",
+    "required": true
+  },
+  "id_ref": {
+    "type": "int"
+  },
+  "createdBy": {
+    "model": "user"
+  },
+  "updatedBy": {
+    "model": "user"
+  },
+  "contributors": {
+    "collection": "user",
+    "via": "betopics"
+  }
+},
+  "autoCreatedAt": true,
+  "autoUpdatedAt": true
+}
