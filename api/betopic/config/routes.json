@@ -1,0 +1,57 @@
+{
+  "routes": {
+    "GET /betopic": {
+      "controller": "Betopic",
+      "action": "find",
+      "policies": [
+        "isAuthorized"
+      ]
+    },
+    "GET /betopic/:id": {
+      "controller": "Betopic",
+      "action": "findOne",
+      "policies": [
+        "isAuthorized"
+      ]
+    },
+    "POST /betopic": {
+      "controller": "Betopic",
+      "action": "create",
+      "policies": [
+        "isAuthorized",
+        "addDataCreate"
+      ]
+    },
+    "PUT /betopic/:id": {
+      "controller": "Betopic",
+      "action": "update",
+      "policies": [
+        "isAuthorized",
+        "addDataUpdate"
+      ]
+    },
+    "DELETE /betopic/:id": {
+      "controller": "Betopic",
+      "action": "destroy",
+      "policies": [
+        "isAuthorized"
+      ]
+    },
+    "POST /betopic/:parentId/:relation": {
+      "controller": "Betopic",
+      "action": "add",
+      "policies": [
+        "isAuthorized",
+        "addDataCreate"
+      ]
+    },
+    "DELETE /betopic/:parentId/:relation/:id": {
+      "controller": "Betopic",
+      "action": "remove",
+      "policies": [
+        "isAuthorized",
+        "addDataUpdate"
+      ]
+    }
+  }
+}

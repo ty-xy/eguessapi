@@ -68,7 +68,8 @@
           "type": "string"
         },
         "country": {
-          "type": "string"
+          "type": "string"  
+          
         },
         "gender": {
           "type": "integer"

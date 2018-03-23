@@ -1,0 +1,18 @@
+{
+  "default": {
+    "attributes": {
+      "title": {
+        "minLength": 3,
+        "maxLength": 256
+      },
+      "classsify": {
+        "minLength": 1,
+        "maxLength": 256
+      },
+      "status": {
+        "max": 8
+      }
+    },
+    "displayedAttribute": "title"
+  }
+}

@@ -37,10 +37,11 @@ findAnswer: function * () {
         // console.log(entry,"entryfadfafas")
         if(entry){
             entry.forEach((i)=>{
-                arr.push(i.topic)
+                if(i.topic !== undefined) 
+                 arr.push(i.topic)
            })
            this.body = arr;
-        //    console.log("this.body",arr)
+           console.log("this.body",arr)
         }else {
             this.body = ""
         }
