@@ -94,7 +94,7 @@ module.exports = {
                 state: '12',
             };
             this.status = 302;
-            this.redirect(`${prefix}sns/oauth2/access_token?${qs.stringify(code_params)}#wechat_redirect`);
+            this.redirect(prefix + 'connect/oauth2/authorize?' + qs.stringify(code_params) + '#wechat_redirect');
         } catch (err) {
             this.body = err;
         }
@@ -139,9 +139,11 @@ module.exports = {
                     console.log('wxuserinfo', wxuserinfo)
                     this.sttaus = 301;
                     this.redirect('https://www.13cai.com.cn');
+                } else {
+                    this.body = '未知错误，请退出重试';
                 }
             } else {
-                this.body = '未知错误，请退出重试'
+                this.body = '未知错误，请退出重试';
             }
         } catch (error) {
             this.body = error;
