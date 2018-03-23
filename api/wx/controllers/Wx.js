@@ -113,34 +113,36 @@ module.exports = {
             let access_token = '';
             let openid = '';
             const that = this;
-            const token = yield request(apiprefix + 'sns/oauth2/access_token?' + qs.stringify(token_params));
+            let token = yield request(apiprefix + 'sns/oauth2/access_token?' + qs.stringify(token_params));
             console.log('response', token)
-            if (token) {
+            token = JSON.parse(token);
+            if (!token.errcode) {
                 data = token && JSON.parse(token);
                 access_token = data.access_token;
                 openid = data.openid;
-            }
-            // 第三步：拉取用户信息(需scope为 snsapi_userinfo)
-            let userinfo = yield request(apiprefix + 'sns/userinfo?access_token='+access_token+'&openid='+openid+'&lang=zh_CN',);
-            console.log('userinfo', userinfo)
-            if (userinfo) {
-                // 更新用户信息
+                // 第三步：拉取用户信息(需scope为 snsapi_userinfo)
+                let userinfo = yield request(apiprefix + 'sns/userinfo?access_token='+access_token+'&openid='+openid+'&lang=zh_CN');
                 userinfo = userinfo && JSON.parse(userinfo);
-                const option = {
-                    openid: openid,
-                    ...userinfo,
-                    nickName: userinfo.nickname,
-                    avatarUrl: userinfo.headimgurl,
-                    gender: userinfo.sex,
+                console.log('userinfo', userinfo)
+                if (!userinfo.errcode) {
+                    // 更新用户信息
+                    const option = {
+                        openid: openid,
+                        ...userinfo,
+                        nickName: userinfo.nickname,
+                        avatarUrl: userinfo.headimgurl,
+                        gender: userinfo.sex,
+                    }
+                    // 更新user表
+                    console.log('userInfos', option)
+                    const wxuserinfo = yield request(`https://www.13cai.com.cn/wxuserinfo?${qs.stringify(option)}`);
+                    console.log('wxuserinfo', wxuserinfo)
+                    this.sttaus = 301;
+                    this.redirect('https://www.13cai.com.cn');
                 }
-                // 更新user表
-                console.log('userInfos', option)
-                const wxuserinfo = yield request(`https://www.13cai.com.cn/wxuserinfo?${qs.stringify(option)}`);
-                console.log('wxuserinfo', wxuserinfo)
-                this.sttaus = 301;
-                this.redirect('https://www.13cai.com.cn');
+            } else {
+                this.body = '未知错误，请退出重试'
             }
-            this.body = data;
         } catch (error) {
             this.body = error;
         }
