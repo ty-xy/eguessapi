@@ -7,6 +7,7 @@ const fs = require('fs');
 const config = require('../wxconfig');
 
 const prefix = 'https://open.weixin.qq.com/';
+const apiprefix = 'https://api.weixin.qq.com/';
 
 function API(code) {
     this.appid = config.prod.appid;
@@ -93,7 +94,7 @@ module.exports = {
                 state: '12',
             };
             this.status = 302;
-            this.redirect(`${prefix}sns/oauth2/access_token?${qs.stringify(code_params)}#wechat_redirect`);
+            this.redirect(prefix + 'connect/oauth2/authorize?' + qs.stringify(code_params) + '#wechat_redirect');
         } catch (err) {
             this.body = err;
         }
@@ -103,8 +104,8 @@ module.exports = {
         try {
             console.log('this.query.code', this.query.code)
             const token_params = {
-                appid: config.dev.appid,
-                secret: config.dev.appsecret,
+                appid: config.prod.appid,
+                secret: config.prod.appsecret,
                 grant_type: 'authorization_code',
                 code: this.query.code,
             };
@@ -112,37 +113,38 @@ module.exports = {
             let access_token = '';
             let openid = '';
             const that = this;
-            let token = yield request(prefix + 'sns/oauth2/access_token?' + qs.stringify(token_params));
+            let token = yield request(apiprefix + 'sns/oauth2/access_token?' + qs.stringify(token_params));
             console.log('response', token)
-            if ((token && token.statusCode) == 200) {
-                data = token.body && JSON.parse(token.body);
+            token = JSON.parse(token);
+            if (!token.errcode) {
+                data = token && JSON.parse(token);
                 access_token = data.access_token;
                 openid = data.openid;
-                console.log('data', data)
-            }
-            // 第三步：拉取用户信息(需scope为 snsapi_userinfo)
-            let userinfo = yield request(prefix + 'sns/userinfo?access_token='+access_token+'&openid='+openid+'&lang=zh_CN',);
-            console.log('userinfo', userinfo)
-            if ((userinfo && userinfo.statusCode) == 200) {
-                // 更新用户信息
-                const option = {
-                    method: 'get',
-                    uri: '/wxuserinfo',
-                    body: {
+                // 第三步：拉取用户信息(需scope为 snsapi_userinfo)
+                let userinfo = yield request(apiprefix + 'sns/userinfo?access_token='+access_token+'&openid='+openid+'&lang=zh_CN');
+                userinfo = userinfo && JSON.parse(userinfo);
+                console.log('userinfo', userinfo)
+                if (!userinfo.errcode) {
+                    // 更新用户信息
+                    const option = {
                         openid: openid,
-                        ...userInfo,
-                    },
-                    json: true
+                        ...userinfo,
+                        nickName: userinfo.nickname,
+                        avatarUrl: userinfo.headimgurl,
+                        gender: userinfo.sex,
+                    }
+                    // 更新user表
+                    console.log('userInfos', option)
+                    const wxuserinfo = yield request(`https://www.13cai.com.cn/wxuserinfo?${qs.stringify(option)}`);
+                    console.log('wxuserinfo', wxuserinfo)
+                    this.sttaus = 301;
+                    this.redirect('https://www.13cai.com.cn');
+                } else {
+                    this.body = '未知错误，请退出重试';
                 }
-                // 更新user表
-
-                request(`/wxuserinfo?${qs.stringify(userInfos)}`);
-                
-                this.sttaus = 301;
-                this.redirect('https://www.13cai.com.cn');
-                console.log('用户信息', userinfo.response)
+            } else {
+                this.body = '未知错误，请退出重试';
             }
-            this.body = data;
         } catch (error) {
             this.body = error;
         }
