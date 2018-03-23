@@ -2,10 +2,80 @@
 
 const request = require('request-promise');
 const qs = require('querystring');
+const fs = require('fs');
 
 const config = require('../wxconfig');
 
 const prefix = 'https://open.weixin.qq.com/';
+
+function API(code) {
+    this.appid = config.prod.appid;
+    this.appsecret = config.prod.appsecret;
+    this.prefix = 'https://open.weixin.qq.com/';
+    this.code = code;
+    // 保存token
+    this.savaToken = function * (token) {
+        yield fs.writeFile('access_token.txt', JSON.stringify(token));
+    }
+    // 读取token
+    this.readToken = function * (token) {
+        yield fs.readFile('access_token.txt', 'utf-8');
+    }
+}
+
+API.prototype = {
+    // 获取token
+    getAccessToken: function * () {
+        const token = {};
+        const token_params = {
+            appid: this.appid,
+            secret: this.appsecret,
+            grant_type: 'authorization_code',
+            code: this.code,
+        };
+        const response = yield request(this.prefix + 'sns/oauth2/access_token?' + qs.stringify(token_params));
+        token.access_token = response.data.access_token;
+        token.refresh_token = response.data.refresh_token;
+        token.expires_in = Date.now() + (response.data.expires_in - 40) * 1000;        
+        yield this.savaToken(token);
+        return token;
+    },
+    isValid: function * (accessToken, refreshToken, expireTime) {
+        if (!!accessToken && Date.now() < expireTime) {
+            return { access_token, refresh_token, expires_in};
+        }
+        const refresh = {
+            appid: this.appid,
+            grant_type: 'refresh_token',
+            refresh_token: refreshToken
+        };
+        const refresh_res = yield request(this.prefix + 'sns/oauth2/refresh_token?' + qs.stringify(refresh));
+        const token = {};
+        if (refresh_res) {
+            token.access_token = refresh_res.data.access_token;
+            token.refresh_token = refresh_res.data.refresh_token;
+            token.expires_in = Date.now() + (refresh_res.data.expires_in - 40) * 1000;        
+            yield this.savaToken(token);
+            return token;
+        }
+        return false;
+    },
+    // 获取最终正确的token
+    ensureAccessToken: function * () {
+        let token = {};
+        try {
+            token = yield this.readToken();
+        } catch (e) {
+            token = yield this.getAccessToken();
+        }
+        if (token) {
+            this.isValid(token.access_token, token.refresh_token, token.expires_in)
+        }
+        return this.getAccessToken();
+    }
+};
+
+
 
 module.exports = {
     // 第一步：用户同意授权，获取code
@@ -53,8 +123,21 @@ module.exports = {
             // 第三步：拉取用户信息(需scope为 snsapi_userinfo)
             let userinfo = yield request(prefix + 'sns/userinfo?access_token='+access_token+'&openid='+openid+'&lang=zh_CN',);
             console.log('userinfo', userinfo)
-            if ((userinfo && userinfo.statusCode) != 200) {
+            if ((userinfo && userinfo.statusCode) == 200) {
                 // 更新用户信息
+                const option = {
+                    method: 'get',
+                    uri: '/wxuserinfo',
+                    body: {
+                        openid: openid,
+                        ...userInfo,
+                    },
+                    json: true
+                }
+                // 更新user表
+
+                request(`/wxuserinfo?${qs.stringify(userInfos)}`);
+                
                 this.sttaus = 301;
                 this.redirect('https://www.13cai.com.cn');
                 console.log('用户信息', userinfo.response)
