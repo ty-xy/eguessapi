@@ -114,8 +114,12 @@ _find: function * () {
             let shoucang = enrty[i].stars.filter((item) => (item.id === userid));
             if (res.length) {
                 enrty[i].upVote = true;
+            } else {
+                enrty[i].upVote = false;
             }
             if (shoucang.length) {
+                enrty[i].isStar = true;
+            } else {
                 enrty[i].isStar = true;
             }
             entryData.push(enrty[i]);

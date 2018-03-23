@@ -19,16 +19,11 @@ module.exports = {
   
     const {userid} =  this.query;
     try {
-       
-            const { page, size } = this.query;
-            let entry = yield Topic.find({
-                limit: page * size,
-                sort: {
-                    createdAt: 0
-                },
-                select: ['toAnswer', 'user', 'title']
-            });
-            this.body = yield strapi.hooks.blueprints.find(this);
+        const entry = yield strapi.hooks.blueprints.find(this);
+        entry.forEach((item) => {
+            item.second = Math.abs((new Date() - new Date(item.time)) / 1000);
+        });
+        this.body = entry;
         
     } catch (err) {
         this.body = err;
@@ -44,7 +39,6 @@ module.exports = {
             (entry||[]).forEach((i,index)=>{
                 if(i.stars&&i.stars.length>0){
                     i.stars.forEach((item)=>{
-                        console.log("item.id",item.id,userid)
                         if(item.id === userid){
                             isUser = true
                             arr.push(i) 
@@ -52,7 +46,6 @@ module.exports = {
                     })
                 }
             })
-            console.log(arr,"arr")
             if(!isUser){
                     arr = ""
             }
