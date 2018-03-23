@@ -92,9 +92,10 @@ module.exports = {
                 response_type: 'code',
                 scope: 'snsapi_userinfo',
                 state: '12',
-            };
+            };  
+            console.log('qs.stringify(code_params)', qs.stringify(code_params))
             this.status = 302;
-            this.redirect(prefix + 'connect/oauth2/authorize?' + qs.stringify(code_params) + '#wechat_redirect');
+            this.redirect('https://open.weixin.qq.com/connect/oauth2/authorize?' + qs.stringify(code_params) + '#wechat_redirect');
         } catch (err) {
             this.body = err;
         }
@@ -114,6 +115,7 @@ module.exports = {
             let openid = '';
             const that = this;
             let token = yield request(apiprefix + 'sns/oauth2/access_token?' + qs.stringify(token_params));
+            console.log('response', token)
             token = JSON.parse(token);
             console.log('response', token)
             if (!token.errcode) {
