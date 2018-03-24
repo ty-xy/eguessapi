@@ -18,7 +18,6 @@ module.exports = {
     this.model = model;
     try {
       let entry = yield _find(this);
-      console.log("status",entry)
       this.body = entry;
     } catch (err) {
       this.body = err;

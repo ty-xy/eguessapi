@@ -1,5 +1,4 @@
 'use strict';
-const _find = require('../../../utils/query');
 const findAnswer = require('../../../utils/query');
 
 const model = 'answer';
