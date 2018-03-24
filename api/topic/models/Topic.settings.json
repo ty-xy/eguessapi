@@ -27,7 +27,7 @@
             "type": "integer"
         },
         "time": {
-            "type": "date"
+            "type": "integer"
         },
         "lang": {
             "type": "string",
