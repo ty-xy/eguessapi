@@ -182,7 +182,7 @@ module.exports = {
                     const wxuserinfo = yield request(`https://www.13cai.com.cn/wxuserinfo?${qs.stringify(option)}`);
                     console.log('更新user表结果', wxuserinfo)
                     this.sttaus = 301;
-                    this.redirect('https://www.13cai.com.cn:8013');
+                    this.redirect('https://www.13cai.com.cn');
                 } else {
                     this.body = '未知错误，请退出重试';
                 }
@@ -199,7 +199,7 @@ module.exports = {
         const wxuserinfo = yield request("https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=" + config.prod.appid + "&secret=" + config.prod.appsecret);
         let data = JSON.parse(wxuserinfo);
         console.log('wxuserinfo', data, data.access_token);
-        const url = 'http://localhost:8080/#/answerDetail';
+        const { url } = this.query;
         let jsapi_ticket = '';
         if (data.access_token) {
             jsapi_ticket = yield request("https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=" + data.access_token + "&type=jsapi");
