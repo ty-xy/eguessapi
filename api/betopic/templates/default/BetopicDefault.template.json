@@ -5,7 +5,7 @@
         "minLength": 3,
         "maxLength": 256
       },
-      "classsify": {
+      "classify": {
         "minLength": 1,
         "maxLength": 256
       },

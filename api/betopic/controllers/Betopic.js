@@ -1,5 +1,5 @@
 'use strict';
-
+const _find = require('../../../utils/query');
 const model = 'betopic';
 
 /**
@@ -17,7 +17,8 @@ module.exports = {
   find: function * () {
     this.model = model;
     try {
-      let entry = yield strapi.hooks.blueprints.find(this);
+      let entry = yield _find(this);
+      console.log("status",entry)
       this.body = entry;
     } catch (err) {
       this.body = err;
