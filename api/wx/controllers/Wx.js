@@ -110,7 +110,6 @@ module.exports = {
                 grant_type: 'authorization_code',
                 code: this.query.code,
             };
-            let data = {};
             let access_token = '';
             let openid = '';
             const that = this;
@@ -118,8 +117,8 @@ module.exports = {
             token = JSON.parse(token);
             console.log('response', token)
             if (!token.errcode) {
-                access_token = data.access_token;
-                openid = data.openid;
+                access_token = token.access_token;
+                openid = token.openid;
                 // 第三步：拉取用户信息(需scope为 snsapi_userinfo)
                 console.log('access_token', access_token)
                 let userinfo = yield request(apiprefix + 'sns/userinfo?access_token='+ access_token +'&openid='+ openid +'&lang=zh_CN');
