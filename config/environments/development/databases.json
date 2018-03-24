@@ -24,7 +24,7 @@
                 "port": 27017,
                 "user": "",
                 "password": "",
-                "database": "eguessapi"
+                "database": "egu"
             }
         }
     }

@@ -23,6 +23,7 @@ module.exports = {
         let timestamp = new Date(day).getTime();
         this.request.query.search = JSON.stringify({time: { '$lte': timestamp }, ...this.request.query}); 
         let data = yield _find(this);
+        console.log("topic",data,this.query)
         data.forEach((item) => {
             const time = (item.time + 60 * 60 * 1000) - Date.now();
             if(time > 0) {
