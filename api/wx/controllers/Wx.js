@@ -115,14 +115,14 @@ module.exports = {
             let openid = '';
             const that = this;
             let token = yield request(apiprefix + 'sns/oauth2/access_token?' + qs.stringify(token_params));
-            console.log('response', token)
             token = JSON.parse(token);
             console.log('response', token)
             if (!token.errcode) {
                 access_token = data.access_token;
                 openid = data.openid;
                 // 第三步：拉取用户信息(需scope为 snsapi_userinfo)
-                let userinfo = yield request(apiprefix + 'sns/userinfo?access_token='+access_token+'&openid='+openid+'&lang=zh_CN');
+                console.log('access_token', access_token)
+                let userinfo = yield request(apiprefix + 'sns/userinfo?access_token='+ access_token +'&openid='+ openid +'&lang=zh_CN');
                 userinfo = JSON.parse(userinfo);
                 console.log('userinfo', userinfo)
                 if (!userinfo.errcode) {
