@@ -16,14 +16,23 @@ module.exports = {
 
   find: function * () {
     this.model = model;
-  
-    const {userid} =  this.query;
     try {
-        const entry = yield strapi.hooks.blueprints.find(this);
-        entry.forEach((item) => {
-            item.second = Math.abs((new Date() - new Date(item.time)) / 1000);
+        this.model = model;
+        let date = new Date();
+        let day = date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate() + ' 23:59:59';
+        let timestamp = new Date(day).getTime();
+        this.request.query.search = JSON.stringify({time: { '$lte': timestamp }, ...this.request.query}); 
+        let data = yield _find(this);
+        data.forEach((item) => {
+            const time = (item.time + 60 * 60 * 1000) - Date.now();
+            if(time > 0) {
+                item.second = time;
+            } else {
+                item.second = 0;
+                item.status = 2;
+            }
         });
-        this.body = entry;
+        this.body = data;
         
     } catch (err) {
         this.body = err;
@@ -47,10 +56,29 @@ module.exports = {
                 }
             })
             if(!isUser){
-                    arr = ""
+                arr = ""
             }
             this.body = arr;
         }
+    },
+    dayTopic: function * () {
+        this.model = model;
+        let date = new Date();
+        let day = date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate() + ' 23:59:59';
+        let timestamp = new Date(day).getTime();
+        console.log('timestamp', timestamp);
+        this.request.query.search = JSON.stringify({time: { '$lte': timestamp }}); 
+        let data = yield _find(this);
+        data.forEach((item) => {
+            const time = (item.time + 60 * 60 * 1000) - Date.now();
+            if(time > 0) {
+                item.second = time / 1000;
+            } else {
+                item.second = 0;
+                item.status = 3;
+            }
+        });
+        this.body = data;
     },
   /**
    * Get a specific Topic.

@@ -14,6 +14,13 @@
                 "isAuthorized"
             ]
         },
+        "GET /daytopic": {
+            "controller": "Topic",
+            "action": "dayTopic",
+            "policies": [
+                "isAuthorized"
+            ]
+        },
         "GET /topics": {
             "controller": "Topic",
             "action": "findTopic",
