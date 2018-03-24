@@ -27,7 +27,10 @@
             "type": "integer"
         },
         "time": {
-            "type": "date"
+            "type": "integer"
+        },
+        "yearmonth":{
+            "type":"string"
         },
         "lang": {
             "type": "string",
