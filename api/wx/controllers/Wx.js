@@ -185,7 +185,7 @@ module.exports = {
                     console.log('object')
                     info = info.replace(/\\/g, '');
                     this.status = 302;
-                    this.redirect(`https://www.13cai.com.cn?info=${info}`);
+                    this.redirect('https://www.13cai.com.cn?info=456789');
                 } else {
                     this.body = '未知错误，请退出重试';
                 }
