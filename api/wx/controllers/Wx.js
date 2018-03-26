@@ -191,7 +191,7 @@ module.exports = {
                     }
                     console.log('obj', obj)
                     this.status = 302;
-                    this.redirect(`https://www.13cai.com.cn?userid=${wxuserinfo}`);
+                    this.redirect(`https://www.13cai.com.cn?${qs.stringify(obj)}`);
                 } else {
                     this.body = '未知错误，请退出重试';
                 }
