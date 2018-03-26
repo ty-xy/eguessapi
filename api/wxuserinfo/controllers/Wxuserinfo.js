@@ -48,11 +48,11 @@ module.exports = {
                         let userUpdate = yield User.update({id:users.id},{...updataUsers})
                     }
                 }
-                this.body = users.wxUser;
+                this.body = users ;
             }else{
                 const users =yield Wxuserinfo.update({id:entry.id},{query})
                 console.log("users",users,users.wxUser)
-                this.body = users[0].wxUser;
+                this.body = users[0];
             }
         }else{
             let entry = yield strapi.hooks.blueprints.find(this);

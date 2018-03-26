@@ -184,7 +184,7 @@ module.exports = {
                     let info = JSON.parse(wxuserinfo);
                     console.log('info', info, typeof info);
                     const obj = {};
-                    if (typeof info  === 'object') {
+                    if (typeof info === 'object') {
                         for (let item in info) {
                             obj[item] = info[item];
                         }
