@@ -184,7 +184,7 @@ module.exports = {
                     let info = JSON.stringify(wxuserinfo);
                     console.log('info1', info)
                     let infos = JSON.parse(info);
-                    console.log('infos', infos)
+                    console.log('infos', infos, infos.id, infos.openid)
                     this.status = 302;
                     this.redirect('https://www.13cai.com.cn?info=456789');
                 } else {
