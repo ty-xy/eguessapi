@@ -17,7 +17,8 @@
             },
             "downVotes": {},
             "upVotes": {},
-            "time": ""
+            "time": "",
+            "yearmonth":""
         },
         "displayedAttribute": "id"
     }

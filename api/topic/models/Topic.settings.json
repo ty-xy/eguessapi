@@ -29,6 +29,9 @@
         "time": {
             "type": "integer"
         },
+        "yearmonth":{
+            "type":"string"
+        },
         "lang": {
             "type": "string",
             "required": true
