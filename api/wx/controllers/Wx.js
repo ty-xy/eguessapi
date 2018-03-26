@@ -182,7 +182,7 @@ module.exports = {
                     const wxuserinfo = yield request(`https://www.13cai.com.cn/wxuserinfo?${qs.stringify(option)}`);
                     console.log('更新user表结果', wxuserinfo)
                     this.sttaus = 301;
-                    this.redirect('https://www.13cai.com.cn:8013?userid=' + qs.stringify(wxuserinfo));
+                    this.redirect('https://www.13cai.com.cn:8013?' + qs.stringify(wxuserinfo));
                 } else {
                     this.body = '未知错误，请退出重试';
                 }
