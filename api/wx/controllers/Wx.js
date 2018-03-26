@@ -184,7 +184,7 @@ module.exports = {
                     const info = JSON.stringify(wxuserinfo);
                     console.log('info', info)
                     this.status = 302;
-                    this.redirect(`https://www.13cai.com.cn?id=${wxuserinfo.id}&avatarUrl=${wxuserinfo.avatarUrl}nickName=${wxuserinfo.nickName}openid=${wxuserinfo.openid}`);
+                    this.redirect(`https://www.13cai.com.cn?info=${info}`);
                 } else {
                     this.body = '未知错误，请退出重试';
                 }
