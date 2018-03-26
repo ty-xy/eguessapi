@@ -184,7 +184,7 @@ module.exports = {
                     let info = JSON.stringify(wxuserinfo);
                     let infos = info.replace(/\\"/g, "'");
                     let _info = JSON.parse(infos);
-                    console.log('_info', _info)
+                    console.log('_info', _info, _info.openid)
                     this.status = 302;
                     this.redirect('https://www.13cai.com.cn?info=456789');
                 } else {
