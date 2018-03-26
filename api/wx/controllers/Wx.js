@@ -182,7 +182,7 @@ module.exports = {
                     const wxuserinfo = yield request(`https://www.13cai.com.cn/api/v1/wxuserinfo?${qs.stringify(option)}`);
                     console.log('更新user表结果', wxuserinfo, 'ff', qs.stringify(wxuserinfo))
                     let info = JSON.stringify(wxuserinfo);
-                    let infos = info.replace(/\\"/g, '');
+                    let infos = info.replace(/\\"/g, "'");
                     let _info = JSON.parse(infos);
                     console.log('_info', _info)
                     this.status = 302;
