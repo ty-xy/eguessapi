@@ -124,7 +124,7 @@ module.exports = {
     // 第一步：用户同意授权，获取code
     login: function * () {
         try {
-            const router = 'api/v1get_wxtoken';
+            const router = 'api/v1/get_wxtoken';
             // 这是编码后的地址
             const return_uri = config.prod.redirect_uri + router;
             // 获取code参数
