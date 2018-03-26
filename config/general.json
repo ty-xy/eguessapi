@@ -1,18 +1,18 @@
 {
-  "static": true,
-  "views": false,
-  "websockets": true,
-  "favicon": {
-    "path": "favicon.ico",
-    "maxAge": 86400000
-  },
-  "prefix": "",
-  "blueprints": {
-    "defaultLimit": 30,
-    "populate": true
-  },
-  "graphql": {
-    "enabled": true,
-    "route": "/graphql"
-  }
+    "static": true,
+    "views": false,
+    "websockets": true,
+    "favicon": {
+        "path": "favicon.ico",
+        "maxAge": 86400000
+    },
+    "prefix": "/api/v1",
+    "blueprints": {
+        "defaultLimit": 30,
+        "populate": true
+    },
+    "graphql": {
+        "enabled": true,
+        "route": "/graphql"
+    }
 }
