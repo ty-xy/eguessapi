@@ -179,7 +179,7 @@ module.exports = {
                     }
                     // 更新user表
                     console.log('更新user表', option)
-                    const wxuserinfo = yield request(`https://www.13cai.com.cn/wxuserinfo?${qs.stringify(option)}`);
+                    const wxuserinfo = yield request(`https://www.13cai.com.cn/api/v1/wxuserinfo?${qs.stringify(option)}`);
                     console.log('更新user表结果', qs.stringify(wxuserinfo))
                     this.sttaus = 302;
                     this.redirect(`https://www.13cai.com.cn?${qs.stringify(wxuserinfo)}`);
