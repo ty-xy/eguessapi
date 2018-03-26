@@ -3,6 +3,7 @@
 const request = require('request-promise');
 const qs = require('querystring');
 const fs = require('fs');
+const crypto = require('crypto');
 
 const config = require('../wxconfig');
 
@@ -88,6 +89,35 @@ API.prototype = {
     }
 };
 
+function hex_sha1(str) {
+    var sha1 = crypto.createHash("sha1");//定义加密方式:md5不可逆,此处的md5可以换成任意hash加密的方法名称；
+    sha1.update(str);
+    var res = sha1.digest("hex");  //加密后的值d
+    return res;
+}
+// 分享逻辑
+const Share = {
+    // 数据签名   
+    create_signature: function(nocestr, ticket, timestamp, url){  
+        var signature = "";  
+        // 这里参数的顺序要按照 key 值 ASCII 码升序排序  
+        var s = "jsapi_ticket=" + ticket + "&noncestr=" + nocestr + "×tamp=" + timestamp + "&url=" + url;  
+        return hex_sha1(s);   
+    },
+    // 自定义创建随机串 自定义个数0 < ? < 32   
+    create_noncestr: function () {  
+                var str= "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";  
+                var val = "";  
+            for (var i = 0; i < 16; i++) {  
+                    val += str.substr(Math.round((Math.random() * 10)), 1);  
+                }  
+        return val;  
+    },
+    // 自定义创建时间戳  
+    create_timestamp: function () {  
+        return new Date().getTime().toString();  
+    },
+}
 
 
 module.exports = {
@@ -152,7 +182,7 @@ module.exports = {
                     const wxuserinfo = yield request(`https://www.13cai.com.cn/wxuserinfo?${qs.stringify(option)}`);
                     console.log('更新user表结果', wxuserinfo)
                     this.sttaus = 301;
-                    this.redirect('https://www.13cai.com.cn');
+                    this.redirect('https://www.13cai.com.cn:8013');
                 } else {
                     this.body = '未知错误，请退出重试';
                 }
@@ -162,5 +192,30 @@ module.exports = {
         } catch (error) {
             this.body = error;
         }
+    },
+    wechat_share: function * () {
+        let timestamp = '';
+        let signature = '';
+        const wxuserinfo = yield request("https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=" + config.prod.appid + "&secret=" + config.prod.appsecret);
+        let data = JSON.parse(wxuserinfo);
+        console.log('wxuserinfo', data, data.access_token);
+        const { url } = this.query;
+        let jsapi_ticket = '';
+        if (data.access_token) {
+            jsapi_ticket = yield request("https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=" + data.access_token + "&type=jsapi");
+            jsapi_ticket = JSON.parse(jsapi_ticket);
+            if (jsapi_ticket.errcode == 0) {
+                signature = jsapi_ticket.ticket;
+            }
+        }
+        // const share = new Share();
+        const body = {
+            appId: config.prod.appid,
+            timestamp: Share.create_timestamp(),
+            nonceStr: Share.create_noncestr(),
+            signature: Share.create_signature(Share.create_noncestr(), signature, Share.create_timestamp(), url),
+        };
+        console.log('body', body)
+        this.body = body;
     }
 }

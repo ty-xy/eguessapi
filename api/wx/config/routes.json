@@ -13,6 +13,13 @@
             "policies": [
                 "isAuthorized"
             ]
+        },
+        "GET /wechat_share": {
+            "controller": "Wx",
+            "action": "wechat_share",
+            "policies": [
+                "isAuthorized"
+            ]
         }
     }
 }
