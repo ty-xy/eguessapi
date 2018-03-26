@@ -182,9 +182,8 @@ module.exports = {
                     const wxuserinfo = yield request(`https://www.13cai.com.cn/api/v1/wxuserinfo?${qs.stringify(option)}`);
                     console.log('更新user表结果', wxuserinfo, 'ff', qs.stringify(wxuserinfo))
                     let info = JSON.stringify(wxuserinfo);
+                    console.log('object')
                     info = info.replace(/\\/g, '');
-                    info = JSON.parse(info);
-                    console.log('info', info)
                     this.status = 302;
                     this.redirect(`https://www.13cai.com.cn?info=${info}`);
                 } else {
