@@ -1,4 +1,5 @@
 'use strict';
+const qs = require('querystring');
 const _find = require('../../../utils/query');
 const model = 'topic';
 
@@ -64,22 +65,22 @@ module.exports = {
     },
     dayTopic: function * () {
         this.model = model;
-        let date = new Date();
-        let day = date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate() + ' 23:59:59';
-        let timestamp = new Date(day).getTime();
-        console.log('timestamp', timestamp);
-        this.request.query.search = JSON.stringify({time: { '$lte': timestamp }}); 
-        let data = yield _find(this);
-        data.forEach((item) => {
-            const time = (item.time + 60 * 60 * 1000) - Date.now();
-            if(time > 0) {
-                item.second = time / 1000;
-            } else {
-                item.second = 0;
-                item.status = 3;
-            }
-        });
-        this.body = data;
+        // let date = new Date();
+        // let day = date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate() + ' 23:59:59';
+        // let timestamp = new Date(day).getTime();
+        // console.log('timestamp', timestamp);
+        // this.request.query.search = JSON.stringify({time: { '$lte': timestamp }}); 
+        // let data = yield _find(this);
+        // data.forEach((item) => {
+        //     const time = (item.time + 60 * 60 * 1000) - Date.now();
+        //     if(time > 0) {
+        //         item.second = time / 1000;
+        //     } else {
+        //         item.second = 0;
+        //         item.status = 3;
+        //     }
+        // });
+        this.body = [];
     },
   /**
    * Get a specific Topic.

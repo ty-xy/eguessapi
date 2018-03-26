@@ -124,7 +124,7 @@ module.exports = {
     // 第一步：用户同意授权，获取code
     login: function * () {
         try {
-            const router = 'get_wxtoken';
+            const router = 'api/v1/get_wxtoken';
             // 这是编码后的地址
             const return_uri = config.prod.redirect_uri + router;
             // 获取code参数
@@ -179,10 +179,10 @@ module.exports = {
                     }
                     // 更新user表
                     console.log('更新user表', option)
-                    const wxuserinfo = yield request(`https://www.13cai.com.cn/wxuserinfo?${qs.stringify(option)}`);
-                    console.log('更新user表结果', wxuserinfo)
-                    this.sttaus = 301;
-                    this.redirect('https://www.13cai.com.cn:8013');
+                    const wxuserinfo = yield request(`https://www.13cai.com.cn/api/v1/wxuserinfo?${qs.stringify(option)}`);
+                    console.log('更新user表结果', wxuserinfo, qs.stringify(wxuserinfo))
+                    this.sttaus = 302;
+                    this.redirect(`https://www.13cai.com.cn?${qs.stringify(wxuserinfo)}`);
                 } else {
                     this.body = '未知错误，请退出重试';
                 }
