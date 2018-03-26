@@ -31,7 +31,7 @@ module.exports = {
                     avatarUrl:query.avatarUrl,
                     email:`zg-ty@1${Math.ceil(Math.random()*10000)}3.com`,
                 }
-            //没有openid的时候创建一个新的user表
+                //没有openid的时候创建一个新的user表
                 let  users = yield User.create(updataUser)
                 if(users){
                     const updateData = {
@@ -45,14 +45,14 @@ module.exports = {
                             email:`zg-ty@1${Math.ceil(Math.random()*10000)}3.com`,
                             wxUserInfo:wxId.id,
                         }
-                    let userUpdate = yield User.update({id:users.id},{...updataUsers})
+                        let userUpdate = yield User.update({id:users.id},{...updataUsers})
                     }
-            }
-                 this.body = users ;
+                }
+                this.body = users ;
             }else{
                 const users =yield Wxuserinfo.update({id:entry.id},{query})
-                // console.log("users",users,users.wxUser)
-                 this.body = users[0];
+                console.log("users",users,users.wxUser)
+                this.body = users[0];
             }
         }else{
             let entry = yield strapi.hooks.blueprints.find(this);
