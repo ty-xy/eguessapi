@@ -181,10 +181,8 @@ module.exports = {
                     console.log('更新user表', option)
                     const wxuserinfo = yield request(`https://www.13cai.com.cn/api/v1/wxuserinfo?${qs.stringify(option)}`);
                     console.log('更新user表结果', wxuserinfo, 'ff', qs.stringify(wxuserinfo))
-                    const info = {
-                        ...wxuserinfo,
-                    };
-                    console.log('info', info, 'ff', qs.stringify(info))
+                    const info = JSON.stringify(wxuserinfo);
+                    console.log('info', info)
                     this.status = 302;
                     this.redirect(`https://www.13cai.com.cn?id=${wxuserinfo.id}&avatarUrl=${wxuserinfo.avatarUrl}nickName=${wxuserinfo.nickName}openid=${wxuserinfo.openid}`);
                 } else {
