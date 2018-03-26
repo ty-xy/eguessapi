@@ -182,8 +182,9 @@ module.exports = {
                     const wxuserinfo = yield request(`https://www.13cai.com.cn/api/v1/wxuserinfo?${qs.stringify(option)}`);
                     console.log('更新user表结果', wxuserinfo, typeof wxuserinfo);
                     let info = JSON.parse(wxuserinfo);
+                    console.log('info', info, typeof info);
                     const obj = {};
-                    if (typeof wxuserinfo  === 'object') {
+                    if (typeof info  === 'object') {
                         for (let item in info) {
                             obj[item] = info[item];
                         }
