@@ -98,11 +98,11 @@ function hex_sha1(str) {
 // 分享逻辑
 const Share = {
     // 数据签名   
-    create_signature: function(nocestr, ticket, timestamp, url){  
+    create_signature: function(signature, nonceStr, timestamp, url){  
         var signature = "";  
         // 这里参数的顺序要按照 key 值 ASCII 码升序排序  
         console.log('hash', nocestr, ticket, timestamp, url)
-        var s = "jsapi_ticket=" + ticket + "&noncestr=" + nocestr + "×tamp=" + timestamp + "&url=" + url;  
+        var s = "jsapi_ticket=" + signature + "&noncestr=" + nonceStr + "timestamp=" + timestamp + "&url=" + url;  
         return hex_sha1(s);   
     },
     // 自定义创建随机串 自定义个数0 < ? < 32   
@@ -226,7 +226,7 @@ module.exports = {
             appId: config.prod.appid,
             timestamp,
             nonceStr,
-            signature: Share.create_signature(nonceStr, signature, timestamp, url),
+            signature: Share.create_signature(signature, nonceStr, timestamp, url),
         };
         console.log('body', body, )
         this.body = body;
