@@ -1,5 +1,18 @@
-const query = require('querystring');
+const crypto = require('crypto');
 
-const a = {"openid":"oICfZ0Y2m5jxqwdIgEh_FSQrdA-w","language":"zh_CN","city":"朝阳","province":"北京","country":"中国","nickName":"涛声依旧","avatarUrl":"http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKuMscNhoH3AtvibVpLfjxj1ria4hJom846rtIqqWjLaO7a3U8ll9OrHwM5ZShSLWwfwwduVGxFaupQ/132","gender":1,"wxUser":"5ab491a5a883799d4e2b4a60","template":"default","lang":"en_US","createdAt":"2018-03-23T05:33:25.234Z","updatedAt":"2018-03-26T10:59:01.221Z","id":"5ab491a5a883799d4e2b4a61"} ;
+const o = {
+    url: 'https://www.13cai.com.cn/answerDetail',
+    timestamp: '1522119290',
+    nonceStr: 'gfciiehgicaiadik',
+    jsapi_ticket: 'HoagFKDcsGMVCIY2vOjf9vPRiIU1sTnv7PkGoMHYZzywPj4VjiiYWrOB5pZxKhONJf7sQ2eHRUV7mdlXmTaNJQ',
+}
 
-console.log(typeof a)
+var s = "jsapi_ticket=" + o.jsapi_ticket + "&noncestr=" + o.nonceStr + "&timestamp=" + o.timestamp + "&url=" + o.url;  
+function hex_sha1(str) {
+    var sha1 = crypto.createHash("sha1");//定义加密方式:md5不可逆,此处的md5可以换成任意hash加密的方法名称；
+    sha1.update(str, 'utf-8');
+    var res = sha1.digest().toString("hex");  //加密后的值d
+    return res;
+}
+
+console.log(hex_sha1(s));
