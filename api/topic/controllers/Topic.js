@@ -21,7 +21,7 @@ module.exports = {
         this.model = model;
         let date = new Date();
         let day = date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate() + ' 23:59:59';
-        let timestamp = new Date(day).getTime();
+        let timestamp = new Date().getTime();
         this.request.query.search = JSON.stringify({time: { '$lte': timestamp }, ...this.request.query}); 
         let data = yield _find(this);
         console.log("topic",data,this.query)
