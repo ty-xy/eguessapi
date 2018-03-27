@@ -204,7 +204,6 @@ module.exports = {
         }
     },
     wechat_share: function * () {
-        let timestamp = '';
         let signature = '';
         const wxuserinfo = yield request("https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=" + config.prod.appid + "&secret=" + config.prod.appsecret);
         let data = JSON.parse(wxuserinfo);
