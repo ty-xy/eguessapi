@@ -99,9 +99,8 @@ function hex_sha1(str) {
 const Share = {
     // 数据签名   
     create_signature: function(signature, nonceStr, timestamp, url){  
-        var signature = "";  
         // 这里参数的顺序要按照 key 值 ASCII 码升序排序  
-        console.log('hash', nocestr, ticket, timestamp, url)
+        console.log('hash', nonceStr, signature, timestamp, url)
         var s = "jsapi_ticket=" + signature + "&noncestr=" + nonceStr + "timestamp=" + timestamp + "&url=" + url;  
         return hex_sha1(s);   
     },
