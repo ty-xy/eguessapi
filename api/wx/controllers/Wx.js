@@ -107,12 +107,12 @@ const Share = {
     },
     // 自定义创建随机串 自定义个数0 < ? < 32   
     create_noncestr: function () {  
-                var str= "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";  
-                var val = "";  
-            for (var i = 0; i < 16; i++) {  
-                    val += str.substr(Math.round((Math.random() * 10)), 1);  
-                }  
-        return val;  
+        var str= "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";  
+        var val = "";  
+        for (var i = 0; i < 16; i++) {  
+            val += str.substr(Math.round((Math.random() * 10)), 1);  
+        }  
+        return val;
     },
     // 自定义创建时间戳  
     create_timestamp: function () {  
@@ -220,12 +220,14 @@ module.exports = {
             }
         }
         // const share = new Share();
-        console.log('time', Share.create_timestamp(), Share.create_noncestr())
+        const timestamp = Share.create_timestamp();
+        const nonceStr = Share.create_noncestr();
+        console.log('time', timestamp, nonceStr)
         const body = {
             appId: config.prod.appid,
-            timestamp: Share.create_timestamp(),
-            nonceStr: Share.create_noncestr(),
-            signature: Share.create_signature(Share.create_noncestr(), signature, Share.create_timestamp(), url),
+            timestamp,
+            nonceStr,
+            signature: Share.create_signature(nonceStr, signature, timestamp, url),
         };
         console.log('body', body, )
         this.body = body;
