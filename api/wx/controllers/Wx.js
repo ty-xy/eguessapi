@@ -180,9 +180,18 @@ module.exports = {
                     // 更新user表
                     console.log('更新user表', option)
                     const wxuserinfo = yield request(`https://www.13cai.com.cn/api/v1/wxuserinfo?${qs.stringify(option)}`);
-                    console.log('更新user表结果', wxuserinfo, qs.stringify(wxuserinfo))
-                    this.sttaus = 302;
-                    this.redirect(`https://www.13cai.com.cn?${qs.stringify(wxuserinfo)}`);
+                    console.log('更新user表结果', wxuserinfo, typeof wxuserinfo);
+                    let info = JSON.parse(wxuserinfo);
+                    console.log('info', info, typeof info);
+                    const obj = {};
+                    if (typeof info === 'object') {
+                        for (let item in info) {
+                            obj[item] = info[item];
+                        }
+                    }
+                    console.log('obj', obj)
+                    this.status = 302;
+                    this.redirect(`https://www.13cai.com.cn?${qs.stringify(obj)}`);
                 } else {
                     this.body = '未知错误，请退出重试';
                 }
