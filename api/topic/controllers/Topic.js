@@ -26,7 +26,7 @@ module.exports = {
         let data = yield _find(this);
         console.log("topic",data,this.query)
         data.forEach((item) => {
-            const time = (item.time + 60 * 60 * 1000) - Date.now();
+            const time = (item.time + 120 * 60 * 1000) - Date.now();
             if(time > 0) {
                 item.second = time;
             } else {
