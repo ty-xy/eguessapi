@@ -101,6 +101,7 @@ const Share = {
     create_signature: function(nocestr, ticket, timestamp, url){  
         var signature = "";  
         // 这里参数的顺序要按照 key 值 ASCII 码升序排序  
+        console.log('hash', nocestr, ticket, timestamp, url)
         var s = "jsapi_ticket=" + ticket + "&noncestr=" + nocestr + "×tamp=" + timestamp + "&url=" + url;  
         return hex_sha1(s);   
     },
@@ -209,6 +210,7 @@ module.exports = {
         let data = JSON.parse(wxuserinfo);
         console.log('wxuserinfo', data, data.access_token);
         const { url } = this.query;
+        console.log('url', url)
         let jsapi_ticket = '';
         if (data.access_token) {
             jsapi_ticket = yield request("https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=" + data.access_token + "&type=jsapi");
@@ -218,13 +220,14 @@ module.exports = {
             }
         }
         // const share = new Share();
+        console.log('time', Share.create_timestamp(), Share.create_noncestr())
         const body = {
             appId: config.prod.appid,
             timestamp: Share.create_timestamp(),
             nonceStr: Share.create_noncestr(),
             signature: Share.create_signature(Share.create_noncestr(), signature, Share.create_timestamp(), url),
         };
-        console.log('body', body)
+        console.log('body', body, )
         this.body = body;
     }
 }
