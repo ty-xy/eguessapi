@@ -98,20 +98,20 @@ function hex_sha1(str) {
 // 分享逻辑
 const Share = {
     // 数据签名   
-    create_signature: function(nocestr, ticket, timestamp, url){  
-        var signature = "";  
+    create_signature: function(signature, nonceStr, timestamp, url){  
         // 这里参数的顺序要按照 key 值 ASCII 码升序排序  
-        var s = "jsapi_ticket=" + ticket + "&noncestr=" + nocestr + "×tamp=" + timestamp + "&url=" + url;  
+        console.log('hash', nonceStr, signature, timestamp, url)
+        var s = "jsapi_ticket=" + signature + "&noncestr=" + nonceStr + "&timestamp=" + timestamp + "&url=" + url;  
         return hex_sha1(s);   
     },
     // 自定义创建随机串 自定义个数0 < ? < 32   
     create_noncestr: function () {  
-                var str= "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";  
-                var val = "";  
-            for (var i = 0; i < 16; i++) {  
-                    val += str.substr(Math.round((Math.random() * 10)), 1);  
-                }  
-        return val;  
+        var str= "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";  
+        var val = "";  
+        for (var i = 0; i < 16; i++) {  
+            val += str.substr(Math.round((Math.random() * 10)), 1);  
+        }  
+        return val;
     },
     // 自定义创建时间戳  
     create_timestamp: function () {  
@@ -203,12 +203,12 @@ module.exports = {
         }
     },
     wechat_share: function * () {
-        let timestamp = '';
         let signature = '';
         const wxuserinfo = yield request("https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=" + config.prod.appid + "&secret=" + config.prod.appsecret);
         let data = JSON.parse(wxuserinfo);
         console.log('wxuserinfo', data, data.access_token);
         const { url } = this.query;
+        console.log('url', url)
         let jsapi_ticket = '';
         if (data.access_token) {
             jsapi_ticket = yield request("https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=" + data.access_token + "&type=jsapi");
@@ -218,13 +218,16 @@ module.exports = {
             }
         }
         // const share = new Share();
+        const timestamp = Share.create_timestamp();
+        const nonceStr = Share.create_noncestr();
+        console.log('time', timestamp, nonceStr)
         const body = {
             appId: config.prod.appid,
-            timestamp: Share.create_timestamp(),
-            nonceStr: Share.create_noncestr(),
-            signature: Share.create_signature(Share.create_noncestr(), signature, Share.create_timestamp(), url),
+            timestamp,
+            nonceStr,
+            signature: Share.create_signature(signature, nonceStr, timestamp, url),
         };
-        console.log('body', body)
+        console.log('body', body, )
         this.body = body;
     }
 }

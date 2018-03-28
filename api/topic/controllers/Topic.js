@@ -21,12 +21,16 @@ module.exports = {
         this.model = model;
         let date = new Date();
         let day = date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate() + ' 23:59:59';
-        let timestamp = new Date(day).getTime();
-        this.request.query.search = JSON.stringify({time: { '$lte': timestamp }, ...this.request.query}); 
+        let timestamp = new Date().getTime();
+        this.request.query.search = JSON.stringify({time: { '$lte': timestamp }, ...this.request.query.search}); 
         let data = yield _find(this);
-        console.log("topic",data,this.query)
+        let countDown = 0;
+        if (data[0] && data[0].time) {
+            countDown = (data[0].time + 120 * 60 * 1000) - Date.now();
+        }
+        console.log('countDown', data[0].time + 120 * 60 * 1000, Date.now(), countDown)
         data.forEach((item) => {
-            const time = (item.time + 60 * 60 * 1000) - Date.now();
+            const time = (item.time + 120 * 60 * 1000) - Date.now();
             if(time > 0) {
                 item.second = time;
             } else {
@@ -34,7 +38,11 @@ module.exports = {
                 item.status = 2;
             }
         });
-        this.body = data;
+        const res = {
+            list: data,
+            countDown,
+        };
+        this.body = res;
         
     } catch (err) {
         this.body = err;
