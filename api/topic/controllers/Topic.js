@@ -22,9 +22,8 @@ module.exports = {
         let date = new Date();
         let day = date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate() + ' 23:59:59';
         let timestamp = new Date().getTime();
-        this.request.query.search = JSON.stringify({time: { '$lte': timestamp }, ...this.request.query}); 
+        this.request.query.search = JSON.stringify({time: { '$lte': timestamp }, ...this.request.query.search}); 
         let data = yield _find(this);
-        console.log("topic",this.query)
         let countDown = 0;
         if (data[0] && data[0].time) {
             countDown = (data[0].time + 120 * 60 * 1000) - Date.now();
