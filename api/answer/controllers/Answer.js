@@ -108,11 +108,9 @@ _find: function * () {
         this.model = model;
         let enrty = yield findAnswer(this);
         let entryData = [];
-        console.log('enrty', enrty)
         for (let i = 0; i < enrty.length; i++) {
             let res = enrty[i].upVotes.filter((item) => (item.id === userid));
             let shoucang = enrty[i].stars.filter((item) => (item.id === userid));
-            console.log('shoucang', res, shoucang)
             if (res.length) {
                 enrty[i].upVote = true;
             } else {
