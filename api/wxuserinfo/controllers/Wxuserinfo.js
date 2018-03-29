@@ -28,7 +28,8 @@ module.exports = {
             console.log('Wxuserinfo是否存在', entry)
             if(entry === undefined){
                 const updataUser={
-                    username:query.nickname,
+                    username: `zg-ty@1${Math.ceil(Math.random()*10000)}3.com`,
+                    nickName: query.nickname,
                     avatarUrl:query.avatarUrl,
                     email:`zg-ty@1${Math.ceil(Math.random()*10000)}3.com`,
                 }
@@ -44,7 +45,8 @@ module.exports = {
                     console.log('Wxuserinfo创建', wxId)
                     if(wxId){
                         const updataUsers ={
-                            username: query.nickname,
+                            username: `zg-ty@1${Math.ceil(Math.random()*10000)}3.com`,
+                            nickName: query.nickname,
                             email:`zg-ty@1${Math.ceil(Math.random()*10000)}3.com`,
                             wxUserInfo:wxId.id,
                         }
