@@ -20,11 +20,12 @@ module.exports = {
       const isOpen =false;
       let entry,wxId;
       let userId;  
-  
+      let userUpdate = {};
         const  query  = this.query;
         // 检查是否有openid
         if(query.openid){
             entry = yield Wxuserinfo.findOne({openid:query.openid})
+            console.log('Wxuserinfo是否存在', entry)
             if(entry === undefined){
                 const updataUser={
                     username:query.nickName,
@@ -32,31 +33,33 @@ module.exports = {
                     email:`zg-ty@1${Math.ceil(Math.random()*10000)}3.com`,
                 }
                 //没有openid的时候创建一个新的user表
-                let  users = yield User.create(updataUser)
+                let users = yield User.create(updataUser)
+                console.log('User创建', entry)
                 if(users){
                     const updateData = {
                         ...query,
                         wxUser:users.id
                     }
                     wxId = yield Wxuserinfo.create(updateData)
+                    console.log('Wxuserinfo创建', wxId)
                     if(wxId){
                         const updataUsers ={
                             username:`zg-ty@1${Math.ceil(Math.random()*10000)}3.com`,
                             email:`zg-ty@1${Math.ceil(Math.random()*10000)}3.com`,
                             wxUserInfo:wxId.id,
                         }
-                        let userUpdate = yield User.update({id:users.id},{...updataUsers})
+                        userUpdate = yield User.update({id:users.id},{...updataUsers})
+                        console.log('user更新', userUpdate)
                     }
                 }
-                this.body = users ;
+                this.body = userUpdate;
             }else{
                 const users =yield Wxuserinfo.update({id:entry.id},{query})
-                console.log("users",users,users.wxUser)
+                console.log("Wxuserinfo存在，则更新user",users, users.wxUser)
                 this.body = users[0];
             }
         }else{
-            let entry = yield strapi.hooks.blueprints.find(this);
-            this.body = entry;
+            this.body = {};
         }
       
     } catch (err) {
