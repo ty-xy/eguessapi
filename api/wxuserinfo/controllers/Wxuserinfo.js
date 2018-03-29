@@ -44,7 +44,7 @@ module.exports = {
                     console.log('Wxuserinfo创建', wxId)
                     if(wxId){
                         const updataUsers ={
-                            username:`zg-ty@1${Math.ceil(Math.random()*10000)}3.com`,
+                            username: query.nickname,
                             email:`zg-ty@1${Math.ceil(Math.random()*10000)}3.com`,
                             wxUserInfo:wxId.id,
                         }
