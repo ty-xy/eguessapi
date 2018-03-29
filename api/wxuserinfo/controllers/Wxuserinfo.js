@@ -54,7 +54,7 @@ module.exports = {
                         console.log('user更新', userUpdate)
                     }
                 }
-                this.body = userUpdate;
+                this.body = userUpdate[0];
             }else{
                 const users =yield Wxuserinfo.update({id:entry.id},{query})
                 console.log("Wxuserinfo存在，则更新user",users, users.wxUser)
