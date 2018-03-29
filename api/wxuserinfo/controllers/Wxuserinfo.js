@@ -56,9 +56,11 @@ module.exports = {
                 }
                 this.body = userUpdate[0];
             }else{
-                const users =yield Wxuserinfo.update({id:entry.id},{query})
+                const users = yield Wxuserinfo.update({id:entry.id},{query})
                 console.log("Wxuserinfo存在，则更新user",users, users.wxUser)
-                this.body = users[0];
+                const _user = yield user.findOne({id: users.wxUser})
+                console.log('_user', _user)
+                this.body = _user;
             }
         }else{
             this.body = {};
