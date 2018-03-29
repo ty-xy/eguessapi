@@ -28,7 +28,7 @@ module.exports = {
             console.log('Wxuserinfo是否存在', entry)
             if(entry === undefined){
                 const updataUser={
-                    username:query.nickName,
+                    username:query.nickname,
                     avatarUrl:query.avatarUrl,
                     email:`zg-ty@1${Math.ceil(Math.random()*10000)}3.com`,
                 }
