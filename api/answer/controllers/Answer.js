@@ -82,6 +82,7 @@ _find: function * () {
     const that = this;
     let isUser = false;
     const userid =  this.request.query.userid;
+    console.log('this.request.query', this.request.query)
     if(!this.request.query.search && userid){
         this._query = {};
         let entry = yield findAnswer(this);
@@ -107,6 +108,7 @@ _find: function * () {
         const { userid } = this.request.query;
         this.model = model;
         let enrty = yield findAnswer(this);
+        console.log('enrty', enrty)        
         let entryData = [];
         for (let i = 0; i < enrty.length; i++) {
             let res = enrty[i].upVotes.filter((item) => (item.id === userid));
