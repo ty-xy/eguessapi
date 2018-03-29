@@ -54,6 +54,7 @@ module.exports = {
         let arr  = [];
         const {userid} = this.query
         let entry = yield strapi.hooks.blueprints.find(this);
+        console.log('findTopic', entry);
         if(entry){
             (entry||[]).forEach((i,index)=>{
                 if(i.stars&&i.stars.length>0){

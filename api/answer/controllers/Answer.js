@@ -160,6 +160,11 @@ _find: function * () {
     this.model = model;
     try {
       let entry = yield strapi.hooks.blueprints.create(this);
+      if (entry.id) {
+        const { messageNum } = entry.topic;
+        entry.topic.messageNum = messageNum + 1;
+        let topic = yield Topic.update({id: entry.topic.id}, { ...entry.topic });
+      }
       this.body = entry;
     } catch (err) {
       this.body = err;
