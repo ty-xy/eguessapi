@@ -165,7 +165,7 @@ _find: function * () {
       if (entry.id) {
         const { messageNum } = entry.topic;
         entry.topic.messageNum = (messageNum || 0) + 1;
-        let topic = yield Topic.update({id: entry.topic.id}, { ...entry.topic });
+        let topic = yield Topic.update({id: entry.topic.id}, { '$set': { messageNum: entry.topic.messageNum } });
       }
       this.body = entry;
     } catch (err) {
