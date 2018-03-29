@@ -173,7 +173,7 @@ module.exports = {
                     const option = {
                         openid: openid,
                         ...userinfo,
-                        nickName: userinfo.nickname,
+                        nickName: userinfo.nickName,
                         avatarUrl: userinfo.headimgurl,
                         gender: userinfo.sex,
                     }
