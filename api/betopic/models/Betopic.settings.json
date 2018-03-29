@@ -1,41 +1,44 @@
 {
-  "identity": "betopic",
-  "connection": "eguessapi",
-  "defaultTemplate": "default",
-  "displayedAttribute": "",
-  "schema": true,
-  "attributes": {
-  "title": {
-    "type": "text"
-  },
-  "classify": {
-    "type": "string"
-  },
-  "status": {
-    "type": "integer"
-  },
-  "lang": {
-    "type": "string",
-    "required": true
-  },
-  "template": {
-    "type": "string",
-    "required": true
-  },
-  "id_ref": {
-    "type": "int"
-  },
-  "createdBy": {
-    "model": "user"
-  },
-  "updatedBy": {
-    "model": "user"
-  },
-  "contributors": {
-    "collection": "user",
-    "via": "betopics"
-  }
-},
-  "autoCreatedAt": true,
-  "autoUpdatedAt": true
+    "identity": "betopic",
+    "connection": "eguessapi",
+    "defaultTemplate": "default",
+    "displayedAttribute": "",
+    "schema": true,
+    "attributes": {
+        "title": {
+            "type": "text"
+        },
+        "classify": {
+            "type": "string"
+        },
+        "status": {
+            "type": "integer"
+        },
+        "chang": {
+            "type": "string"
+        },
+        "lang": {
+            "type": "string",
+            "required": true
+        },
+        "template": {
+            "type": "string",
+            "required": true
+        },
+        "id_ref": {
+            "type": "int"
+        },
+        "createdBy": {
+            "model": "user"
+        },
+        "updatedBy": {
+            "model": "user"
+        },
+        "contributors": {
+            "collection": "user",
+            "via": "betopics"
+        }
+    },
+    "autoCreatedAt": true,
+    "autoUpdatedAt": true
 }
