@@ -162,7 +162,7 @@ _find: function * () {
       let entry = yield strapi.hooks.blueprints.create(this);
       if (entry.id) {
         const { messageNum } = entry.topic;
-        entry.topic.messageNum = messageNum + 1;
+        entry.topic.messageNum = (messageNum || 0) + 1;
         let topic = yield Topic.update({id: entry.topic.id}, { ...entry.topic });
       }
       this.body = entry;
