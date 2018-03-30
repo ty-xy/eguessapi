@@ -68,9 +68,9 @@ rank:  function* (){
         });
         console.log('entry', res, users)
         for (let i in res) {
-            console.log('users[res[i]]', res[i], users[i])
             createdBys.push({ups: res[i], ...users[i]});
         }
+        createdBys = createdBys.sort((x, y) =>(y.ups - x.ups));
     }
     this.body = createdBys
    } catch (err) {
