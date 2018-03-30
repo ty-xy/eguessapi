@@ -115,7 +115,7 @@ module.exports = {
 
   create: function * () {
     this.model = model;
-    console.log("this.query",this.query)
+    console.log("this.query", this.query)
     try {
       let entry = yield strapi.hooks.blueprints.create(this);
       this.body = entry;

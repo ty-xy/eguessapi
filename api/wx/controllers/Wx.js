@@ -9,6 +9,7 @@ const config = require('../wxconfig');
 
 const prefix = 'https://open.weixin.qq.com/';
 const apiprefix = 'https://api.weixin.qq.com/';
+const redirect = 'https://www.13cai.com.cn';
 
 function API(code) {
     this.appid = config.prod.appid;
@@ -126,7 +127,7 @@ module.exports = {
         try {
             const router = 'api/v1/get_wxtoken';
             // 这是编码后的地址
-            const return_uri = config.prod.redirect_uri + router;
+            const return_uri = config.dev.redirect_uri + router;
             // 获取code参数
             const code_params = {
                 appid: config.prod.appid,
@@ -179,7 +180,7 @@ module.exports = {
                     }
                     // 更新user表
                     console.log('更新user表', option)
-                    const wxuserinfo = yield request(`https://www.13cai.com.cn/api/v1/wxuserinfo?${qs.stringify(option)}`);
+                    const wxuserinfo = yield request(`${redirect}/api/v1/wxuserinfo?${qs.stringify(option)}`);
                     console.log('更新user表结果', wxuserinfo, typeof wxuserinfo);
                     let info = JSON.parse(wxuserinfo);
                     const obj = {};
@@ -190,7 +191,7 @@ module.exports = {
                     }
                     console.log('obj', obj)
                     this.status = 302;
-                    this.redirect(`https://www.13cai.com.cn?${qs.stringify(obj)}`);
+                    this.redirect(`${redirect}?${qs.stringify(obj)}`);
                 } else {
                     this.body = '未知错误，请退出重试';
                 }

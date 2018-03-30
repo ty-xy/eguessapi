@@ -111,8 +111,8 @@ _find: function * () {
         console.log('enrty', enrty)        
         let entryData = [];
         for (let i = 0; i < enrty.length; i++) {
-            let res = enrty[i].upVotes.filter((item) => (item.id === userid));
-            let shoucang = enrty[i].stars.filter((item) => (item.id === userid));
+            let res = (enrty[i].upVotes || []).filter((item) => (item.id === userid));
+            let shoucang = (enrty[i].stars || []).filter((item) => (item.id === userid));
             if (res.length) {
                 enrty[i].upVote = true;
             } else {
@@ -125,6 +125,7 @@ _find: function * () {
             }
             entryData.push(enrty[i]);
         }
+        entryData = entryData.sort((x, y) => ((y.upVotes || []).length - (x.upVotes || []).length))
         this.body = entryData;
     } else {
         let entry = yield strapi.hooks.blueprints.find(this);
