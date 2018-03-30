@@ -53,23 +53,24 @@ rank:  function* (){
    try {
     let entry = yield strapi.hooks.blueprints.find(this);
     let createdBys = [];
-    // let entryU = yield _find(this)
-     if(entry){
-       
-        let _obj = {};
-        for (let i = 0; i < entry.length; i++) {
-          if (!_obj[entry[i].createdBy.id]) {
-              entry[i].createdBy.upVotes = entry[i].upVotes.length;
-              _obj[entry[i].createdBy.id] = entry[i].createdBy;
-          } else {
-              _obj[entry[i].createdBy.id].upVotes += entry[i].upVotes.length;
-          }
+    const res = {};
+    const users = {};
+    if(entry){
+        entry.forEach((item) => {
+            if (item.createdBy) {
+                if (res[item.createdBy.id]) {
+                    res[item.createdBy.id] = res[item.createdBy.id] + item.upVotes.length;
+                } else {
+                    res[item.createdBy.id] = item.upVotes.length;
+                    users[item.createdBy.id] = item.createdBy;
+                }
+            }
+        });
+        console.log('entry', res, users)
+        for (let i in res) {
+            createdBys.push({ups: res[i], ...users[i]});
         }
-        for (let item in _obj) {
-          createdBys.push(_obj[item]);
-        }
-        createdBys = createdBys.sort((x, y) => (y.upVotes - x.upVotes));
-       
+        createdBys = createdBys.sort((x, y) =>(y.ups - x.ups));
     }
     this.body = createdBys
    } catch (err) {
@@ -244,23 +245,24 @@ _find: function * () {
             let entry = yield strapi.hooks.blueprints.find(this);
             const { allFriendIds } = this.query;
             let createdBys = [];
-            let _obj = {};
-            for (let i = 0; i < entry.length; i++) {
-                if (entry[i].createdBy && (allFriendIds.indexOf(entry[i].createdBy.id) > -1)) {
-                    if (!_obj[entry[i].createdBy.id]) {
-                        entry[i].createdBy.upVotes = entry[i].upVotes.length;
-                        _obj[entry[i].createdBy.id] = entry[i].createdBy;
+            const res = {};
+            const users = {};
+            entry.forEach((item) => {
+                if (item.createdBy && (allFriendIds.indexOf(item.createdBy.id) > -1)) {
+                    if (res[item.createdBy.id]) {
+                        res[item.createdBy.id] = res[item.createdBy.id] + item.upVotes.length;
                     } else {
-                        _obj[entry[i].createdBy.id].upVotes += entry[i].upVotes.length;
+                        res[item.createdBy.id] = item.upVotes.length;
+                        users[item.createdBy.id] = item.createdBy;
                     }
                 }
+            });
+            console.log('entry', res, users)
+            for (let i in res) {
+                createdBys.push({ups: res[i], ...users[i]});
             }
-    
-            for (let item in _obj) {
-                createdBys.push(_obj[item]);
-            }
-            createdBys = createdBys.sort((x, y) => (y.upVotes - x.upVotes));
-            this.body = { createdBys, _obj };
+            createdBys = createdBys.sort((x, y) =>(y.ups - x.ups));
+            this.body = createdBys
         } catch (err) {
             this.body = err;
         }
