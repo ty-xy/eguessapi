@@ -127,7 +127,7 @@ module.exports = {
         try {
             const router = 'api/v1/get_wxtoken';
             // 这是编码后的地址
-            const return_uri = config.dev.redirect_uri + router;
+            const return_uri = config.prod.redirect_uri + router;
             // 获取code参数
             const code_params = {
                 appid: config.prod.appid,
