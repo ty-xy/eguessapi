@@ -120,7 +120,7 @@ _find: function * () {
             }
             if (shoucang.length) {
                 enrty[i].isStar = true;
-            } else {
+            } else {git 
                 enrty[i].isStar = false;
             }
             entryData.push(enrty[i]);
