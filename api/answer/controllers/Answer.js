@@ -47,7 +47,7 @@ findAnswer: function * () {
                 obj[i.id] = i;
             }
            });
-           this.body = arr;
+           this.body = resArr;
         }else {
             this.body = ""
         }
