@@ -20,15 +20,13 @@ module.exports = {
     try {
         this.model = model;
         let date = new Date();
-        let day = date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate() + ' 23:59:59';
         let timestamp = new Date().getTime();
         this.request.query.search = JSON.stringify({time: { '$lte': timestamp }, ...this.request.query.search}); 
         let data = yield _find(this);
         let countDown = 0;
         if (data[0] && data[0].time) {
-            countDown = (data[0].time + 120 * 60 * 1000) - Date.now();
+            countDown = (data[0].time + 60 * 60 * 1000) - Date.now();
         }
-        console.log('countDown', data[0].time + 120 * 60 * 1000, Date.now(), countDown)
         data.forEach((item) => {
             const time = (item.time + 120 * 60 * 1000) - Date.now();
             if(time > 0) {
