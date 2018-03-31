@@ -194,9 +194,8 @@ _find: function * () {
     try {
       let entry = yield strapi.hooks.blueprints.create(this);
       if (entry.id) {
-        const { messageNum } = entry.topic;
-        entry.topic.messageNum = (messageNum || 0) + 1;
-        let topic = yield Topic.update({id: entry.topic.id}, { '$set': { messageNum: entry.topic.messageNum } });
+        const { messageNum, title, status } = entry.topic;
+        let topic = yield Topic.update({id: entry.topic.id}, { title, status, messageNum: (messageNum || 0) + 1 } );
       }
       this.body = entry;
     } catch (err) {
