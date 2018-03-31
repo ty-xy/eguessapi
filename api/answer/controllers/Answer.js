@@ -160,7 +160,21 @@ _find: function * () {
   findOne: function * () {
     this.model = model;
     try {
-      let entry = yield strapi.hooks.blueprints.findOne(this);
+        let entry = yield strapi.hooks.blueprints.findOne(this);
+        console.log('findOne', entry)
+        const { userid } = this.query;
+        for(let i = 0; i < entry.stars.length; i++) {
+            if (entry.stars[i].id === userid) {
+                entry.isStar = true;
+                break;
+            }
+        }
+        for(let i = 0; i < entry.upVotes.length; i++) {
+            if (entry.upVotes[i].id === userid) {
+                entry.upVote = true;
+                break;
+            }
+        }
       this.body = entry;
     } catch (err) {
       this.body = err;

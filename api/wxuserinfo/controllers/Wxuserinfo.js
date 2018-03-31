@@ -28,10 +28,10 @@ module.exports = {
             console.log('Wxuserinfo是否存在', entry)
             if(entry === undefined){
                 const updataUser={
-                    username: `zg-ty@1${Math.ceil(Math.random()*10000)}3.com`,
+                    username: `${Math.ceil(Math.random()*10000)}@eguess.com`,
                     nickName: query.nickname,
                     avatarUrl:query.avatarUrl,
-                    email:`zg-ty@1${Math.ceil(Math.random()*10000)}3.com`,
+                    email:`${Math.ceil(Math.random()*10000)}@eguess.com`,
                 }
                 //没有openid的时候创建一个新的user表
                 let users = yield User.create(updataUser)
@@ -45,9 +45,9 @@ module.exports = {
                     console.log('Wxuserinfo创建', wxId)
                     if(wxId){
                         const updataUsers ={
-                            username: `zg-ty@1${Math.ceil(Math.random()*10000)}3.com`,
+                            username: `${Math.ceil(Math.random()*10000)}@eguess.com`,
                             nickName: query.nickname,
-                            email:`zg-ty@1${Math.ceil(Math.random()*10000)}3.com`,
+                            email:`${Math.ceil(Math.random()*10000)}@eguess.com`,
                             wxUserInfo:wxId.id,
                         }
                         userUpdate = yield User.update({id:users.id},{...updataUsers})
