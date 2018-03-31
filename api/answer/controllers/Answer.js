@@ -33,7 +33,6 @@ findAnswer: function * () {
         // this._query = {};
         this.model = model;
         let entry = yield findAnswer(this);
-        console.log(entry,"entryfadfafas")
         if(entry){
             entry.forEach((i)=>{
                 if(i.topic !== undefined) 
@@ -47,6 +46,14 @@ findAnswer: function * () {
                 obj[i.id] = i;
             }
            });
+           resArr.forEach((item) => {
+                const time = (item.time + 120 * 60 * 1000) - Date.now();
+                if(time > 0) {
+                    item.second = time;
+                } else {
+                    item.second = 0;
+                }
+            });
            this.body = resArr;
         }else {
             this.body = ""
