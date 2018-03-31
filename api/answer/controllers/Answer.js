@@ -33,7 +33,7 @@ findAnswer: function * () {
         // this._query = {};
         this.model = model;
         let entry = yield findAnswer(this);
-        // console.log(entry,"entryfadfafas")
+        console.log(entry,"entryfadfafas")
         if(entry){
             entry.forEach((i)=>{
                 if(i.topic !== undefined) 
@@ -47,7 +47,7 @@ findAnswer: function * () {
                 obj[i.id] = i;
             }
            });
-           this.body = resArr;
+           this.body = arr;
         }else {
             this.body = ""
         }
