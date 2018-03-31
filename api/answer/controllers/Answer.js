@@ -229,6 +229,11 @@ _find: function * () {
     this.model = model;
     try {
       let entry = yield strapi.hooks.blueprints.destroy(this);
+      if (entry.id) {
+        let topicinfo = yield Topic.findOne({ id: entry.topic });
+        const { messageNum, status, title, id } = topicinfo || {};
+        let topic_ = yield Topic.update({id}, { title, status, messageNum: (messageNum || 0) - 1 } );
+      }
       this.body = entry;
     } catch (err) {
       this.body = err;
