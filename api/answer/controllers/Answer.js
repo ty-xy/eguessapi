@@ -39,8 +39,15 @@ findAnswer: function * () {
                 if(i.topic !== undefined) 
                  arr.push(i.topic)
            })
-           this.body = arr;
-           console.log("this.body",arr)
+           let resArr = [];
+           let obj = {};
+           arr.forEach((i) => {
+            if (!obj[i.id]) {
+                resArr.push(i);
+                obj[i.id] = i;
+            }
+           });
+           this.body = resArr;
         }else {
             this.body = ""
         }
@@ -82,14 +89,13 @@ _find: function * () {
     let arr = [];
     const that = this;
     let isUser = false;
-    const userid =  this.request.query.userid;
+    const { userid, pages } =  this.request.query;
     console.log('this.request.query', this.request.query)
     if(!this.request.query.search && userid){
         this._query = {};
         let entry = yield findAnswer(this);
         if(entry){
             (entry).forEach((i,index)=>{
-               
                 if(i.stars&&i.stars.length>0){
                    i.stars.forEach((item)=>{
                        if(item.id === userid){
@@ -102,7 +108,7 @@ _find: function * () {
             if(isUser){
                 that.body = arr
             }else{
-               that.body =""
+               that.body = [].slice(0, pages)
             }
         }
     } else if (this.request.query.search && this.request.query.userid) {

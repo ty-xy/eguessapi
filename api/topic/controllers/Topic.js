@@ -52,7 +52,7 @@ module.exports = {
         this.model = model;
         let isUser = false;
         let arr  = [];
-        const {userid} = this.query
+        const {userid, pages} = this.query
         let entry = yield strapi.hooks.blueprints.find(this);
         console.log('findTopic', entry);
         if(entry){
@@ -67,9 +67,9 @@ module.exports = {
                 }
             })
             if(!isUser){
-                arr = ""
+                arr = [];
             }
-            this.body = arr;
+            this.body = arr.slice(0, pages);
         }
     },
     dayTopic: function * () {
