@@ -106,9 +106,9 @@ _find: function * () {
                 }
             })
             if(isUser){
-                that.body = arr
+                that.body = arr.slice(0, pages)
             }else{
-               that.body = [].slice(0, pages)
+               that.body = [];
             }
         }
     } else if (this.request.query.search && this.request.query.userid) {
