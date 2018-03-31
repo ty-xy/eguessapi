@@ -163,6 +163,8 @@ _find: function * () {
         let entry = yield strapi.hooks.blueprints.findOne(this);
         console.log('findOne', entry)
         const { userid } = this.query;
+        entry.isStar = false;
+        entry.upVote = false;
         for(let i = 0; i < entry.stars.length; i++) {
             if (entry.stars[i].id === userid) {
                 entry.isStar = true;
