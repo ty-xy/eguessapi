@@ -52,6 +52,7 @@ findAnswer: function * () {
                     item.second = time;
                 } else {
                     item.second = 0;
+                    item.status = 2
                 }
             });
            this.body = resArr;
