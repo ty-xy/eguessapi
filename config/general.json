@@ -8,7 +8,7 @@
     },
     "prefix": "/api/v1",
     "blueprints": {
-        "defaultLimit": 30,
+        "defaultLimit": 10000,
         "populate": true
     },
     "graphql": {
