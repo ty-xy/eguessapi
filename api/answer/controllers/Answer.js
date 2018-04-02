@@ -309,7 +309,9 @@ _find: function * () {
             let data = yield strapi.hooks.blueprints.find(this);
             let entry = [];
             for (let i = 0; i < data.length; i++) {
-                if (data[i].topic.id === topicid) {
+                console.log('for', data[i].topic, topicid)
+                if ((data[i].topic && data[i].topic.id) == topicid) {
+                    console.log('======', data[i].topic.id, topicid)
                     data[i].upVoteLen = data[i].upVotes.length;
                     data[i].upVotes = [];
                     entry.push(data[i]);
