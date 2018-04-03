@@ -37,7 +37,7 @@ module.exports = {
                 }
                 const option= {
                     method:'post',
-                    uri:"http://localhost:1337/api/v1/auth/local/register",
+                    uri:"https://www.13cai.com.cn/api/v1/auth/local/register",
                     body:updataUser,
                     headers:{
                         "Content-Type":"application/json"
