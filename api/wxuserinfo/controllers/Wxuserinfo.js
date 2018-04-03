@@ -50,6 +50,7 @@ module.exports = {
                             email:`${Math.ceil(Math.random()*10000)}@eguess.com`,
                             wxUserInfo:wxId.id,
                         }
+
                         userUpdate = yield User.update({id:users.id},{...updataUsers})
                         console.log('user更新', userUpdate)
                     }
@@ -59,6 +60,7 @@ module.exports = {
                 const users = yield Wxuserinfo.update({id:entry.id},{query})
                 console.log("Wxuserinfo存在，则更新user",users, users.wxUser)
                 const _user = yield User.findOne({id: (users[0] && users[0].wxUser)})
+                const _auth = yield Auth.callback({})
                 console.log('_user', _user)
                 this.body = _user;
             }
