@@ -1,7 +1,7 @@
 'use strict';
 
 const model = 'wxuserinfo';
-
+const rp = require('request-promise');
 /**
  * A set of functions called "actions" for `Wxuserinfo`
  */
@@ -32,10 +32,23 @@ module.exports = {
                     nickName: query.nickname,
                     avatarUrl:query.avatarUrl,
                     email:`${Math.ceil(Math.random()*10000)}@eguess.com`,
+                    password: "zg13cai",
+                    roles:[2]
                 }
+                const option= {
+                    method:'post',
+                    uri:"http://localhost:1337/api/v1/auth/local/register",
+                    body:updataUser,
+                    headers:{
+                        "Content-Type":"application/json"
+                    },
+                    json: true
+                };
+                // const y =yield rp(option)
+                // console.log(y,"yyyyyy")
                 //没有openid的时候创建一个新的user表
-                let users = yield User.create(updataUser)
-                console.log('User创建', entry)
+                let  users = yield rp(option)
+                console.log('User创建', users)
                 if(users){
                     const updateData = {
                         ...query,
@@ -50,7 +63,6 @@ module.exports = {
                             email:`${Math.ceil(Math.random()*10000)}@eguess.com`,
                             wxUserInfo:wxId.id,
                         }
-
                         userUpdate = yield User.update({id:users.id},{...updataUsers})
                         console.log('user更新', userUpdate)
                     }
@@ -60,8 +72,6 @@ module.exports = {
                 const users = yield Wxuserinfo.update({id:entry.id},{query})
                 console.log("Wxuserinfo存在，则更新user",users, users.wxUser)
                 const _user = yield User.findOne({id: (users[0] && users[0].wxUser)})
-                const _auth = yield Auth.callback({})
-                console.log('_user', _user)
                 this.body = _user;
             }
         }else{

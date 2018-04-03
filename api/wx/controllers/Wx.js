@@ -182,16 +182,38 @@ module.exports = {
                     console.log('更新user表', option)
                     const wxuserinfo = yield request(`${redirect}/api/v1/wxuserinfo?${qs.stringify(option)}`);
                     console.log('更新user表结果', wxuserinfo, typeof wxuserinfo);
-                    let info = JSON.parse(wxuserinfo);
-                    const obj = {};
-                    if (typeof info === 'object') {
-                        for (let item in info) {
-                            obj[item] = info[item];
+                    if(wxuserinfo){
+                        const data= {
+                            identifier: wxuserinfo.email, 
+                            password: "zg13cai"
                         }
-                    }
-                    console.log('obj', obj)
-                    this.status = 302;
-                    this.redirect(`${redirect}?${qs.stringify(obj)}`);
+                        const options= {
+                            method:'post',
+                            // uri:"http://localhost:1337/api/v1/auth/local",
+                            uri:redirect+"/api/vi/auth/local",
+                            body:data,
+                            headers:{
+                                "Content-Type":"application/json"
+                            },
+                            json: true
+                        };
+                       const token =  yield request(options)
+                  
+                        let info = JSON.parse(wxuserinfo);
+                        const obj = {};
+                        if (typeof info === 'object') {
+                            for (let item in info) {
+                                obj[item] = info[item];
+                            }
+                        }
+                        console.log('obj', obj)
+                        this.status = 302;
+                        if(token){
+                            obj.token = token.jwt 
+                            this.redirect(`${redirect}?${qs.stringify(obj)}`);
+                        }
+                       
+                  }
                 } else {
                     this.body = '未知错误，请退出重试';
                 }
