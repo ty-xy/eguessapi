@@ -52,6 +52,7 @@ findAnswer: function * () {
                     item.second = time;
                 } else {
                     item.second = 0;
+                    item.status = 2
                 }
             });
            this.body = resArr;
@@ -308,7 +309,7 @@ _find: function * () {
             let data = yield strapi.hooks.blueprints.find(this);
             let entry = [];
             for (let i = 0; i < data.length; i++) {
-                if (data[i].topic.id === topicid) {
+                if ((data[i].topic && data[i].topic.id) == topicid) {
                     data[i].upVoteLen = data[i].upVotes.length;
                     data[i].upVotes = [];
                     entry.push(data[i]);
