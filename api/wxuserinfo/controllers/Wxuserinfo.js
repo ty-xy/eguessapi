@@ -1,10 +1,14 @@
 'use strict';
 
 const model = 'wxuserinfo';
-
+const rp = require('request-promise');
+const _ = require('lodash');
+// Public node modules.
+const anchor = require('anchor');
 /**
  * A set of functions called "actions" for `Wxuserinfo`
  */
+
 
 module.exports = {
 
@@ -30,17 +34,22 @@ module.exports = {
                 const updataUser={
                     username: `${Math.ceil(Math.random()*10000)}@eguess.com`,
                     nickName: query.nickname,
-                    avatarUrl:query.avatarUrl,
+                    avatarUrl: query.avatarUrl,
                     email:`${Math.ceil(Math.random()*10000)}@eguess.com`,
+                    password: "zg13cai",
                 }
-                //没有openid的时候创建一个新的user表
-                let users = yield User.create(updataUser)
-                console.log('User创建', entry)
-                if(users){
+                let user = yield User.create(updataUser);
+                const roles = yield Role.find();
+                user.roles.add(_.find(roles, {name: 'personal'}));
+                
+                // Prevent double encryption.
+                user = yield user.save();
+                console.log('User创建', user)
+                if(user){
                     const updateData = {
                         ...query,
-                        wxUser:users.id
-                    }
+                        wxUser: user.id
+                    };
                     wxId = yield Wxuserinfo.create(updateData)
                     console.log('Wxuserinfo创建', wxId)
                     if(wxId){
@@ -50,16 +59,15 @@ module.exports = {
                             email:`${Math.ceil(Math.random()*10000)}@eguess.com`,
                             wxUserInfo:wxId.id,
                         }
-                        userUpdate = yield User.update({id:users.id},{...updataUsers})
+                        userUpdate = yield User.update({id: user.id},{...updataUsers})
                         console.log('user更新', userUpdate)
                     }
                 }
                 this.body = userUpdate[0];
             }else{
                 const users = yield Wxuserinfo.update({id:entry.id},{query})
-                console.log("Wxuserinfo存在，则更新user",users, users.wxUser)
+                console.log("Wxuserinfo存在，则更新user",users)
                 const _user = yield User.findOne({id: (users[0] && users[0].wxUser)})
-                console.log('_user', _user)
                 this.body = _user;
             }
         }else{

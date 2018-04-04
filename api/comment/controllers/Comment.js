@@ -1,4 +1,5 @@
 'use strict';
+const request = require('request-promise');
 const _find = require('../../../utils/query');
 const Baidu = require('../../../utils/baidu');
 

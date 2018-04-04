@@ -28,7 +28,7 @@ module.exports = {
     const provider = ctx.params.provider || 'local';
     const params = ctx.request.body;
     const access_token = ctx.query.access_token;
-
+    console.log(ctx.request.body,"ctx.request.body")
     if (provider === 'local') {
       // The identifier is required.
       if (!params.identifier) {

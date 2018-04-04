@@ -4,6 +4,7 @@ const request = require('request-promise');
 const qs = require('querystring');
 const fs = require('fs');
 const crypto = require('crypto');
+const anchor = require('anchor');
 
 const config = require('../wxconfig');
 
@@ -179,19 +180,65 @@ module.exports = {
                         gender: userinfo.sex,
                     }
                     // 更新user表
-                    console.log('更新user表', option)
                     const wxuserinfo = yield request(`${redirect}/api/v1/wxuserinfo?${qs.stringify(option)}`);
-                    console.log('更新user表结果', wxuserinfo, typeof wxuserinfo);
                     let info = JSON.parse(wxuserinfo);
-                    const obj = {};
-                    if (typeof info === 'object') {
-                        for (let item in info) {
-                            obj[item] = info[item];
+                    let redirectQuery = {};
+                    const redirectInfo = {};
+                    console.log('info', info, typeof info);
+                    if(info.id){
+                        const params = {
+                            identifier: info.email, 
+                            password: "zg13cai"
                         }
+                        if (!params.identifier) {
+                            this.status = 400;
+                            redirectInfo.message = 'Please provide your username or your e-mail.'
+                            return this.body = '未知错误';
+                          }
+                          console.log('params', params);
+                          // The password is required.
+                          if (!params.password) {
+                            this.status = 400;
+                            redirectInfo.message = 'Please provide your password.'
+                            return this.body = '未知错误';
+                          }
+                    
+                          const query = {};
+                    
+                          // Check if the provided identifier is an email or not.
+                          const isEmail = !anchor(params.identifier).to({
+                            type: 'email'
+                          });
+                    
+                          // Set the identifier to the appropriate query field.
+                          if (isEmail) {
+                            query.email = params.identifier;
+                          } else {
+                            query.username = params.identifier;
+                          }
+                          try {
+                            const user = yield User.findOne(query);
+                            if (user) {
+                                console.log('user', user)
+                                this.status = 302;
+                                // if (typeof user === 'object') {
+                                //       for (let item in user) {
+                                //           redirectQuery[item] = info[item];
+                                //       }
+                                // }
+                                redirectQuery = user;
+                                console.log('redirectQuery', redirectQuery)
+                                redirectQuery.jwt = strapi.api.user.services.jwt.issue(user);
+                                return this.redirect(`${redirect}?${qs.stringify(redirectQuery)}`);
+                            }
+                            return this.body = "获取信息错误， 请重新打开";
+                          } catch (err) {
+                            this.status = 500;
+                            return this.body = err.message;
+                        }
+                    } else {
+                        this.body = '未知错误';
                     }
-                    console.log('obj', obj)
-                    this.status = 302;
-                    this.redirect(`${redirect}?${qs.stringify(obj)}`);
                 } else {
                     this.body = '未知错误，请退出重试';
                 }
