@@ -39,17 +39,16 @@ module.exports = {
                     password: "zg13cai",
                 }
                 let user = yield User.create(updataUser);
+                const roles = yield Role.find();
                 user.roles.add(_.find(roles, {name: 'personal'}));
                 
                 // Prevent double encryption.
-                delete user.password;
                 user = yield user.save();
-                
                 console.log('User创建', user)
-                if(users){
+                if(user){
                     const updateData = {
                         ...query,
-                        wxUser:users.user.id
+                        wxUser: user.id
                     };
                     wxId = yield Wxuserinfo.create(updateData)
                     console.log('Wxuserinfo创建', wxId)
@@ -60,7 +59,7 @@ module.exports = {
                             email:`${Math.ceil(Math.random()*10000)}@eguess.com`,
                             wxUserInfo:wxId.id,
                         }
-                        userUpdate = yield User.update({id:users.user.id},{...updataUsers})
+                        userUpdate = yield User.update({id: user.id},{...updataUsers})
                         console.log('user更新', userUpdate)
                     }
                 }
