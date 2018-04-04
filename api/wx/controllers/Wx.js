@@ -181,10 +181,10 @@ module.exports = {
                     // 更新user表
                     console.log('更新user表', option)
                     const wxuserinfo = yield request(`${redirect}/api/v1/wxuserinfo?${qs.stringify(option)}`);
-                    console.log('更新user表结果', wxuserinfo, typeof wxuserinfo);
                     let info = JSON.parse(wxuserinfo);
                     const redirectQuery = {};
                     const redirectInfo = {};
+                    console.log('info', info, typeof info);
                     if(info){
                         const params= {
                             identifier: info.email, 
@@ -216,11 +216,11 @@ module.exports = {
                           } else {
                             query.username = params.identifier;
                           }
-                    
+                          console.log('query', query)
                           // Check if the user exists.
                           try {
                             const user = yield User.findOne(query);
-                    
+                            console.log('findone', user)
                             if (!user) {
                                 this.status = 403;
                                 redirectInfo.message = 'Identifier or password invalid.'
@@ -235,7 +235,7 @@ module.exports = {
                             }
                     
                             const validPassword = user.validatePassword(params.password);
-                    
+                            console.log('validPassword', validPassword)
                             if (!validPassword) {
                               this.status = 403;
                               redirectInfo.message = 'Identifier or password invalid.'
@@ -259,7 +259,9 @@ module.exports = {
                         // console.log('redirectQuery', redirectQuery)
                         // this.status = 302;
                         // this.redirect(`${redirect}?${qs.stringify(redirectQuery)}`);
-                  }
+                    } else {
+                        this.body = '未知错误';
+                    }
                 } else {
                     this.body = '未知错误，请退出重试';
                 }
