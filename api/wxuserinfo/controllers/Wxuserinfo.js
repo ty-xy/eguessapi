@@ -65,6 +65,21 @@ module.exports = {
                         }
                         userUpdate = yield User.update({id:users.id},{...updataUsers})
                         console.log('user更新', userUpdate)
+                        const _data= {
+                            identifier: userUpdate[0].email, 
+                            password: "zg13cai"
+                        }
+                        const options= {
+                            method:'POST',
+                            uri: "https://www.13cai.com.cn/api/vi/auth/local",
+                            body: _data,
+                            headers:{
+                                "Content-Type": "application/json",
+                            },
+                            json: true
+                        };
+                        const token = yield request(options);
+                        console.log('token', token)
                     }
                 }
                 this.body = userUpdate[0];
@@ -72,6 +87,22 @@ module.exports = {
                 const users = yield Wxuserinfo.update({id:entry.id},{query})
                 console.log("Wxuserinfo存在，则更新user",users, users.wxUser)
                 const _user = yield User.findOne({id: (users[0] && users[0].wxUser)})
+                const _data= {
+                    identifier: _user.email, 
+                    password: "zg13cai"
+                }
+                const options= {
+                    method:'POST',
+                    uri: "https://www.13cai.com.cn/api/vi/auth/local",
+                    body: _data,
+                    headers:{
+                        "Content-Type": "application/json",
+                    },
+                    json: true
+                };
+                const token = yield request(options);
+                console.log('token', token)
+
                 this.body = _user;
             }
         }else{
