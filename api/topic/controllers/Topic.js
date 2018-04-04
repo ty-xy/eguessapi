@@ -3,6 +3,8 @@ const qs = require('querystring');
 const _find = require('../../../utils/query');
 const model = 'topic';
 
+const Baidu = require('../../../utils/baidu');
+
 /**
  * A set of functions called "actions" for `Topic`
  */

@@ -1,5 +1,6 @@
 'use strict';
 const _find = require('../../../utils/query');
+const Baidu = require('../../../utils/baidu');
 
 const model = 'comment';
 
@@ -54,8 +55,17 @@ module.exports = {
   create: function * () {
     this.model = model;
     try {
-      let entry = yield strapi.hooks.blueprints.create(this);
-      this.body = entry;
+        let entry = [];
+        const baidu = new Baidu();
+        const { body } = this.request.body;
+        const token_baidu = yield baidu.validate(body);
+        if (token_baidu.code !== 200) {
+            this.status = 505;
+            entry = token_baidu;
+        } else {
+            entry = yield strapi.hooks.blueprints.create(this);
+        }
+        this.body = entry;
     } catch (err) {
       this.body = err;
     }
