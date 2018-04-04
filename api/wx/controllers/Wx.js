@@ -183,7 +183,7 @@ module.exports = {
                     console.log('更新user表', option)
                     const wxuserinfo = yield request(`${redirect}/api/v1/wxuserinfo?${qs.stringify(option)}`);
                     let info = JSON.parse(wxuserinfo);
-                    const redirectQuery = {};
+                    let redirectQuery = {};
                     const redirectInfo = {};
                     console.log('info', info, typeof info);
                     if(info.id){
