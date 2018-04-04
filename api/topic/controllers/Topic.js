@@ -24,9 +24,6 @@ module.exports = {
         let date = new Date();
         let timestamp = new Date().getTime();
         this.request.query.search = JSON.stringify({time: { '$lte': timestamp }, ...this.request.query.search}); 
-        const baidu = new Baidu();
-        const token_baidu = yield baidu.validate('薄熙来， 习大大');
-        console.log('totoken_baidupic', token_baidu)
         let data = yield _find(this);
         let countDown = 0;
         if (data[0] && data[0].time) {

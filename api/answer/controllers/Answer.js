@@ -1,5 +1,6 @@
 'use strict';
 const findAnswer = require('../../../utils/query');
+const Baidu = require('../../../utils/baidu');
 
 const model = 'answer';
 
@@ -193,15 +194,24 @@ _find: function * () {
   create: function * () {
     this.model = model;
     try {
-      let entry = yield strapi.hooks.blueprints.create(this);
-      if (entry.id) {
-        const { messageNum, title, status } = entry.topic;
-        let topic = yield Topic.update({id: entry.topic.id}, { title, status, messageNum: (messageNum || 0) + 1 } );
-      }
-      this.body = entry;
+        let entry = [];
+        const baidu = new Baidu();
+        const { body } = this.request.body;
+        const token_baidu = yield baidu.validate(body);
+        if (token_baidu.code !== 200) {
+            this.status = 505;
+            entry = token_baidu;
+        } else {
+            entry = yield strapi.hooks.blueprints.create(this);
+        }
+        if (entry.id) {
+            const { messageNum, title, status } = entry.topic;
+            let topic = yield Topic.update({id: entry.topic.id}, { title, status, messageNum: (messageNum || 0) + 1 } );
+        }
+        this.body = entry;
     } catch (err) {
-      this.body = err;
-    }
+        this.body = err;
+        }
   },
 
   /**

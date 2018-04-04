@@ -57,7 +57,7 @@ Baidu.prototype = {
     // 校验文本
     validate: function * (content) {
         const { access_token } = yield this.ensureAccessToken();
-        console.log('access_token', access_token);
+        console.log('baidu_access_token', access_token);
         const params = {
             access_token,
             command_no: '500071',
@@ -75,7 +75,7 @@ Baidu.prototype = {
         validate_res = JSON.parse(validate_res);
         const { errno, result } = validate_res;
         let res = {
-            code: 0,
+            code: 200,
             word: '',
             hit: '',
             spam: '',
