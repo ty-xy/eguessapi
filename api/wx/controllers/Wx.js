@@ -4,6 +4,7 @@ const request = require('request-promise');
 const qs = require('querystring');
 const fs = require('fs');
 const crypto = require('crypto');
+const anchor = require('anchor');
 
 const config = require('../wxconfig');
 
@@ -185,8 +186,8 @@ module.exports = {
                     const redirectQuery = {};
                     const redirectInfo = {};
                     console.log('info', info, typeof info);
-                    if(info){
-                        const params= {
+                    if(info.id){
+                        const params = {
                             identifier: info.email, 
                             password: "zg13cai"
                         }
@@ -195,7 +196,7 @@ module.exports = {
                             redirectInfo.message = 'Please provide your username or your e-mail.'
                             return this.body = '未知错误';
                           }
-                    
+                          console.log('params', params);
                           // The password is required.
                           if (!params.password) {
                             this.status = 400;
