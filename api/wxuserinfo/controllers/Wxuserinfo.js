@@ -2,6 +2,7 @@
 
 const model = 'wxuserinfo';
 const rp = require('request-promise');
+const _ = require('lodash');
 // Public node modules.
 const anchor = require('anchor');
 /**
