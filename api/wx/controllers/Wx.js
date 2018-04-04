@@ -217,50 +217,26 @@ module.exports = {
                           } else {
                             query.username = params.identifier;
                           }
-                          console.log('query', query)
-                          // Check if the user exists.
                           try {
                             const user = yield User.findOne(query);
-                            console.log('findone', user)
-                            // if (!user.id) {
-                            //     this.status = 403;
-                            //     redirectInfo.message = 'Identifier or password invalid.'
-                            //     return this.body = '未知错误';
-                            // }
-                    
-                            // // The user never registered with the `local` provider.
-                            // if (!user.password) {
-                            //     this.status = 400;
-                            //     redirectInfo.message = 'This user never set a local password, please login thanks to the provider used during account creation.'
-                            //     return this.body = '未知错误';
-                            // }
-                    
-                            // const validPassword = user.validatePassword(params.password);
-                            // console.log('validPassword', validPassword)
-                            // if (!validPassword) {
-                            //   this.status = 403;
-                            //   redirectInfo.message = 'Identifier or password invalid.'
-                            //   return this.body = '未知错误';
-                            // } else {
+                            if (user) {
                                 console.log('user', user)
-                              this.status = 302;
-                              if (typeof user === 'object') {
-                                    for (let item in user) {
-                                        redirectQuery[item] = info[item];
-                                    }
-                              }
-                              console.log('redirectQuery', redirectQuery)
-                              redirectQuery.jwt = strapi.api.user.services.jwt.issue(user)
-                              return this.redirect(`${redirect}?${qs.stringify(redirectQuery)}`);
-                            // }
+                                this.status = 302;
+                                // if (typeof user === 'object') {
+                                //       for (let item in user) {
+                                //           redirectQuery[item] = info[item];
+                                //       }
+                                // }
+                                redirectQuery = user;
+                                console.log('redirectQuery', redirectQuery)
+                                redirectQuery.jwt = strapi.api.user.services.jwt.issue(user);
+                                return this.redirect(`${redirect}?${qs.stringify(redirectQuery)}`);
+                            }
+                            return this.body = "获取信息错误， 请重新打开";
                           } catch (err) {
                             this.status = 500;
                             return this.body = err.message;
                         }
-                        
-                        // console.log('redirectQuery', redirectQuery)
-                        // this.status = 302;
-                        // this.redirect(`${redirect}?${qs.stringify(redirectQuery)}`);
                     } else {
                         this.body = '未知错误';
                     }
