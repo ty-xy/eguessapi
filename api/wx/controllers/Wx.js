@@ -183,6 +183,8 @@ module.exports = {
                     const wxuserinfo = yield request(`${redirect}/api/v1/wxuserinfo?${qs.stringify(option)}`);
                     console.log('更新user表结果', wxuserinfo, typeof wxuserinfo);
                     let info = JSON.parse(wxuserinfo);
+                    const redirectQuery = {};
+                    const redirectInfo = {};
                     if(info){
                         const params= {
                             identifier: info.email, 
@@ -190,17 +192,15 @@ module.exports = {
                         }
                         if (!params.identifier) {
                             this.status = 400;
-                            return this.body = {
-                              message: 'Please provide your username or your e-mail.'
-                            };
+                            redirectInfo.message = 'Please provide your username or your e-mail.'
+                            return this.body = '未知错误';
                           }
                     
                           // The password is required.
                           if (!params.password) {
                             this.status = 400;
-                            return this.body = {
-                              message: 'Please provide your password.'
-                            };
+                            redirectInfo.message = 'Please provide your password.'
+                            return this.body = '未知错误';
                           }
                     
                           const query = {};
@@ -222,49 +222,42 @@ module.exports = {
                             const user = yield User.findOne(query);
                     
                             if (!user) {
-                              this.status = 403;
-                              return this.body = {
-                                message: 'Identifier or password invalid.'
-                              };
+                                this.status = 403;
+                                redirectInfo.message = 'Identifier or password invalid.'
+                                return this.body = '未知错误';
                             }
                     
                             // The user never registered with the `local` provider.
                             if (!user.password) {
-                              this.status = 400;
-                              return this.body = {
-                                message: 'This user never set a local password, please login thanks to the provider used during account creation.'
-                              };
+                                this.status = 400;
+                                redirectInfo.message = 'This user never set a local password, please login thanks to the provider used during account creation.'
+                                return this.body = '未知错误';
                             }
                     
                             const validPassword = user.validatePassword(params.password);
                     
                             if (!validPassword) {
                               this.status = 403;
-                              return this.body = {
-                                message: 'Identifier or password invalid.'
-                              };
+                              redirectInfo.message = 'Identifier or password invalid.'
+                              return this.body = '未知错误';
                             } else {
-                              this.status = 200;
-                              this.body = {
-                                jwt: strapi.api.user.services.jwt.issue(user),
-                                user: user
-                              };
+                              this.status = 302;
+                              if (typeof user === 'object') {
+                                    for (let item in user) {
+                                        redirectQuery[item] = info[item];
+                                    }
+                              }
+                              redirectQuery.jwt = strapi.api.user.services.jwt.issue(user)
+                              return this.redirect(`${redirect}?${qs.stringify(redirectQuery)}`);
                             }
                           } catch (err) {
                             this.status = 500;
-                            return this.body = {
-                              message: err.message
-                            };
+                            return this.body = err.message;
                         }
-                        const obj = {};
-                        if (typeof info === 'object') {
-                            for (let item in info) {
-                                obj[item] = info[item];
-                            }
-                        }
-                        console.log('obj', obj)
-                        this.status = 302;
-                        this.redirect(`${redirect}?${qs.stringify(obj)}`);
+                        
+                        // console.log('redirectQuery', redirectQuery)
+                        // this.status = 302;
+                        // this.redirect(`${redirect}?${qs.stringify(redirectQuery)}`);
                   }
                 } else {
                     this.body = '未知错误，请退出重试';
