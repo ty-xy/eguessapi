@@ -222,18 +222,18 @@ module.exports = {
                           try {
                             const user = yield User.findOne(query);
                             console.log('findone', user)
-                            if (!user.id) {
-                                this.status = 403;
-                                redirectInfo.message = 'Identifier or password invalid.'
-                                return this.body = '未知错误';
-                            }
+                            // if (!user.id) {
+                            //     this.status = 403;
+                            //     redirectInfo.message = 'Identifier or password invalid.'
+                            //     return this.body = '未知错误';
+                            // }
                     
-                            // The user never registered with the `local` provider.
-                            if (!user.password) {
-                                this.status = 400;
-                                redirectInfo.message = 'This user never set a local password, please login thanks to the provider used during account creation.'
-                                return this.body = '未知错误';
-                            }
+                            // // The user never registered with the `local` provider.
+                            // if (!user.password) {
+                            //     this.status = 400;
+                            //     redirectInfo.message = 'This user never set a local password, please login thanks to the provider used during account creation.'
+                            //     return this.body = '未知错误';
+                            // }
                     
                             // const validPassword = user.validatePassword(params.password);
                             // console.log('validPassword', validPassword)
@@ -242,6 +242,7 @@ module.exports = {
                             //   redirectInfo.message = 'Identifier or password invalid.'
                             //   return this.body = '未知错误';
                             // } else {
+                                console.log('user', user)
                               this.status = 302;
                               if (typeof user === 'object') {
                                     for (let item in user) {
