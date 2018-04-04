@@ -583,7 +583,7 @@
         ],
         "controller": "User",
         "action": "find",
-        "isPublic": false,
+        "isPublic": true,
         "registeredAuthorized": true,
         "contributorsAuthorized": false,
         "id": 36,

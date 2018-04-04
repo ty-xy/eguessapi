@@ -40,7 +40,7 @@ module.exports = {
                 }
                 const option= {
                     method:'post',
-                    uri:"auth/local/register",
+                    uri:"https://www.13cai.com.cn/auth/local/register",
                     body:updataUser,
                     headers:{
                         "Content-Type":"application/json"
@@ -56,7 +56,7 @@ module.exports = {
                     const updateData = {
                         ...query,
                         wxUser:users.user.id
-                    }
+                    };
                     wxId = yield Wxuserinfo.create(updateData)
                     console.log('Wxuserinfo创建', wxId)
                     if(wxId){
