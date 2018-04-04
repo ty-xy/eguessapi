@@ -182,24 +182,80 @@ module.exports = {
                     console.log('更新user表', option)
                     const wxuserinfo = yield request(`${redirect}/api/v1/wxuserinfo?${qs.stringify(option)}`);
                     console.log('更新user表结果', wxuserinfo, typeof wxuserinfo);
-                    if(wxuserinfo){
-                    //     const data= {
-                    //         identifier: wxuserinfo.email, 
-                    //         password: "zg13cai"
-                    //     }
-                    //     const options= {
-                    //         method:'post',
-                    //         // uri:"http://localhost:1337/api/v1/auth/local",
-                    //         uri:redirect+"/api/vi/auth/local",
-                    //         body:data,
-                    //         headers:{
-                    //             "Content-Type":"application/json"
-                    //         },
-                    //         json: true
-                    //     };
-                    //    const token =  yield request(options)
-                  
-                        let info = JSON.parse(wxuserinfo);
+                    let info = JSON.parse(wxuserinfo);
+                    if(info){
+                        const params= {
+                            identifier: info.email, 
+                            password: "zg13cai"
+                        }
+                        if (!params.identifier) {
+                            this.status = 400;
+                            return this.body = {
+                              message: 'Please provide your username or your e-mail.'
+                            };
+                          }
+                    
+                          // The password is required.
+                          if (!params.password) {
+                            this.status = 400;
+                            return this.body = {
+                              message: 'Please provide your password.'
+                            };
+                          }
+                    
+                          const query = {};
+                    
+                          // Check if the provided identifier is an email or not.
+                          const isEmail = !anchor(params.identifier).to({
+                            type: 'email'
+                          });
+                    
+                          // Set the identifier to the appropriate query field.
+                          if (isEmail) {
+                            query.email = params.identifier;
+                          } else {
+                            query.username = params.identifier;
+                          }
+                    
+                          // Check if the user exists.
+                          try {
+                            const user = yield User.findOne(query);
+                    
+                            if (!user) {
+                              this.status = 403;
+                              return this.body = {
+                                message: 'Identifier or password invalid.'
+                              };
+                            }
+                    
+                            // The user never registered with the `local` provider.
+                            if (!user.password) {
+                              this.status = 400;
+                              return this.body = {
+                                message: 'This user never set a local password, please login thanks to the provider used during account creation.'
+                              };
+                            }
+                    
+                            const validPassword = user.validatePassword(params.password);
+                    
+                            if (!validPassword) {
+                              this.status = 403;
+                              return this.body = {
+                                message: 'Identifier or password invalid.'
+                              };
+                            } else {
+                              this.status = 200;
+                              this.body = {
+                                jwt: strapi.api.user.services.jwt.issue(user),
+                                user: user
+                              };
+                            }
+                          } catch (err) {
+                            this.status = 500;
+                            return this.body = {
+                              message: err.message
+                            };
+                        }
                         const obj = {};
                         if (typeof info === 'object') {
                             for (let item in info) {
@@ -209,11 +265,6 @@ module.exports = {
                         console.log('obj', obj)
                         this.status = 302;
                         this.redirect(`${redirect}?${qs.stringify(obj)}`);
-                        // if(token){
-                        //     obj.token = token.jwt 
-                        //     this.redirect(`${redirect}?${qs.stringify(obj)}`);
-                        // }
-                       
                   }
                 } else {
                     this.body = '未知错误，请退出重试';

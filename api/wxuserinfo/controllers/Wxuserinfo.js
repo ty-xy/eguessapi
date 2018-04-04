@@ -2,9 +2,12 @@
 
 const model = 'wxuserinfo';
 const rp = require('request-promise');
+// Public node modules.
+const anchor = require('anchor');
 /**
  * A set of functions called "actions" for `Wxuserinfo`
  */
+
 
 module.exports = {
 
@@ -30,14 +33,14 @@ module.exports = {
                 const updataUser={
                     username: `${Math.ceil(Math.random()*10000)}@eguess.com`,
                     nickName: query.nickname,
-                    avatarUrl:query.avatarUrl,
+                    avatarUrl: query.avatarUrl,
                     email:`${Math.ceil(Math.random()*10000)}@eguess.com`,
                     password: "zg13cai",
                     roles:[2]
                 }
                 const option= {
                     method:'post',
-                    uri:"https://www.13cai.com.cn/api/v1/auth/local/register",
+                    uri:"auth/local/register",
                     body:updataUser,
                     headers:{
                         "Content-Type":"application/json"
@@ -65,44 +68,13 @@ module.exports = {
                         }
                         userUpdate = yield User.update({id:users.user.id},{...updataUsers})
                         console.log('user更新', userUpdate)
-                        const _data= {
-                            identifier: userUpdate[0].email, 
-                            password: "zg13cai"
-                        }
-                        const options= {
-                            method:'POST',
-                            uri: "https://www.13cai.com.cn/api/vi/auth/local",
-                            body: _data,
-                            headers:{
-                                "Content-Type": "application/json",
-                            },
-                            json: true
-                        };
-                        const token = yield request(options);
-                        console.log('token', token)
                     }
                 }
                 this.body = userUpdate[0];
             }else{
                 const users = yield Wxuserinfo.update({id:entry.id},{query})
-                console.log("Wxuserinfo存在，则更新user",users, users.wxUser)
+                console.log("Wxuserinfo存在，则更新user",users)
                 const _user = yield User.findOne({id: (users[0] && users[0].wxUser)})
-                const _data= {
-                    identifier: _user.email, 
-                    password: "zg13cai"
-                }
-                const options= {
-                    method:'POST',
-                    uri: "https://www.13cai.com.cn/api/vi/auth/local",
-                    body: _data,
-                    headers:{
-                        "Content-Type": "application/json",
-                    },
-                    json: true
-                };
-                const token = yield request(options);
-                console.log('token', token)
-
                 this.body = _user;
             }
         }else{
