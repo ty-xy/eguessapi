@@ -36,22 +36,15 @@ module.exports = {
                     avatarUrl: query.avatarUrl,
                     email:`${Math.ceil(Math.random()*10000)}@eguess.com`,
                     password: "zg13cai",
-                    roles:[2]
                 }
-                const option= {
-                    method:'post',
-                    uri:"https://www.13cai.com.cn/auth/local/register",
-                    body:updataUser,
-                    headers:{
-                        "Content-Type":"application/json"
-                    },
-                    json: true
-                };
-                // const y =yield rp(option)
-                // console.log(y,"yyyyyy")
-                //没有openid的时候创建一个新的user表
-                let  users = yield rp(option)
-                console.log('User创建', users)
+                let user = yield User.create(updataUser);
+                user.roles.add(_.find(roles, {name: 'personal'}));
+                
+                // Prevent double encryption.
+                delete user.password;
+                user = yield user.save();
+                
+                console.log('User创建', user)
                 if(users){
                     const updateData = {
                         ...query,
