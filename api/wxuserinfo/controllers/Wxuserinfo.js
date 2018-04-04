@@ -52,7 +52,7 @@ module.exports = {
                 if(users){
                     const updateData = {
                         ...query,
-                        wxUser:users.id
+                        wxUser:users.user.id
                     }
                     wxId = yield Wxuserinfo.create(updateData)
                     console.log('Wxuserinfo创建', wxId)
@@ -63,7 +63,7 @@ module.exports = {
                             email:`${Math.ceil(Math.random()*10000)}@eguess.com`,
                             wxUserInfo:wxId.id,
                         }
-                        userUpdate = yield User.update({id:users.id},{...updataUsers})
+                        userUpdate = yield User.update({id:users.user.id},{...updataUsers})
                         console.log('user更新', userUpdate)
                         const _data= {
                             identifier: userUpdate[0].email, 
