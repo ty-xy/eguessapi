@@ -222,7 +222,7 @@ module.exports = {
                           try {
                             const user = yield User.findOne(query);
                             console.log('findone', user)
-                            if (!user) {
+                            if (!user.id) {
                                 this.status = 403;
                                 redirectInfo.message = 'Identifier or password invalid.'
                                 return this.body = '未知错误';
@@ -235,13 +235,13 @@ module.exports = {
                                 return this.body = '未知错误';
                             }
                     
-                            const validPassword = user.validatePassword(params.password);
-                            console.log('validPassword', validPassword)
-                            if (!validPassword) {
-                              this.status = 403;
-                              redirectInfo.message = 'Identifier or password invalid.'
-                              return this.body = '未知错误';
-                            } else {
+                            // const validPassword = user.validatePassword(params.password);
+                            // console.log('validPassword', validPassword)
+                            // if (!validPassword) {
+                            //   this.status = 403;
+                            //   redirectInfo.message = 'Identifier or password invalid.'
+                            //   return this.body = '未知错误';
+                            // } else {
                               this.status = 302;
                               if (typeof user === 'object') {
                                     for (let item in user) {
@@ -251,7 +251,7 @@ module.exports = {
                               console.log('redirectQuery', redirectQuery)
                               redirectQuery.jwt = strapi.api.user.services.jwt.issue(user)
                               return this.redirect(`${redirect}?${qs.stringify(redirectQuery)}`);
-                            }
+                            // }
                           } catch (err) {
                             this.status = 500;
                             return this.body = err.message;
