@@ -247,6 +247,7 @@ module.exports = {
                                         redirectQuery[item] = info[item];
                                     }
                               }
+                              console.log('redirectQuery', redirectQuery)
                               redirectQuery.jwt = strapi.api.user.services.jwt.issue(user)
                               return this.redirect(`${redirect}?${qs.stringify(redirectQuery)}`);
                             }
