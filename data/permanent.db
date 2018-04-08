@@ -481,7 +481,7 @@
         ],
         "controller": "Topic",
         "action": "create",
-        "isPublic": false,
+        "isPublic": true,
         "registeredAuthorized": false,
         "contributorsAuthorized": false,
         "id": 62,
