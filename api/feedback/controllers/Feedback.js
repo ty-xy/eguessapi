@@ -1,18 +1,15 @@
 'use strict';
-const request = require('request-promise');
-const _find = require('../../../utils/query');
-const Baidu = require('../../../utils/baidu');
 
-const model = 'comment';
+const model = 'feedback';
 
 /**
- * A set of functions called "actions" for `Comment`
+ * A set of functions called "actions" for `feedback`
  */
 
 module.exports = {
 
   /**
-   * Get Comment entries.
+   * Get feedback entries.
    *
    * @return {Object|Array}
    */
@@ -20,19 +17,15 @@ module.exports = {
   find: function * () {
     this.model = model;
     try {
-      let entry = yield strapi.hooks.blueprints.find(this);
-      this.body = entry;
+      let entries = yield strapi.hooks.blueprints.find(this);
+      this.body = entries;
     } catch (err) {
       this.body = err;
     }
   },
-  _find: function * () {
-    this.model = model;
-    let enrty = yield _find(this);
-    this.body = enrty;
-  },
+
   /**
-   * Get a specific Comment.
+   * Get a specific feedback.
    *
    * @return {Object|Array}
    */
@@ -48,7 +41,7 @@ module.exports = {
   },
 
   /**
-   * Create a Comment entry.
+   * Create a feedback entry.
    *
    * @return {Object}
    */
@@ -56,24 +49,15 @@ module.exports = {
   create: function * () {
     this.model = model;
     try {
-        let entry = [];
-        const baidu = new Baidu();
-        const { body } = this.request.body;
-        const token_baidu = yield baidu.validate(body);
-        if (token_baidu.code !== 200) {
-            this.status = 505;
-            entry = token_baidu;
-        } else {
-            entry = yield strapi.hooks.blueprints.create(this);
-        }
-        this.body = entry;
+      let entry = yield strapi.hooks.blueprints.create(this);
+      this.body = entry;
     } catch (err) {
       this.body = err;
     }
   },
 
   /**
-   * Update a Comment entry.
+   * Update a feedback entry.
    *
    * @return {Object}
    */
@@ -89,7 +73,7 @@ module.exports = {
   },
 
   /**
-   * Destroy a Comment entry.
+   * Destroy a feedback entry.
    *
    * @return {Object}
    */
@@ -105,7 +89,7 @@ module.exports = {
   },
 
   /**
-   * Add an entry to a specific Comment.
+   * Add an entry to a specific feedback.
    *
    * @return {Object}
    */
@@ -121,7 +105,7 @@ module.exports = {
   },
 
   /**
-   * Remove a specific entry from a specific Comment.
+   * Remove a specific entry from a specific feedback.
    *
    * @return {Object}
    */
@@ -130,16 +114,6 @@ module.exports = {
     this.model = model;
     try {
       let entry = yield strapi.hooks.blueprints.remove(this);
-      this.body = entry;
-    } catch (err) {
-      this.body = err;
-    }
-  },
-  // 提交反馈
-  feedback: function * () {
-    this.model = 'feedback';
-    try {
-      let entry = yield Feedback.create(this);
       this.body = entry;
     } catch (err) {
       this.body = err;

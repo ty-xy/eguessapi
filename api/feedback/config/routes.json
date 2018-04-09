@@ -1,60 +1,52 @@
 {
   "routes": {
-    "GET /comment": {
-      "controller": "Comment",
-      "action": "_find",
+    "GET /feedback": {
+      "controller": "Feedback",
+      "action": "find",
       "policies": [
         "isAuthorized"
       ]
     },
-    "GET /comment/:id": {
-      "controller": "Comment",
+    "GET /feedback/:id": {
+      "controller": "Feedback",
       "action": "findOne",
       "policies": [
         "isAuthorized"
       ]
     },
-    "POST /comment": {
-      "controller": "Comment",
+    "POST /feedback": {
+      "controller": "Feedback",
       "action": "create",
       "policies": [
         "isAuthorized",
         "addDataCreate"
       ]
     },
-    "POST /feedback": {
-      "controller": "Comment",
-      "action": "feedback",
-      "policies": [
-        "isAuthorized",
-        "addDataCreate"
-      ]
-    },
-    "PUT /comment/:id": {
-      "controller": "Comment",
+    "PUT /feedback/:id": {
+      "controller": "Feedback",
       "action": "update",
       "policies": [
         "isAuthorized",
         "addDataUpdate"
       ]
     },
-    "DELETE /comment/:id": {
-      "controller": "Comment",
+    "DELETE /feedback/:id": {
+      "controller": "Feedback",
       "action": "destroy",
       "policies": [
         "isAuthorized"
       ]
     },
-    "POST /comment/:parentId/:relation": {
-      "controller": "Comment",
+    "POST /feedback/:parentId/:relation": {
+      "controller": "Feedback",
       "action": "add",
       "policies": [
         "isAuthorized",
         "addDataCreate"
       ]
     },
-    "DELETE /comment/:parentId/:relation/:id": {
-      "controller": "Comment",
+    "DELETE /feedback/:parentId/:relation/:id": {
+      "controller": "Feedback",
       "action": "remove",
       "policies": [
         "isAuthorized",

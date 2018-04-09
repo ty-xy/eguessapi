@@ -1,0 +1,23 @@
+{
+  "identity": "feedback",
+  "connection": "",
+  "displayedAttribute": "",
+  "schema": true,
+  "attributes": {
+    "message": {
+      "type": "string"
+    },
+    "createdBy": {
+      "model": "user"
+    },
+    "updatedBy": {
+      "model": "user"
+    },
+    "contributors": {
+      "collection": "user",
+      "via": "feedbacks"
+    }
+  },
+  "autoCreatedAt": true,
+  "autoUpdatedAt": true
+}

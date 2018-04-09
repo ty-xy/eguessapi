@@ -104,6 +104,10 @@
     "betopics": {
       "collection": "betopic",
       "via": "contributors"
+    },
+    "feedbacks": {
+      "collection": "feedback",
+      "via": "contributors"
     }
   },
   "autoCreatedAt": true,
