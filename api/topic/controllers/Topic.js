@@ -100,7 +100,18 @@ module.exports = {
   findOne: function * () {
     this.model = model;
     try {
-      let entry = yield strapi.hooks.blueprints.findOne(this);
+      let entry = yield strapi.hooks.blueprints.findOne(this) || {};
+      if (entry && entry.time) {
+        const time = (entry.time + 120 * 60 * 1000) - Date.now();
+        if(time > 0) {
+          entry.second = time;
+        } else {
+          entry.second = 0;
+          entry.status = 2;
+        }
+      } else {
+        entry.second = 0;
+      }
       this.body = entry;
     } catch (err) {
       this.body = err;
