@@ -132,7 +132,7 @@ module.exports = {
       if (type === "comfirm") {
         entry = yield strapi.hooks.blueprints.create(this);
       } else {
-        const findTopic = yield Topic.findOne({ title });
+        const findTopic = yield Betopic.findOne({ title });
         if (!findTopic) {
           entry = yield strapi.hooks.blueprints.create(this);
         } else {
