@@ -126,9 +126,23 @@ module.exports = {
 
   create: function * () {
     this.model = model;
-    console.log("this.query", this.query)
+    const { title, type } = this.request.body;
     try {
-      let entry = yield strapi.hooks.blueprints.create(this);
+      let entry = {};
+      if (type === "comfirm") {
+        entry = yield strapi.hooks.blueprints.create(this);
+      } else {
+        const findTopic = yield Topic.findOne({ title });
+        if (!findTopic) {
+          entry = yield strapi.hooks.blueprints.create(this);
+        } else {
+          entry = {
+            message: "改话题已经存在",
+            data: findTopic,
+          };
+          this.status = 503;
+        }
+      }
       this.body = entry;
     } catch (err) {
       this.body = err;
