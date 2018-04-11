@@ -221,9 +221,11 @@ module.exports = {
                                 this.status = 302;
                                 redirectQuery = user;
                                 redirectQuery.jwt = strapi.api.user.services.jwt.issue(user);
+                                console.log('redirect------', redirect_url, redirect)
                                 if (redirect_url) {
                                   return this.redirect(`${redirect_url}?${qs.stringify(redirectQuery)}`);
                                 }
+                                
                                 return this.redirect(`${redirect}/index?${qs.stringify(redirectQuery)}`);
                             }
                             return this.body = "获取信息错误， 请重新打开";
