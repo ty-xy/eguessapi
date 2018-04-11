@@ -96,7 +96,27 @@ module.exports = {
    *
    * @return {Object|Array}
    */
-
+  findBeTopics: function * () {
+    this.model = model;
+    try {
+      let entry = yield strapi.hooks.blueprints.find(this);
+      entry.forEach((item) => {
+        const time = (item.time + 120 * 60 * 1000) - Date.now();
+        if(time > 0) {
+            item.second = time;
+        } else if(time >120 * 60 * 1000){
+            item.status = 0;
+        }else {
+            item.second = 0;
+            item.status = 2;
+        }
+    });
+    //   console.log(entry,"entry")
+      this.body = entry;
+    } catch (err) {
+      this.body = err;
+    }
+  },
   findOne: function * () {
     this.model = model;
     try {

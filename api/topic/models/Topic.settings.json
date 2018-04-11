@@ -11,6 +11,9 @@
         "status": {
             "type": "integer"
         },
+        "classify":{
+            "type":"string"
+        },
         "readNum": {
             "type": "integer"
         },
@@ -54,6 +57,7 @@
             "collection": "answer",
             "via": "topic"
         }
+      
     },
     "autoCreatedAt": true,
     "autoUpdatedAt": true,
