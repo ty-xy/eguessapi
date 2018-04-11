@@ -222,7 +222,7 @@ module.exports = {
                                 redirectQuery = user;
                                 redirectQuery.jwt = strapi.api.user.services.jwt.issue(user);
                                 console.log('redirect------', redirect_url, redirect)
-                                if (redirect_url == 'undefined') {
+                                if (redirect_url !== 'undefined') {
                                   return this.redirect(`${redirect_url}?${qs.stringify(redirectQuery)}`);
                                 }
                                 return this.redirect(`${redirect}/index?${qs.stringify(redirectQuery)}`);
