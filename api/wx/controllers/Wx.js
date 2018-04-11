@@ -127,8 +127,10 @@ module.exports = {
     login: function * () {
         try {
             const router = 'api/v1/get_wxtoken';
+            console.log('login', this.query);
+            const { redirect } = this.query;
             // 这是编码后的地址
-            const return_uri = config.prod.redirect_uri + router;
+            const return_uri = config.prod.redirect_uri + router + "?redirect=" + redirect;
             // 获取code参数
             const code_params = {
                 appid: config.prod.appid,
@@ -147,10 +149,8 @@ module.exports = {
     // 第二步：通过code换取网页授权access_token
     getToken: function * () {
         try {
-            // console.log('this.query.code', this.query.code)
-            // const api = new API(this.query.code);
-            // const token = yield api.ensureAccessToken();
-            // console.log('getToken', token);
+            const { redirect_url } = this.query; 
+            console.log('getToken-redirect_url', redirect_url)
             const token_params = {
                 appid: config.prod.appid,
                 secret: config.prod.appsecret,
@@ -184,7 +184,6 @@ module.exports = {
                     let info = JSON.parse(wxuserinfo);
                     let redirectQuery = {};
                     const redirectInfo = {};
-                    console.log('info', info, typeof info);
                     if(info.id){
                         const params = {
                             identifier: info.email, 
@@ -219,17 +218,10 @@ module.exports = {
                           try {
                             const user = yield User.findOne(query);
                             if (user) {
-                                console.log('user', user)
                                 this.status = 302;
-                                // if (typeof user === 'object') {
-                                //       for (let item in user) {
-                                //           redirectQuery[item] = info[item];
-                                //       }
-                                // }
                                 redirectQuery = user;
-                                console.log('redirectQuery', redirectQuery)
                                 redirectQuery.jwt = strapi.api.user.services.jwt.issue(user);
-                                return this.redirect(`${redirect}?${qs.stringify(redirectQuery)}`);
+                                return this.redirect(`${redirect_url}?${qs.stringify(redirectQuery)}`);
                             }
                             return this.body = "获取信息错误， 请重新打开";
                           } catch (err) {
@@ -253,9 +245,7 @@ module.exports = {
         let signature = '';
         const wxuserinfo = yield request("https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=" + config.prod.appid + "&secret=" + config.prod.appsecret);
         let data = JSON.parse(wxuserinfo);
-        console.log('wxuserinfo', data, data.access_token);
         const { url } = this.query;
-        console.log('url', url)
         let jsapi_ticket = '';
         if (data.access_token) {
             jsapi_ticket = yield request("https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=" + data.access_token + "&type=jsapi");
@@ -267,14 +257,12 @@ module.exports = {
         // const share = new Share();
         const timestamp = Share.create_timestamp();
         const nonceStr = Share.create_noncestr();
-        console.log('time', timestamp, nonceStr)
         const body = {
             appId: config.prod.appid,
             timestamp,
             nonceStr,
             signature: Share.create_signature(signature, nonceStr, timestamp, url),
         };
-        console.log('body', body, )
         this.body = body;
     }
 }
