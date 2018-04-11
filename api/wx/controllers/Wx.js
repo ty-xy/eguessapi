@@ -10,7 +10,7 @@ const config = require('../wxconfig');
 
 const prefix = 'https://open.weixin.qq.com/';
 const apiprefix = 'https://api.weixin.qq.com/';
-const redirect = 'https://www.13cai.com.cn/index';
+const redirect = 'https://www.13cai.com.cn';
 
 function API(code) {
     this.appid = config.prod.appid;
@@ -224,7 +224,7 @@ module.exports = {
                                 if (redirect_url) {
                                   return this.redirect(`${redirect_url}?${qs.stringify(redirectQuery)}`);
                                 }
-                                return this.redirect(`${redirect}?${qs.stringify(redirectQuery)}`);
+                                return this.redirect(`${redirect}/index?${qs.stringify(redirectQuery)}`);
                             }
                             return this.body = "获取信息错误， 请重新打开";
                           } catch (err) {
