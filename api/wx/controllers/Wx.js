@@ -10,7 +10,7 @@ const config = require('../wxconfig');
 
 const prefix = 'https://open.weixin.qq.com/';
 const apiprefix = 'https://api.weixin.qq.com/';
-const redirect = 'https://www.13cai.com.cn';
+const redirect = 'https://www.13cai.com.cn/index';
 
 function API(code) {
     this.appid = config.prod.appid;
@@ -128,9 +128,9 @@ module.exports = {
         try {
             const router = 'api/v1/get_wxtoken';
             console.log('login', this.query);
-            const { redirect } = this.query;
+            const redirect_url = this.query.redirect;
             // 这是编码后的地址
-            const return_uri = config.prod.redirect_uri + router + "?redirect=" + redirect;
+            const return_uri = config.prod.redirect_uri + router + "?redirect_url=" + redirect_url;
             // 获取code参数
             const code_params = {
                 appid: config.prod.appid,
@@ -221,7 +221,10 @@ module.exports = {
                                 this.status = 302;
                                 redirectQuery = user;
                                 redirectQuery.jwt = strapi.api.user.services.jwt.issue(user);
-                                return this.redirect(`${redirect_url}?${qs.stringify(redirectQuery)}`);
+                                if (redirect_url) {
+                                  return this.redirect(`${redirect_url}?${qs.stringify(redirectQuery)}`);
+                                }
+                                return this.redirect(`${redirect}?${qs.stringify(redirectQuery)}`);
                             }
                             return this.body = "获取信息错误， 请重新打开";
                           } catch (err) {
