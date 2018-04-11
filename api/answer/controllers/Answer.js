@@ -157,8 +157,16 @@ _find: function * () {
    * @return {Object|Array}
    */
   //
- 
-
+  getDetail:function * () {
+    this.model = model;
+    try {
+        let entry = yield findAnswer(this);
+        console.log(entry,"entry43124")
+      this.body = entry;
+    } catch (err) {
+      this.body = err;
+    }
+  },
   findOne: function * () {
     this.model = model;
     try {

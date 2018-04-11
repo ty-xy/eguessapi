@@ -24,6 +24,7 @@ module.exports = {
     }
   },
 
+  
   /**
    * Get a specific Betopic.
    *
@@ -51,7 +52,7 @@ module.exports = {
     const { title, type } = this.request.body;
     try {
       let entry = {};
-      if (type === "comfirm") {
+      if (type === "confirm") {
         entry = yield strapi.hooks.blueprints.create(this);
       } else {
         const findTopic = yield Betopic.findOne({ title });
@@ -59,7 +60,7 @@ module.exports = {
           entry = yield strapi.hooks.blueprints.create(this);
         } else {
           entry = {
-            message: "改话题已经存在",
+            message: "该话题已经存在",
             data: findTopic,
           };
           this.status = 503;
@@ -70,7 +71,7 @@ module.exports = {
       this.body = err;
     }
   },
-
+  
   /**
    * Update a Betopic entry.
    *
