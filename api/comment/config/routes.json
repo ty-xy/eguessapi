@@ -22,14 +22,6 @@
         "addDataCreate"
       ]
     },
-    "POST /feedback": {
-      "controller": "Comment",
-      "action": "feedback",
-      "policies": [
-        "isAuthorized",
-        "addDataCreate"
-      ]
-    },
     "PUT /comment/:id": {
       "controller": "Comment",
       "action": "update",

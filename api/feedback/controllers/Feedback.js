@@ -18,6 +18,8 @@ module.exports = {
     this.model = model;
     try {
       let entries = yield strapi.hooks.blueprints.find(this);
+      entries = entries.map((item) => ({ feedback: item.message }));
+      console.log('entries', entries)
       this.body = entries;
     } catch (err) {
       this.body = err;

@@ -135,14 +135,14 @@ module.exports = {
       this.body = err;
     }
   },
-  // 提交反馈
-  feedback: function * () {
-    this.model = 'feedback';
-    try {
-      let entry = yield Feedback.create(this);
-      this.body = entry;
-    } catch (err) {
-      this.body = err;
-    }
-  }
+  // // 提交反馈
+  // feedback: function * () {
+  //   this.model = 'feedback';
+  //   try {
+  //     let entry = yield Feedback.create(this);
+  //     this.body = entry;
+  //   } catch (err) {
+  //     this.body = err;
+  //   }
+  // }
 };
