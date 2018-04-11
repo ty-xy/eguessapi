@@ -128,7 +128,7 @@ module.exports = {
         try {
             const router = 'api/v1/get_wxtoken';
             console.log('login', this.query);
-            const redirect_url = this.query.redirect;
+            const redirect_url = this.query.shareUrl;
             // 这是编码后的地址
             const return_uri = config.prod.redirect_uri + router + "?redirect_url=" + redirect_url;
             // 获取code参数
@@ -222,7 +222,7 @@ module.exports = {
                                 redirectQuery = user;
                                 redirectQuery.jwt = strapi.api.user.services.jwt.issue(user);
                                 console.log('redirect------', redirect_url, redirect)
-                                if (redirect_url !== 'undefined') {
+                                if (redirect_url != 'undefined') {
                                   return this.redirect(`${redirect_url}?${qs.stringify(redirectQuery)}`);
                                 }
                                 return this.redirect(`${redirect}/index?${qs.stringify(redirectQuery)}`);
