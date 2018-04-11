@@ -225,7 +225,7 @@ module.exports = {
                                 if (redirect_url) {
                                   return this.redirect(`${redirect_url}?${qs.stringify(redirectQuery)}`);
                                 }
-                                
+                                console.log('redirect------index', `${redirect}/index?${qs.stringify(redirectQuery)}`)
                                 return this.redirect(`${redirect}/index?${qs.stringify(redirectQuery)}`);
                             }
                             return this.body = "获取信息错误， 请重新打开";
