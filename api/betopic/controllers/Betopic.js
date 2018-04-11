@@ -60,7 +60,7 @@ module.exports = {
           entry = yield strapi.hooks.blueprints.create(this);
         } else {
           entry = {
-            message: "改话题已经存在",
+            message: "该话题已经存在",
             data: findTopic,
           };
           this.status = 503;
