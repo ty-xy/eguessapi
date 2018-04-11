@@ -9,7 +9,6 @@ module.exports = {
     prod: {
         appid: 'wxdd66d0fb17f10a3f',
         appsecret: '81b6a4cb7b415c672f81e9bad9a8cb00',
-        token: 'ILoveZhiGong18',
         redirect_uri: 'https://www.13cai.com.cn/',
     }
 }

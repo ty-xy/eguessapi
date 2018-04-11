@@ -8,6 +8,9 @@
     "body": {
       "type": "string"
     },
+    "username": {
+      "type": "string"
+    },
     "lang": {
       "type": "string",
       "required": true
