@@ -103,10 +103,13 @@ module.exports = {
       entry.forEach((item) => {
         const time = (item.time + 120 * 60 * 1000) - Date.now();
         if(time > 0) {
+            if(item.time - Date.now()){
+                item.status = 0;
+            }else{
+                item.status = 1;
+            }
             item.second = time;
-        } else if(time >120 * 60 * 1000){
-            item.status = 0;
-        }else {
+        } else {
             item.second = 0;
             item.status = 2;
         }
